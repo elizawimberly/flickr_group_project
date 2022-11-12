@@ -22,10 +22,12 @@ function UsersList() {
   });
 
   return (
-    <>
+    <div className='page-wrapper-container'>
+      <h1>User List Component</h1>
+
       <h1>User List: </h1>
       <ul>{userComponents}</ul>
-    </>
+    </div>
   );
 }
 

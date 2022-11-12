@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import LoginForm from './components/auth/LoginForm';
-import SignUpForm from './components/auth/SignUpForm';
-import NavBar from './components/NavBar';
-import ProtectedRoute from './components/auth/ProtectedRoute';
-import UsersList from './components/UsersList';
-import User from './components/User';
+import LoginForm from './components/User/LoginForm';
+import SignUpForm from './components/User/SignUpForm';
+import NavBar from './components/NavigationBars/NavBarMain';
+import ProtectedRoute from './components/ProtectedComponents/ProtectedRoute';
+import UsersList from './components/ProtectedComponents/UsersList';
+import User from './components/ProtectedComponents/User';
 import { authenticate } from './store/session';
 
 function App() {
@@ -26,24 +26,34 @@ function App() {
 
   return (
     <BrowserRouter>
+
       <NavBar />
+
       <Switch>
+
         <Route path='/login' exact={true}>
           <LoginForm />
         </Route>
+
         <Route path='/sign-up' exact={true}>
           <SignUpForm />
         </Route>
-        <ProtectedRoute path='/users' exact={true} >
+
+        {/* <ProtectedRoute path='/users' exact={true} >
           <UsersList/>
         </ProtectedRoute>
+
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
-        </ProtectedRoute>
+        </ProtectedRoute> */}
+
         <Route path='/' exact={true} >
-          <h1>My Home Page</h1>
+          <h1>Currently and H1 tag; replace with conditional component</h1>
+          {/* <Landing /> */}
         </Route>
+
       </Switch>
+
     </BrowserRouter>
   );
 }
