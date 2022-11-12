@@ -8,6 +8,10 @@ import ProtectedRoute from './components/ProtectedComponents/ProtectedRoute';
 import UsersList from './components/ProtectedComponents/UsersList';
 import User from './components/ProtectedComponents/User';
 import { authenticate } from './store/session';
+import Landing from './components/Landing';
+import LandingSession from './components/Landing/LandingSession';
+import LandingNoSession from './components/Landing/LandingNoSession';
+import Explore from './components/Photos/Explore';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -48,9 +52,22 @@ function App() {
         </ProtectedRoute> */}
 
         <Route path='/' exact={true} >
-          <h1>Currently and H1 tag; replace with conditional component</h1>
-          {/* <Landing /> */}
+          <Landing />
         </Route>
+
+        {/* yeet both landing routes once landing is set up to auto render */}
+        <Route path='/landing/no-session' exact={true} >
+          <LandingNoSession />
+        </Route>
+
+        <Route path='/landing/session' exact={true} >
+          <LandingSession />
+        </Route>
+
+        <Route path='/explore' exact={true} >
+          <Explore />
+        </Route>
+
 
       </Switch>
 
