@@ -13,6 +13,13 @@ import LandingSession from './components/Landing/LandingSession';
 import LandingNoSession from './components/Landing/LandingNoSession';
 import Explore from './components/Photos/Explore';
 import Photostream from './components/Photos/Photostream';
+import PhotoDetailsPage from './components/Photos/PhotoDetailsPage';
+import PhotoCreateForm from './components/Photos/PhotoCreateForm';
+import PhotoUpdateForm from './components/Photos/PhotoUpdateForm';
+import Albumstream from './components/Albums/Albumstream';
+import AlbumDetailsPage from './components/Albums/AlbumDetailsPage';
+import AlbumCreateForm from './components/Albums/AlbumCreateForm';
+import AlbumUpdateForm from './components/Albums/AlbumUpdateForm';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -36,6 +43,7 @@ function App() {
 
       <Switch>
 
+        {/* LANDING */}
         <Route path='/' exact={true} >
           <Landing />
         </Route>
@@ -49,10 +57,8 @@ function App() {
           <LandingSession />
         </Route>
 
-        <Route path='/explore' exact={true} >
-          <Explore />
-        </Route>
 
+        {/* USER */}
         <Route path='/login' exact={true}>
           <LoginForm />
         </Route>
@@ -62,13 +68,48 @@ function App() {
         </Route>
 
 
+        {/* PHOTOS */}
+        <Route path='/explore' exact={true} >
+          <Explore />
+        </Route>
+
         <Route path='/photostream' exact={true}>
           <Photostream />
         </Route>
 
+        <Route path='/photos/upload' exact={true}>
+          <PhotoCreateForm />
+        </Route>
+
+        <Route path='/photos/:photoId' exact={true}>
+          <PhotoDetailsPage />
+        </Route>
+
+        <Route path='/photos/:photoId/edit' exact={true}>
+          <PhotoUpdateForm />
+        </Route>
 
 
-        {/* <ProtectedRoute path='/users' exact={true} >
+        {/* ALBUMS */}
+        <Route path='/albums' exact={true}>
+          <Albumstream />
+        </Route>
+
+        <Route path='/albums/create' exact={true}>
+          <AlbumCreateForm />
+        </Route>
+
+        <Route path='/albums/:albumId' exact={true}>
+          <AlbumDetailsPage />
+        </Route>
+
+        <Route path='/albums/:albumId/organize' exact={true}>
+          <AlbumUpdateForm />
+        </Route>
+
+
+        {/* PROTECTED COMPONENTS
+        <ProtectedRoute path='/users' exact={true} >
           <UsersList/>
         </ProtectedRoute>
 

@@ -1,3 +1,8 @@
+.account-component {
+    max-width: 80%;
+
+}
+
 .account-coverphoto-container {
     max-height: 250px;
     position: absolute;
