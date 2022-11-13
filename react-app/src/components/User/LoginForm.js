@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { NavLink, Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
 import background from '../../assets/background-log-in-or-sign-up.jpg';
 import './User.css';
@@ -15,9 +15,9 @@ const LoginForm = () => {
 
   /****************** manage state *******************/
   const user = useSelector(state => state.session.user);
-  const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [errors, setErrors] = useState([]);
 
   /***************** handle events *******************/
   const onLogin = async (e) => {
@@ -42,7 +42,6 @@ const LoginForm = () => {
   }
 
   return (
-
     <div className='page-wrapper-container'>
 
       <div className="background-image-container">
@@ -50,16 +49,16 @@ const LoginForm = () => {
       </div>
       {/* <div className='login-form-component' style={{backgroundImage:`url(${background})`}}> */}
 
-      <div className='login-form-component'>
+      <div className='LoginForm-and-SignUpForm-components'>
 
-        <div className='login-form'>
+        <div className='login-signup-form' id="login-form">
 
           <div>
-            <img src={flareLogo} className="login-form-logo"></img>
+            <img src={flareLogo} className="login-signup-form-logo"></img>
           </div>
 
           <div>
-            <p className="login-form-prompt">Log in to Flare</p>
+            <p className="login-signup-form-prompt">Log in to Flare</p>
           </div>
 
           <form onSubmit={onLogin}>
@@ -72,7 +71,7 @@ const LoginForm = () => {
                 placeholder='Email address'
                 value={email}
                 onChange={updateEmail}
-                className="login-form-input-field"
+                className="login-signup-form-input-field"
                 />
             </div>
 
@@ -84,7 +83,7 @@ const LoginForm = () => {
                 placeholder='Password'
                 value={password}
                 onChange={updatePassword}
-                className="login-form-input-field"
+                className="login-signup-form-input-field"
                 />
             </div>
 
@@ -95,9 +94,18 @@ const LoginForm = () => {
             </div>
 
 
-            <button type='submit' className='login-form-button'>Sign in</button>
-
+            <button type='submit' className='login-signup-form-button'>Sign in</button>
           </form>
+
+          <div className='form-redirect-prompt'>
+            Not a Flare member? {' '}
+            <span>
+              <NavLink to='/sign-up' exact={true} className='form-link'>
+              Sign up here.
+              </NavLink>
+            </span>
+          </div>
+          
         </div>
       </div>
     </div>

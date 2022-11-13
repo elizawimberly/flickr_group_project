@@ -1,6 +1,6 @@
 /* background image styling imported from Landing.css */
 
-.login-form-component {
+.LoginForm-and-SignUpForm-components {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -9,38 +9,70 @@
     height: 100vh;
 }
 
-.login-form {
+.login-signup-form {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 
-    width: 352px;
-    height: 425px;
     border-radius: 4px;
     background-color: #fff;
 }
 
-.login-form-logo {
+#login-form {
+    width: 352px;
+    height: 425px;
+}
+
+#signup-form {
+    min-width: 352px;
+    min-height: 690px;
+    text-align: center;
+}
+
+.login-signup-form-logo {
     height: 18px;
 }
 
-.login-form-prompt {
+.login-signup-form-prompt {
     font-size: 20px;
 }
 
-.login-form-input-field {
+.login-signup-form-input-field {
     width: 302px;
     height: 55px;
-    border-radius: 1px rgb(118, 118, 118) 0.25rem;
+    border: 1px solid rgb(118, 118, 118) ;
+    border-radius: 0.25rem;
 }
 
-.login-form-button {
+.login-signup-form-button {
     height: 40px;
-    width: 310px;
+    width: 308px;
     background-color: #128fdc;
     border: none;
     border-radius: 0.25rem;
     color: white;
     font-weight: 900;
+}
+
+.disclaimer {
+    width: 245px;
+    font-size: 12px;
+    color: #898989;
+    padding-top: 20px;
+    text-align: center;
+}
+
+.form-redirect-prompt {
+    width: 308px;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #e3e3e3;
+    text-align: center;
+}
+
+.form-link {
+    color: #006dac;
+    font-style: none;
+    text-decoration: none;
 }
