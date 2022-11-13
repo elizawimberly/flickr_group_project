@@ -9,7 +9,7 @@ const NavBar = () => {
   return (
     <div className='page-wrapper-container'>
 
-      <nav className='navigation-bar-main'>
+      <nav className='navigation-bar' id="navbar-main">
 
             <NavLink to='/' exact={true} activeClassName='active'>
               <img src={flareLogo} className="navigation-bar-logo"></img>

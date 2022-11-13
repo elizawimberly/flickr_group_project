@@ -1,11 +1,10 @@
 .account-component {
-    max-width: 80%;
-
+    width: 100%;
+    height: 314px;
 }
 
 .account-coverphoto-container {
-    max-height: 250px;
-    position: absolute;
+    /* height: 250px; */
     top: 0;
     bottom: 0;
     left: 0;
@@ -15,7 +14,7 @@
 
 .account-coverphoto {
     width: 100%;
-    overflow-y: hidden;
+    /* height: 250px; */
     object-fit: cover;
 }
 
