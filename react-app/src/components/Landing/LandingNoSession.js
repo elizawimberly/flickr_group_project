@@ -14,17 +14,19 @@ function LandingNoSession() {
                 <img className="background-image" src={background}></img>
             </div>
 
-            <div className="landing-no-session-text-box-container">
-                <h1>Find your inspiration.</h1>
-                <h2>Join the Flickr community, home to tens of billions of photos and 2 million groups.</h2>
+            <div className="landing-no-session-page-container">
 
-                <NavLink to="/explore">
-                <button id="explore-button" type="submit">Explore</button>
-                </NavLink>
+                <div className="landing-no-session-text-box-container">
+                    <h1>Find your inspiration.</h1>
+                    <h2>Join the Flickr community, home to tens of billions of photos and 2 million groups.</h2>
+
+                    <NavLink to="/explore">
+                    <button id="landing-explore-button" type="submit">Explore</button>
+                    </NavLink>
+                </div>
             </div>
 
         </div>
-
     )
 }
 

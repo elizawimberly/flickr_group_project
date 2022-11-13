@@ -13,8 +13,34 @@
     z-index: -1;
 }
 
+.landing-no-session-page-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 
 .landing-no-session-text-box-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     width: 640px;
     border: 1px solid red;
+    color: #fff;
+    text-align: center;
+}
+
+#landing-explore-button {
+    width: 200px;
+    height: 64px;
+    font-size: 24px;
+    background-color: #fff;
+    border: none;
+    border-radius: 3px;
+}
+
+#landing-explore-button:hover {
+    cursor: pointer;
+    color: #7f7f7f;
 }
