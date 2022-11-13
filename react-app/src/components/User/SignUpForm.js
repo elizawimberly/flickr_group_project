@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { Redirect } from 'react-router-dom';
 import { signUp } from '../../store/session';
+import background from '../../assets/background-log-in-or-sign-up.jpg'
+
 
 const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
@@ -43,6 +45,10 @@ const SignUpForm = () => {
   }
 
   return (
+    <div className='page-wrapper-container'>
+    <div className="background-image-container">
+      <img className="background-image" src={background}></img>
+    </div>
     <form onSubmit={onSignUp}>
       <div>
         {errors.map((error, ind) => (
@@ -88,6 +94,7 @@ const SignUpForm = () => {
       </div>
       <button type='submit'>Sign Up</button>
     </form>
+    </div>
   );
 };
 

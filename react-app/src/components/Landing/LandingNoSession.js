@@ -12,8 +12,10 @@ function LandingNoSession() {
 
             <div className="background-image-container">
                 <img className="background-image" src={background}></img>
+            </div>
 
-                <h1>Find your inspiration</h1>
+            <div className="landing-no-session-text-box-container">
+                <h1>Find your inspiration.</h1>
                 <h2>Join the Flickr community, home to tens of billions of photos and 2 million groups.</h2>
 
                 <NavLink to="/explore">
@@ -22,6 +24,7 @@ function LandingNoSession() {
             </div>
 
         </div>
+
     )
 }
 
