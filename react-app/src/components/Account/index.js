@@ -7,11 +7,11 @@ function Account() {
 
     return (
         <div className='page-wrapper-container'>
-            <div className="account-component">
+            <div className="account-component" style={{backgroundImage:`url(${coverphoto})`}}>
 
-                <div className="account-coverphoto-container">
+                {/* <div className="account-coverphoto-container">
                     <img className="account-coverphoto" src={coverphoto}></img>
-                </div>
+                </div> */}
 
 
                 <div className="account-info-container">

@@ -1,3 +1,7 @@
+.landing-component {
+    margin-top: 100px;
+}
+
 /* .background-image-container {
     display: flex;
     flex-direction: column;
@@ -13,11 +17,13 @@
     z-index: -1;
 }
 
-.landing-no-session-page-container {
+.landing-no-session-component {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 100vw;
+    height: 100vh;
 }
 
 .landing-no-session-text-box-container {
@@ -26,7 +32,7 @@
     justify-content: center;
     align-items: center;
     width: 640px;
-    border: 1px solid red;
+    /* border: 1px solid red; */
     color: #fff;
     text-align: center;
 }

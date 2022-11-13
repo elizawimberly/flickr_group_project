@@ -6,10 +6,13 @@ import './NavBar.css';
 import flareLogo from '../../assets/flare-branding/logo/flare-logo-2.png';
 
 const NavBar = () => {
+  const session = true;
+
   return (
     <div className='page-wrapper-container'>
 
-      <nav className='navigation-bar-main'>
+      {/* <div className={session ? "navigation-bar" : ""}></div> */}
+      <nav className='navigation-bar' id="navbar-main">
 
             <NavLink to='/' exact={true} activeClassName='active'>
               <img src={flareLogo} className="navigation-bar-logo"></img>

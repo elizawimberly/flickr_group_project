@@ -6,7 +6,7 @@ function LandingSession() {
         <div className='page-wrapper-container'>
 
             <div>
-                
+                <h1>LandingSession component waiting to be built!</h1>
             </div>
 
         </div>

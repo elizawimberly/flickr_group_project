@@ -1,18 +1,25 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { NavLink, Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
-import background from '../../assets/background-log-in-or-sign-up.jpg'
-import './User.css'
+import background from '../../assets/background-log-in-or-sign-up.jpg';
+import './User.css';
+import flareLogo from '../../assets/flare-branding/logo/flare-logo-4.png';
 
 
+/******************************* COMPONENT *******************************/
 const LoginForm = () => {
-  const [errors, setErrors] = useState([]);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const user = useSelector(state => state.session.user);
+
+  /************ reducer/API communication ************/
   const dispatch = useDispatch();
 
+  /****************** manage state *******************/
+  const user = useSelector(state => state.session.user);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [errors, setErrors] = useState([]);
+
+  /***************** handle events *******************/
   const onLogin = async (e) => {
     e.preventDefault();
     const data = await dispatch(login(email, password));
@@ -29,50 +36,78 @@ const LoginForm = () => {
     setPassword(e.target.value);
   };
 
+  /**************** render component *****************/
   if (user) {
     return <Redirect to='/' />;
   }
 
   return (
-
     <div className='page-wrapper-container'>
 
       <div className="background-image-container">
         <img className="background-image" src={background}></img>
       </div>
+      {/* <div className='login-form-component' style={{backgroundImage:`url(${background})`}}> */}
 
-      <div className='form-container'>
-        <form onSubmit={onLogin}>
+      <div className='LoginForm-and-SignUpForm-components'>
+
+        <div className='login-signup-form' id="login-form">
 
           <div>
-            {errors.map((error, ind) => (
-              <div key={ind}>{error}</div>
-              ))}
+            <img src={flareLogo} className="login-signup-form-logo"></img>
           </div>
+
           <div>
-            <label htmlFor='email'>Email</label>
-            <input
-              name='email'
-              type='text'
-              placeholder='Email'
-              value={email}
-              onChange={updateEmail}
-              />
+            <p className="login-signup-form-prompt">Log in to Flare</p>
           </div>
-          <div>
-            <label htmlFor='password'>Password</label>
-            <input
-              name='password'
-              type='password'
-              placeholder='Password'
-              value={password}
-              onChange={updatePassword}
-              />
-            <button type='submit'>Login</button>
+
+          <form onSubmit={onLogin}>
+
+            <div>
+              <label htmlFor='email'></label>
+              <input
+                name='email'
+                type='text'
+                placeholder='Email address'
+                value={email}
+                onChange={updateEmail}
+                className="login-signup-form-input-field"
+                />
+            </div>
+
+            <div>
+              <label htmlFor='password'></label>
+              <input
+                name='password'
+                type='password'
+                placeholder='Password'
+                value={password}
+                onChange={updatePassword}
+                className="login-signup-form-input-field"
+                />
+            </div>
+
+            <div>
+              {errors.map((error, ind) => (
+                <div key={ind}>{error}</div>
+                ))}
+            </div>
+
+
+            <button type='submit' className='login-signup-form-button'>Sign in</button>
+          </form>
+
+          <div className='form-redirect-prompt'>
+            Not a Flare member? {' '}
+            <span>
+              <NavLink to='/sign-up' exact={true} className='form-link'>
+              Sign up here.
+              </NavLink>
+            </span>
           </div>
-        </form>
+          
+        </div>
       </div>
-
     </div>
   );
 };
