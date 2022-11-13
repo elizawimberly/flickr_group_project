@@ -44,13 +44,13 @@ const LoginForm = () => {
   return (
 
     <div className='page-wrapper-container'>
-      <div className='login-form-component' style={{backgroundImage:`url(${background})`}}>
-      {/* <div className='login-form-component'> */}
 
-
-      {/* <div className="background-image-container">
+      <div className="background-image-container">
         <img className="background-image" src={background}></img>
-      </div> */}
+      </div>
+      {/* <div className='login-form-component' style={{backgroundImage:`url(${background})`}}> */}
+
+      <div className='login-form-component'>
 
         <div className='login-form'>
 
