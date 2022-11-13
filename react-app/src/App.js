@@ -12,6 +12,7 @@ import Landing from './components/Landing';
 import LandingSession from './components/Landing/LandingSession';
 import LandingNoSession from './components/Landing/LandingNoSession';
 import Explore from './components/Photos/Explore';
+import Photostream from './components/Photos/Photostream';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -58,6 +59,11 @@ function App() {
 
         <Route path='/sign-up' exact={true}>
           <SignUpForm />
+        </Route>
+
+
+        <Route path='/photostream' exact={true}>
+          <Photostream />
         </Route>
 
 

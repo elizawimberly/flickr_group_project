@@ -3,6 +3,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from '../User/LogoutButton';
 import './NavBar.css';
+import flareLogo from '../../assets/flare-branding/logo/flare-logo-2.png';
 
 const NavBar = () => {
   return (
@@ -11,7 +12,7 @@ const NavBar = () => {
       <nav className='navigation-bar-main'>
 
             <NavLink to='/' exact={true} activeClassName='active'>
-              Home
+              <img src={flareLogo} className="navigation-bar-logo"></img>
             </NavLink>
 
             <NavLink to='/login' exact={true} activeClassName='active'>
