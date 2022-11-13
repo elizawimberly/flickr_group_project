@@ -1,8 +1,46 @@
 /* background image styling imported from Landing.css */
 
-.form-container {
+.login-form-component {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100vw;
+    height: 100vh;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
     width: 352px;
     height: 425px;
-    border: 1px solid black;
     border-radius: 4px;
+    background-color: #fff;
+}
+
+.login-form-logo {
+    height: 18px;
+}
+
+.login-form-prompt {
+    font-size: 20px;
+}
+
+.login-form-input-field {
+    width: 302px;
+    height: 55px;
+    border-radius: 1px rgb(118, 118, 118) 0.25rem;
+}
+
+.login-form-button {
+    height: 40px;
+    width: 310px;
+    background-color: #128fdc;
+    border: none;
+    border-radius: 0.25rem;
+    color: white;
+    font-weight: 900;
 }

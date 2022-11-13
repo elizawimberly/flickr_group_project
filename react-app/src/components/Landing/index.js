@@ -14,13 +14,15 @@ function Landing() {
     return (
         <div className='page-wrapper-container'>
 
-          <NavLink to="/landing/no-session">
-            <button type="submit">Landing No Session</button>
-          </NavLink>
+          <div className="landing-component">
+            <NavLink to="/landing/no-session">
+              <button type="submit">Landing No Session</button>
+            </NavLink>
 
-          <NavLink to="/landing/session">
-            <button type="submit">Landing Session</button>
-          </NavLink>
+            <NavLink to="/landing/session">
+              <button type="submit">Landing Session</button>
+            </NavLink>
+          </div>
 
         </div>
     )
