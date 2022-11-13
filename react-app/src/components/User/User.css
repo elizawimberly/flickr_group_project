@@ -1,0 +1,8 @@
+/* background image styling imported from Landing.css */
+
+.form-container {
+    width: 352px;
+    height: 425px;
+    border: 1px solid black;
+    border-radius: 4px;
+}

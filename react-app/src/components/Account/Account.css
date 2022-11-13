@@ -1,0 +1,46 @@
+.account-component {
+    max-width: 80%;
+
+}
+
+.account-coverphoto-container {
+    max-height: 250px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: -1;
+}
+
+.account-coverphoto {
+    width: 100%;
+    overflow-y: hidden;
+    object-fit: cover;
+}
+
+.account-info-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+/* LEFT */
+.account-info-left-container {
+    display: flex;
+}
+.account-profile-pic-container {
+
+}
+.account-profile-pic {
+    height: 100px;
+    width: 100px;
+    border-radius: 90px;
+}
+
+
+
+/* RIGHT */
+.account-info-right-container {
+    display: flex;
+}

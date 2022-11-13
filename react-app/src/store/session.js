@@ -11,8 +11,6 @@ const removeUser = () => ({
   type: REMOVE_USER,
 })
 
-const initialState = { user: null };
-
 export const authenticate = () => async (dispatch) => {
   const response = await fetch('/api/auth/', {
     headers: {
@@ -24,7 +22,7 @@ export const authenticate = () => async (dispatch) => {
     if (data.errors) {
       return;
     }
-  
+
     dispatch(setUser(data));
   }
 }
@@ -40,8 +38,8 @@ export const login = (email, password) => async (dispatch) => {
       password
     })
   });
-  
-  
+
+
   if (response.ok) {
     const data = await response.json();
     dispatch(setUser(data))
@@ -82,7 +80,7 @@ export const signUp = (username, email, password) => async (dispatch) => {
       password,
     }),
   });
-  
+
   if (response.ok) {
     const data = await response.json();
     dispatch(setUser(data))
@@ -97,13 +95,28 @@ export const signUp = (username, email, password) => async (dispatch) => {
   }
 }
 
-export default function reducer(state = initialState, action) {
+/***************************** STATE SHAPE *******************************/
+const initialState = { user: null };
+
+
+/******************************* REDUCER *********************************/
+const sessionReducer = (state = initialState, action) => {
+
   switch (action.type) {
+
+
     case SET_USER:
       return { user: action.payload }
+
+
     case REMOVE_USER:
       return { user: null }
+
     default:
       return state;
   }
 }
+
+
+/******************************** EXPORTS ********************************/
+export default sessionReducer;
