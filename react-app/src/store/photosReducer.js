@@ -192,8 +192,8 @@ const initialState = {
     allPhotos: {},
     userPhotos: {},
     singlePhotoDetails: {
-        Comments: [],
-        Tags: []
+        Comments: {},
+        Tags: {}
     },
 }
 
@@ -212,14 +212,9 @@ const photosReducer = (state = initialState, action) => {
                 newState.allPhotos[action.payload.id] = {...action.payload}
             newState.userPhotos = {...state.userPhotos}
             newState.singlePhotoDetails = {...action.payload}
-                // deep copy nested structure: singlePhotoDetails.Comments
-                let createSinglePhoto_CommentsArr = [];
-                action.payload.Comments.forEach(obj => createSinglePhoto_CommentsArr.push({...obj}));
-                newState.singlePhotoDetails.Comments = createSinglePhoto_CommentsArr;
-                // deep copy nested structure: singlePhotoDetails.Tags
-                let createSinglePhoto_TagsArr = [];
-                action.payload.Tags.forEach(obj => createSinglePhoto_TagsArr.push({...obj}));
-                newState.singlePhotoDetails.Tags = createSinglePhoto_TagsArr;
+                // deep copy nested structures
+                newState.singlePhotoDetails.Comments = normalizeArray(action.payload.Comments);
+                newState.singlePhotoDetails.Tags = normalizeArray(action.payload.Tags);
             return newState
 
         case PHOTOS_READ_ALL_PHOTOS:
@@ -227,14 +222,14 @@ const photosReducer = (state = initialState, action) => {
             newState.allPhotos = normalizeArray(action.payload)
             newState.userPhotos = {...state.userPhotos}
             newState.singlePhotoDetails = {...state.singlePhotoDetails}
-                // deep copy nested structure: singlePhotoDetails.Comments
-                let readAllPhotos_CommentsArr = [];
-                newState.singlePhotoDetails.Comments.forEach(obj => readAllPhotos_CommentsArr.push({...obj}));
-                newState.singlePhotoDetails.Comments = readAllPhotos_CommentsArr;
-                // deep copy nested structure: singlePhotoDetails.Tags
-                let readAllPhotos_TagsArr = [];
-                newState.singlePhotoDetails.Tags.forEach(obj => readAllPhotos_TagsArr.push({...obj}));
-                newState.singlePhotoDetails.Tags = readAllPhotos_TagsArr;
+                // deep copy nested structures: singlePhotoDetails.Comments
+                let readAllPhotos_RevertCommentsArr =  Object.values(newState.singlePhotoDetails.Comments);
+                let readAllPhotos_NewCopyCommentsObj = normalizeArray(readAllPhotos_RevertCommentsArr);
+                newState.singlePhotoDetails.Comments = readAllPhotos_NewCopyCommentsObj;
+                // deep copy nested structures: singlePhotoDetails.Comments
+                let readAllPhotos_RevertTagsArr =  Object.values(newState.singlePhotoDetails.Tags);
+                let readAllPhotos_NewCopyTagsObj = normalizeArray(readAllPhotos_RevertTagsArr);
+                newState.singlePhotoDetails.Tags = readAllPhotos_NewCopyTagsObj;
             return newState
 
         case PHOTOS_READ_ALL_PHOTOS_BY_USER:
@@ -242,42 +237,32 @@ const photosReducer = (state = initialState, action) => {
             newState.userPhotos = {...state.userPhotos}
             newState.userPhotos = normalizeArray(action.payload)
             newState.singlePhotoDetails = {...state.singlePhotoDetails}
-                // deep copy nested structure: singlePhotoDetails.Comments
-                let readAllPhotosByUser_CommentsArr = [];
-                newState.singlePhotoDetails.Comments.forEach(obj => readAllPhotosByUser_CommentsArr.push({...obj}));
-                newState.singlePhotoDetails.Comments = readAllPhotosByUser_CommentsArr;
-                // deep copy nested structure: singlePhotoDetails.Tags
-                let readAllPhotosByUser_TagsArr = [];
-                newState.singlePhotoDetails.Tags.forEach(obj => readAllPhotosByUser_TagsArr.push({...obj}));
-                newState.singlePhotoDetails.Tags = readAllPhotosByUser_TagsArr;
+                // deep copy nested structures: singlePhotoDetails.Comments
+                let readAllPhotosByUser_RevertCommentsArr =  Object.values(newState.singlePhotoDetails.Comments);
+                let readAllPhotosByUser_NewCopyCommentsObj = normalizeArray(readAllPhotosByUser_RevertCommentsArr);
+                newState.singlePhotoDetails.Comments = readAllPhotosByUser_NewCopyCommentsObj;
+                // deep copy nested structures: singlePhotoDetails.Comments
+                let readAllPhotosByUser_RevertTagsArr =  Object.values(newState.singlePhotoDetails.Tags);
+                let readAllPhotosByUser_NewCopyTagsObj = normalizeArray(readAllPhotosByUser_RevertTagsArr);
+                newState.singlePhotoDetails.Tags = readAllPhotosByUser_NewCopyTagsObj;
             return newState
 
         case PHOTOS_READ_SINGLE_PHOTO_DETAILS:
             newState.allPhotos = {...state.allPhotos}
             newState.userPhotos = {...state.userPhotos}
             newState.singlePhotoDetails = {...action.payload};
-                // deep copy nested structure: singlePhotoDetails.Comments
-                let readSinglePhoto_CommentsArr = [];
-                action.payload.Comments.forEach(obj => readSinglePhoto_CommentsArr.push({...obj}));
-                newState.singlePhotoDetails.Comments = readSinglePhoto_CommentsArr;
-                // deep copy nested structure: singlePhotoDetails.Tags
-                let readSinglePhoto_TagsArr = [];
-                action.payload.Tags.forEach(obj => readSinglePhoto_TagsArr.push({...obj}));
-                newState.singlePhotoDetails.Tags = readSinglePhoto_TagsArr;
+                // deep copy nested structures
+                newState.singlePhotoDetails.Comments = normalizeArray(action.payload.Comments);
+                newState.singlePhotoDetails.Tags = normalizeArray(action.payload.Tags);
             return newState
 
         case PHOTOS_UPDATE_SINGLE_PHOTO:
             newState.allPhotos = {...state.allPhotos}
             newState.userPhotos = {...state.userPhotos}
             newState.singlePhotoDetails = {...action.payload};
-                // deep copy nested structure: singlePhotoDetails.Comments
-                let updateSinglePhoto_CommentsArr = [];
-                action.payload.Comments.forEach(obj => updateSinglePhoto_CommentsArr.push({...obj}));
-                newState.singlePhotoDetails.Comments = updateSinglePhoto_CommentsArr;
-                // deep copy nested structure: singlePhotoDetails.Tags
-                let updateSinglePhoto_TagsArr = [];
-                action.payload.Tags.forEach(obj => updateSinglePhoto_TagsArr.push({...obj}));
-                newState.singlePhotoDetails.Tags = updateSinglePhoto_TagsArr;
+                // deep copy nested structures
+                newState.singlePhotoDetails.Comments = normalizeArray(action.payload.Comments);
+                newState.singlePhotoDetails.Tags = normalizeArray(action.payload.Tags);
             return newState
 
     // tags
@@ -286,15 +271,15 @@ const photosReducer = (state = initialState, action) => {
             newState.userPhotos = {...state.userPhotos}
             newState.singlePhotoDetails = {...state.singlePhotoDetails}
                 // deep copy nested structure: singlePhotoDetails.Comments
-                let createSingleTag_CommentsArr = [];
-                newState.singlePhotoDetails.Comments.forEach(obj => createSingleTag_CommentsArr.push({...obj}));
-                newState.singlePhotoDetails.Comments = createSingleTag_CommentsArr;
+                let createSingleTag_RevertCommentsArr =  Object.values(newState.singlePhotoDetails.Comments);
+                let createSingleTag_NewCopyCommentsObj = normalizeArray(createSingleTag_RevertCommentsArr);
+                newState.singlePhotoDetails.Comments = createSingleTag_NewCopyCommentsObj;
+                // deep copy nested structures: singlePhotoDetails.Tags
+                let createSingleTag_RevertTagsArr =  Object.values(newState.singlePhotoDetails.Tags);
+                let createSingleTag_NewCopyTagsObj = normalizeArray(createSingleTag_RevertTagsArr);
+                newState.singlePhotoDetails.Tags = createSingleTag_NewCopyTagsObj;
                 // add new tag
-                newState.singlePhotoDetails.Tags.push({...action.payload})
-                // deep copy newly modified nested structure: singlePhotoDetails.Tags
-                let createSingleTag_TagsArr = [];
-                newState.singlePhotoDetails.Tags.forEach(obj => createSingleTag_TagsArr.push({...obj}));
-                newState.singlePhotoDetails.Tags = createSingleTag_TagsArr;
+                newState.singlePhotoDetails.Tags[action.payload.id] = {...action.payload}
             return newState
 
         case PHOTOS_DELETE_SINGLE_TAG:
@@ -302,16 +287,15 @@ const photosReducer = (state = initialState, action) => {
             newState.userPhotos = {...state.userPhotos}
             newState.singlePhotoDetails = {...state.singlePhotoDetails}
                 // deep copy nested structure: singlePhotoDetails.Comments
-                let deleteSingleTag_CommentsArr = [];
-                newState.singlePhotoDetails.Comments.forEach(obj => deleteSingleTag_CommentsArr.push({...obj}));
-                newState.singlePhotoDetails.Comments = deleteSingleTag_CommentsArr;
-                // remove tag; creates shallow copy
-                let oldTagsArr = newState.singlePhotoDetails.Tags
-                let newTagsArr = oldTagsArr.filter(obj => obj.tagId !== action.payload)
-                // deep copy newly modified nested structure: singlePhotoDetails.Tags
-                let deleteSingleTag_TagsArr = [];
-                newTagsArr.forEach(obj => deleteSingleTag_TagsArr.push({...obj}));
-                newState.singlePhotoDetails.Tags = deleteSingleTag_TagsArr;
+                let deleteSingleTag_RevertCommentsArr =  Object.values(newState.singlePhotoDetails.Comments);
+                let deleteSingleTag_NewCopyCommentsObj = normalizeArray(deleteSingleTag_RevertCommentsArr);
+                newState.singlePhotoDetails.Comments = deleteSingleTag_NewCopyCommentsObj;
+                // deep copy nested structures: singlePhotoDetails.Tags
+                let deleteSingleTag_RevertTagsArr =  Object.values(newState.singlePhotoDetails.Tags);
+                let deleteSingleTag_NewCopyTagsObj = normalizeArray(deleteSingleTag_RevertTagsArr);
+                newState.singlePhotoDetails.Tags = deleteSingleTag_NewCopyTagsObj;
+                // remove tag
+                delete newState.singlePhotoDetails.Tags[action.payload.id];
             return newState
 
     // comments
@@ -319,33 +303,32 @@ const photosReducer = (state = initialState, action) => {
             newState.allPhotos = {...state.allPhotos}
             newState.userPhotos = {...state.userPhotos}
             newState.singlePhotoDetails = {...state.singlePhotoDetails}
+                // deep copy nested structures: singlePhotoDetails.Comments
+                let createSingleComment_RevertCommentsArr =  Object.values(newState.singlePhotoDetails.Comments);
+                let createSingleComment_NewCopyCommentsObj = normalizeArray(createSingleComment_RevertCommentsArr);
+                newState.singlePhotoDetails.Tags = createSingleComment_NewCopyCommentsObj;
                 // add new comment
-                newState.singlePhotoDetails.Comments.push({...action.payload})
-                // deep copy newly modified nested structure: singlePhotoDetails.Comments
-                let createSingleComment_CommentsArr = [];
-                newState.singlePhotoDetails.Comments.forEach(obj => createSingleComment_CommentsArr.push({...obj}));
-                newState.singlePhotoDetails.Comments = createSingleComment_CommentsArr;
+                newState.singlePhotoDetails.Tags[action.payload.id] = {...action.payload};
                 // deep copy nested structure: singlePhotoDetails.Tags
-                let createSingleComment_TagsArr = [];
-                newState.singlePhotoDetails.Tags.forEach(obj => createSingleComment_TagsArr.push({...obj}));
-                newState.singlePhotoDetails.Tags = createSingleComment_TagsArr;
+                let createSingleComment_RevertTagsArr =  Object.values(newState.singlePhotoDetails.Tags);
+                let createSingleComment_NewCopyTagsObj = normalizeArray(createSingleComment_RevertTagsArr);
+                newState.singlePhotoDetails.Comments = createSingleComment_NewCopyTagsObj;
             return newState
 
         case PHOTOS_DELETE_SINGLE_COMMENT:
             newState.allPhotos = {...state.allPhotos}
             newState.userPhotos = {...state.userPhotos}
             newState.singlePhotoDetails = {...state.singlePhotoDetails}
-                // remove comment; creates shallow copy
-                let oldCommentsArr = newState.singlePhotoDetails.Comments
-                let newCommentsArr = oldCommentsArr.filter(obj => obj.commentId !== action.payload)
-                // deep copy newly modified nested structure: singlePhotoDetails.Tags
-                let deleteSingleComment_CommentsArr = [];
-                newCommentsArr.forEach(obj => deleteSingleComment_CommentsArr.push({...obj}));
-                newState.singlePhotoDetails.Comments = deleteSingleComment_CommentsArr;
                 // deep copy nested structure: singlePhotoDetails.Comments
-                let deleteSingleComment_TagsArr = [];
-                newState.singlePhotoDetails.Tags.forEach(obj => deleteSingleComment_TagsArr.push({...obj}));
-                newState.singlePhotoDetails.Tags = deleteSingleComment_TagsArr;
+                let deleteSingleComment_RevertCommentsArr =  Object.values(newState.singlePhotoDetails.Comments);
+                let deleteSingleComment_NewCopyCommentsObj = normalizeArray(deleteSingleComment_RevertCommentsArr);
+                newState.singlePhotoDetails.Comments = deleteSingleComment_NewCopyCommentsObj;
+                // remove comment
+                delete newState.singlePhotoDetails.Comments[action.payload.id];
+                // deep copy nested structures: singlePhotoDetails.Tags
+                let deleteSingleComment_RevertTagsArr =  Object.values(newState.singlePhotoDetails.Tags);
+                let deleteSingleComment_NewCopyTagsObj = normalizeArray(deleteSingleComment_RevertTagsArr);
+                newState.singlePhotoDetails.Tags = deleteSingleComment_NewCopyTagsObj;
             return newState
 
         default:
