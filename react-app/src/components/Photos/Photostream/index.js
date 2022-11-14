@@ -14,8 +14,8 @@ import './Photostream.css'
 function Photostream() {
 
     /********* hard-coded data (remove later) **********/
-    const photoState = {}
-    photoState.userPhotos =  {
+    const photosState = {}
+    photosState.userPhotos =  {
         1: {
             id: 1,
             userId: 1,
@@ -122,7 +122,7 @@ function Photostream() {
     // const photosState = useSelector(state => state.photos)
 
     /************ key into pertinent values ************/
-    const allPhotos = photoState.userPhotos
+    const allPhotos = photosState.userPhotos
     const allPhotosArr = Object.values(allPhotos)
 
     /************ reducer/API communication ************/

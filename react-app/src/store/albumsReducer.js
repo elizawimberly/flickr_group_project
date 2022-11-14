@@ -27,7 +27,7 @@ export const actionReadSingleAlbumDetails = (singleAlbumDetails) => ({
     payload: singleAlbumDetails
 });
 
-export const actionUpdateSinglePhoto = (updateAlbum) => ({
+export const actionUpdateSingleAlbum= (updateAlbum) => ({
     type: ALBUMS_UPDATE_SINGLE_ALBUM,
     payload: updateAlbum
 });
@@ -70,7 +70,7 @@ export const thunkReadSingleAlbumDetails = (albumId) => async (dispatch) => {
     };
 };
 
-export const thunkUpdateSinglePhoto = (albumId, updateAlbumData) => async (dispatch) => {
+export const thunkUpdateSingleAlbum = (albumId, updateAlbumData) => async (dispatch) => {
     const response = await fetch(`/api/albums/${albumId}`, {
         method: 'put',
         headers: { 'Content-Type': 'application/json' },
@@ -78,7 +78,7 @@ export const thunkUpdateSinglePhoto = (albumId, updateAlbumData) => async (dispa
     });
     if (response.ok) {
         const updateAlbum = await response.json()
-        dispatch(actionUpdateSinglePhoto(updateAlbum));
+        dispatch(actionUpdateSingleAlbum(updateAlbum));
         return updateAlbum;
     };
 };
