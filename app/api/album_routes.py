@@ -13,7 +13,7 @@ def albums():
     """
     albums = Album.query.all()
 
-    return jsonify({'Albums': [album.to_dict() for album in albums]})
+    return jsonify({'Albums': [album.to_dict(True) for album in albums]})
 
 @album_routes.route('/<int:id>')
 def albums(id):
@@ -42,7 +42,7 @@ def add_album():
         )
         db.session.add(new_album)
         db.session.commit()
-        return jsonify(new_album.to_dict())
+        return jsonify(new_album.to_dict(True))
     return jsonify('album not added')
 
 @album_routes.route('/<int:id>', methods=["PUT"])
@@ -59,7 +59,7 @@ def edit_album(id):
         album.name = data['name']
         album.about = data['about']
         db.session.commit()
-        return jsonify(album.to_dict())
+        return jsonify(album.to_dict(True))
     return jsonify('photo not updated')
 
 
