@@ -3,8 +3,7 @@ from datetime import datetime, date
 
 def seed_albums():
 
-    today = date.today()
-    date_str = datetime.strptime(today, '%Y-%m-%d %H:%M')
+    date_str = str(datetime.now())
 
     # user1
     album1 = Album(

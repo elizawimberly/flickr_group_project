@@ -1,9 +1,8 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
-from datetime import datetime, date
+from datetime import datetime
 
 
-today = str(date.today())
-date_str = datetime.strptime(today, '%Y-%m-%d')
+date_str = str(datetime.now())
 
 
 tags_to_photos = db.Table(
