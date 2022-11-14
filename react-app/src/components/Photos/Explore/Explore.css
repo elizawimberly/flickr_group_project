@@ -1,0 +1,16 @@
+.explore-component {
+    max-width: 1536px;
+    /* background-color: red; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.photo-feed {
+    display: inline-block;
+
+}
+
+.photo-card {
+    max-height: 400px;
+}
