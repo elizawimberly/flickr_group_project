@@ -54,14 +54,14 @@ class Photo(db.Model):
         else:
             return {
                 'id': self.id,
-                'user_id': self.user_id,
-                'album_id': self.album_id,
+                'userId': self.user_id,
+                'albumId': self.album_id,
                 'url': self.url,
                 'name': self.name,
                 'about': self.about,
                 'private': self.private,
-                'taken_on': self.taken_on,
+                'takenOn': self.taken_on,
                 'Comments': [comment.to_dict() for comment in self.comments],
                 'Tags': [tag.to_dict() for tag in self.tags],
-                'created_at': self.created_at
+                'createdAt': self.created_at
             }
