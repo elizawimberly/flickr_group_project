@@ -11,11 +11,15 @@ class User(db.Model, UserMixin):
 
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(40), nullable=False, unique=True)
-    email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
+    email = db.Column(db.String(255), nullable=False, unique=True)
     first_name = db.Column(db.String(255), nullable=False)
     last_name = db.Column(db.String(255), nullable=False)
     about = db.Column(db.String(255), nullable=False)
+
+    photos = db.relationship('Photo', back_populates='user')
+    comments = db.relationship('Comment', back_populates='user')
+    albums = db.relationship('Album', back_populates='user')
 
     @property
     def password(self):

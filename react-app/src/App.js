@@ -7,7 +7,7 @@ import NavBar from './components/NavigationBars/NavBarMain';
 import ProtectedRoute from './components/ProtectedComponents/ProtectedRoute';
 import UsersList from './components/ProtectedComponents/UsersList';
 import User from './components/ProtectedComponents/User';
-import { authenticate } from './store/session';
+import { authenticate } from './store/sessionReducer';
 import Landing from './components/Landing';
 import LandingSession from './components/Landing/LandingSession';
 import LandingNoSession from './components/Landing/LandingNoSession';

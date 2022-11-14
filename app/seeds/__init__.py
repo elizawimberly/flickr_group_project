@@ -21,15 +21,15 @@ def seed():
         # the schema name (see comment in users.py undo_users function).
         # Make sure to add all your other model's undo functions below
         undo_users()
+        undo_tags()
         undo_photos()
         undo_albums()
         undo_comments()
-        undo_tags()
     seed_users()
+    seed_tags()
     seed_photos()
     seed_albums()
     seed_comments()
-    seed_tags()
     # Add other seed functions here
 
 
@@ -37,4 +37,8 @@ def seed():
 @seed_commands.command('undo')
 def undo():
     undo_users()
+    undo_tags()
+    undo_photos()
+    undo_albums()
+    undo_comments()
     # Add other undo functions here

@@ -1,0 +1,29 @@
+.PhotoCreateForm-component {
+    margin-top: 200px;
+}
+
+.mock-upload-navbar {
+    background-color: #efefef;
+}
+.photo-submit-button {
+    background-color: #0362db;
+    color: #fff;
+    border: none;
+}
+
+.input-section {
+    background-color: #2d2d2c;
+}
+
+.view-upload-section {
+    background-color: darkblue;
+}
+
+.view-uploaded-image {
+}
+
+.view-uploaded-image > img {
+    object-fit: contain;
+    max-width: 300px;
+
+}

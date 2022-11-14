@@ -1,7 +1,9 @@
-// constants
+/********************************* TYPES *********************************/
 const SET_USER = 'session/SET_USER';
 const REMOVE_USER = 'session/REMOVE_USER';
 
+
+/**************************** ACTION CREATORS ****************************/
 const setUser = (user) => ({
   type: SET_USER,
   payload: user
@@ -11,6 +13,8 @@ const removeUser = () => ({
   type: REMOVE_USER,
 })
 
+
+/***************************** THUNKS (API) ******************************/
 export const authenticate = () => async (dispatch) => {
   const response = await fetch('/api/auth/', {
     headers: {
@@ -38,8 +42,6 @@ export const login = (email, password) => async (dispatch) => {
       password
     })
   });
-
-
   if (response.ok) {
     const data = await response.json();
     dispatch(setUser(data))
@@ -67,7 +69,6 @@ export const logout = () => async (dispatch) => {
   }
 };
 
-
 export const signUp = (username, email, password) => async (dispatch) => {
   const response = await fetch('/api/auth/signup', {
     method: 'POST',
@@ -80,7 +81,6 @@ export const signUp = (username, email, password) => async (dispatch) => {
       password,
     }),
   });
-
   if (response.ok) {
     const data = await response.json();
     dispatch(setUser(data))
@@ -94,6 +94,7 @@ export const signUp = (username, email, password) => async (dispatch) => {
     return ['An error occurred. Please try again.']
   }
 }
+
 
 /***************************** STATE SHAPE *******************************/
 const initialState = { user: null };
