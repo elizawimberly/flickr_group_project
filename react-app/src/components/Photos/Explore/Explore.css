@@ -6,11 +6,11 @@
     justify-content: space-between;
 }
 
-.photo-feed {
+.explore-photo-feed {
     display: inline-block;
 
 }
 
-.photo-card {
-    max-height: 400px;
+.explore-photo-card {
+    max-height: 340px;
 }
