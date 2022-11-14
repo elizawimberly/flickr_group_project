@@ -1,0 +1,12 @@
+.AlbumDetailsPage-component{
+}
+
+.banner-photo {
+    width: 1536px;
+    height: 300px;
+    object-fit: cover;
+}
+
+.album-page-photo-card {
+    max-height: 340px;
+}
