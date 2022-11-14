@@ -1,6 +1,6 @@
 import React from "react";
-import Account from "../Account";
-import NavBarUser from "../NavigationBars/NavBarUser";
+import Account from "../../Account";
+import NavBarUser from "../../NavigationBars/NavBarUser";
 
 function Albumstream() {
 

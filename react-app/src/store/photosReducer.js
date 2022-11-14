@@ -130,7 +130,7 @@ export const thunkUpdateSinglePhoto = (photoId, updatePhotoData) => async (dispa
 };
 
 export const thunkDeleteSinglePhoto = (photoId) => async (dispatch) => {
-    const response = await csrfFetch(`/api/photos/${photoId}`, {
+    const response = await fetch(`/api/photos/${photoId}`, {
         method: 'delete',
     });
     if (response.ok) {

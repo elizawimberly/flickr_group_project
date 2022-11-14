@@ -47,7 +47,7 @@ export const thunkCreateSingleAlbum = (createAlbumData) => async (dispatch) => {
     });
     if (response.ok) {
         const newAlbum = await response.json();
-        dispatch(actionCreateSinglePhoto(newAlbum));
+        dispatch(actionCreateSingleAlbum(newAlbum));
         return newAlbum;
     };
 };
@@ -84,7 +84,7 @@ export const thunkUpdateSinglePhoto = (albumId, updateAlbumData) => async (dispa
 };
 
 export const thunkDeleteSingleAlbum = (albumId) => async (dispatch) => {
-    const response = await csrfFetch(`/api/photos/${albumId}`, {
+    const response = await fetch(`/api/photos/${albumId}`, {
         method: 'delete',
     });
     if (response.ok) {
@@ -129,7 +129,7 @@ const albumsReducer = (state = initialState, action) => {
                 newState.singleAlbumDetails.Photos = readAllAlbums_NewCopyPhotosObj;
             return newState
 
-        case PHOTOS_READ_SINGLE_PHOTO_DETAILS:
+        case ALBUMS_READ_SINGLE_ALBUM_DETAILS:
             newState.allAlbums = {...state.allAlbums}
             newState.singleAlbumDetails = {...action.payload};
                 // deep copy nested structures: singleAlbumDetails.Photos
