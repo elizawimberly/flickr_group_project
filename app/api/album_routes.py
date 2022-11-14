@@ -15,11 +15,6 @@ def albums():
 
     return jsonify({'Albums': [album.to_dict(True) for album in albums]})
 
-@album_routes.route('/<int:id>')
-def albums(id):
-    album = Album.query.get(id)
-
-    return album.to_dict(True)
 
 @album_routes.route('/', methods=["POST"])
 @login_required
@@ -43,6 +38,15 @@ def add_album():
         db.session.commit()
         return jsonify(new_album.to_dict(True))
     return jsonify('album not added')
+
+
+
+@album_routes.route('/<int:id>')
+def get_album(id):
+    album = Album.query.get(id)
+
+    return album.to_dict(True)
+
 
 @album_routes.route('/<int:id>', methods=["PUT"])
 @login_required
