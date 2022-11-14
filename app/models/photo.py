@@ -38,15 +38,30 @@ class Photo(db.Model):
     back_populates='photos'
     )
 
-    def to_dict(self):
-        return {
-            'id': self.id,
-            'user_id': self.user_id,
-            'album_id': self.album_id,
-            'url': self.url,
-            'name': self.name,
-            'about': self.about,
-            'taken_on': self.taken_on,
-            'private': self.private,
-            'created_at': self.created_at
-        }
+    def to_dict(self, current=False):
+        if current == False:
+            return {
+                'id': self.id,
+                'user_id': self.user_id,
+                'album_id': self.album_id,
+                'url': self.url,
+                'name': self.name,
+                'about': self.about,
+                'private': self.private,
+                'taken_on': self.taken_on,
+                'created_at': self.created_at
+            }
+        else:
+            return {
+                'id': self.id,
+                'user_id': self.user_id,
+                'album_id': self.album_id,
+                'url': self.url,
+                'name': self.name,
+                'about': self.about,
+                'private': self.private,
+                'taken_on': self.taken_on,
+                'Comments': [comment.to_dict() for comment in self.comments],
+                'Tags': [tag.to_dict() for tag in self.tags],
+                'created_at': self.created_at
+            }
