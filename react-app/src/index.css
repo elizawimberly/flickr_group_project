@@ -15,7 +15,9 @@ body {
     background-color: #f3f5f7;
 }
 
-.pageWrapperContainer{
+.page-wrapper-container{
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    /* align-items: center; */
 }
