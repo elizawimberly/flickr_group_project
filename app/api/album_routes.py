@@ -34,7 +34,6 @@ def add_album():
     if form.validate_on_submit():
         data = form.data
         new_album = Album(
-            user_id = current_user.id,
             user_id = current_user,
             name = data['name'],
             about = data['about'],
