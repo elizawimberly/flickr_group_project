@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { NavLink, Redirect } from 'react-router-dom';
-import { signUp } from '../../store/session';
+import { signUp } from '../../store/sessionReducer';
 import background from '../../assets/background-log-in-or-sign-up.jpg'
 import './User.css';
 import flareLogo from '../../assets/flare-branding/logo/flare-logo-4.png';
