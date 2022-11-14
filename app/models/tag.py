@@ -3,8 +3,7 @@ from datetime import datetime, date
 from .photo import tags_to_photos
 
 
-today = str(date.today())
-date_str = datetime.strptime(today, '%Y-%m-%d')
+date_str = str(datetime.now())
 
 class Tag(db.Model):
     __tablename__ = 'tags'
