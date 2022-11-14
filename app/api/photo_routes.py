@@ -3,7 +3,7 @@ from flask_login import login_required, current_user
 from app.models import Photo, Comment, db
 from app.forms import photo_form, comment_form
 
-photo_routes = Blueprint('photos', __name__, url_prefix="/api/photos")
+photo_routes = Blueprint('photos', __name__)
 
 
 @photo_routes.route('/')
