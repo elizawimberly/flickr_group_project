@@ -35,11 +35,11 @@ const SignUpForm = () => {
   };
 
   const updateFirstName = (e) => {
-    setEmail(e.target.value);
+    setFirstName(e.target.value);
   };
 
   const updateLastName = (e) => {
-    setEmail(e.target.value);
+    setLastName(e.target.value);
   };
 
   const updateEmail = (e) => {
@@ -89,6 +89,7 @@ const SignUpForm = () => {
               placeholder='First name'
               onChange={updateFirstName}
               value={firstName}
+              required={true}
               className="login-signup-form-input-field"
             ></input>
           </div>
@@ -101,6 +102,7 @@ const SignUpForm = () => {
               placeholder='Last name'
               onChange={updateLastName}
               value={lastName}
+              required={true}
               className="login-signup-form-input-field"
             ></input>
           </div>
@@ -113,6 +115,7 @@ const SignUpForm = () => {
               placeholder='Email address'
               onChange={updateEmail}
               value={email}
+              required={true}
               className="login-signup-form-input-field"
             ></input>
           </div>
@@ -125,6 +128,7 @@ const SignUpForm = () => {
               placeholder='Password'
               onChange={updatePassword}
               value={password}
+              required={true}
               className="login-signup-form-input-field"
             ></input>
           </div>

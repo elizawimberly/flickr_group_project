@@ -1,0 +1,76 @@
+.navBar-profile-pic {
+    width: 32px;
+    height: 32px;
+    border-radius: 100%;
+    cursor: pointer;
+}
+
+.dropdown-menu {
+    display: relative;
+    flex-direction: column;
+    align-items: center;
+
+    position: absolute;
+    background-color: white;
+    border: 1px solid #aaa;
+    border-radius: 3px;
+    box-shadow: rgb(0 0 0 / 12%) 0px 1px 3px;
+    padding: 10px 0px;
+}
+
+/* FEATURES */
+#features-dropdown-menu {
+    width: 150px;
+    display: flex;
+    align-items: center;
+}
+#features-dropdown-menu > div {
+    height: 30px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+#features-dropdown-menu > div:hover {
+    background-color: #f1f1f1;
+}
+#features-dropdown-menu > div > a{
+    height: 30px;
+    color: #212124;
+    text-decoration: none;
+    font-size: 14px;
+    text-indent: 15px;
+    display: flex;
+    align-items: center;
+}
+
+/* ACCOUNT */
+#account-dropdown-menu {
+    width: 300px;
+    right: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+}
+#account-dropdown-menu > div {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    color: #212124;
+    text-indent: 15px;
+}
+
+#welcome-user {
+    cursor: default;
+    height: 103px;
+    font-size: 20px;
+    font-weight: 900;
+    border-bottom: 1px solid #e1e1e1;
+}
+#logout-button {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+#logout-button:hover {
+    background-color: #f1f1f1;
+}
