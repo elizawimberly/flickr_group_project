@@ -42,14 +42,14 @@ class Photo(db.Model):
         if current == False:
             return {
                 'id': self.id,
-                'user_id': self.user_id,
-                'album_id': self.album_id,
+                'userId': self.user_id,
+                'albumId': self.album_id,
                 'url': self.url,
                 'name': self.name,
                 'about': self.about,
                 'private': self.private,
-                'taken_on': self.taken_on,
-                'created_at': self.created_at
+                'takenOn': self.taken_on,
+                'createdAt': self.created_at
             }
         else:
             return {
