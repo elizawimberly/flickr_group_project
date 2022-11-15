@@ -38,3 +38,4 @@ class Album(db.Model):
                 'created_at': self.created_at,
                 'Photos': [photo.to_dict() for photo in self.photos]
             }
+
