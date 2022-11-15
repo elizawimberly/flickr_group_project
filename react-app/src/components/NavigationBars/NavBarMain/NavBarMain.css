@@ -13,6 +13,8 @@
     text-decoration: none;
 }
 
+
+
 /* MAIN */
 #navbar-main {
     position: fixed;
@@ -30,27 +32,7 @@
     height: 60px;
 }
 
-
-
-/* USER */
-#navbar-user {
-    display: flex;
-    flex-direction: row;
-    justify-content: left;
-    align-items: center;
-    background-color: #fff;
-    border-bottom: 1px solid #dcdcdc;
-}
-
-#navbar-user > a {
-    background-color: #fff;
-    color: #000;
-    padding: 12px 20px;
-    margin: none;
-    /* height: 36px; */
-    /* vertical-align: bottom; */
-}
-
-#navbar-user > a:hover {
-    border-bottom: 3px solid #0092dc;
+#navbar-upload-photo-button {
+    color: #fff;
+    font-size: 30px;
 }

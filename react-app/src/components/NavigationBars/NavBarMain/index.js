@@ -4,12 +4,12 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 // local files
-import LogoutButton from '../User/LogoutButton';
-import './NavBar.css';
-import flareLogo from '../../assets/flare-branding/logo/flare-logo-2.png';
+import LogoutButton from '../../User/LogoutButton';
+import './NavBarMain.css';
+import flareLogo from '../../../assets/flare-branding/logo/flare-logo-2.png';
 
 /******************************* COMPONENT *******************************/
-const NavBar = () => {
+const NavBarMain = () => {
 
   const session = true;
 
@@ -17,8 +17,9 @@ const NavBar = () => {
   const sessionUser = useSelector(state => state.session.user);
 
   /************ key into pertinent values ************/
-  let userId
-  if (sessionUser) userId = sessionUser.id
+  let userId = true
+  // let userId
+  // if (sessionUser) userId = sessionUser.id
 
   /************* conditional components **************/
   let sessionLinks;
@@ -27,7 +28,10 @@ const NavBar = () => {
       <div className="nav-bar-right">
         <button>Toggle You Menu component</button>
         <button>Toggle Explore Menu component</button>
-        <button>Upload</button>
+
+        <NavLink to='upload' exact={true}>
+          <i class="fa-solid fa-cloud" id="navbar-upload-photo-button"></i>
+        </NavLink>
         <button>Toggle Account Menu component</button>
       </div>
     )
@@ -70,4 +74,4 @@ const NavBar = () => {
   );
 }
 
-export default NavBar;
+export default NavBarMain;
