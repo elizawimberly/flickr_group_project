@@ -7,8 +7,8 @@ date_str = str(datetime.now())
 
 tags_to_photos = db.Table(
     'tags_to_photos',
-    db.Column('tag_id', db.Integer, db.ForeignKey('tags.id'), primary_key=True),
-    db.Column('photo_id', db.Integer, db.ForeignKey('photos.id'), primary_key=True)
+    db.Column('tag_id', db.Integer, db.ForeignKey(add_prefix_for_prod('tags.id')), primary_key=True),
+    db.Column('photo_id', db.Integer, db.ForeignKey(add_prefix_for_prod('photos.id')), primary_key=True)
   )
 
 class Photo(db.Model):
@@ -18,8 +18,8 @@ class Photo(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
-    album_id = db.Column(db.Integer, db.ForeignKey('albums.id'), nullable=True)
+    user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
+    album_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('albums.id')), nullable=True)
     url = db.Column(db.String(500), nullable=False)
     name = db.Column(db.String(100), nullable=False)
     about = db.Column(db.String(500), nullable=False)
