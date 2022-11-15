@@ -53,8 +53,6 @@ function PhotoDetailsPage() {
   const photosState = useSelector((state) => state.photos);
 
   /************ key into pertinent values ************/
-  // // user
-  const userId = sessionState.user.id;
   // photo
   const photo = photosState.singlePhotoDetails;
   // comments
@@ -125,11 +123,11 @@ function PhotoDetailsPage() {
             <div className="stats-container">
               <div className="photo-stats">
                 <div className="comment-stats">
-                  <div>{comments && comments.length}</div>
+                  <div>{comments?.length}</div>
                   <div>comments</div>
                 </div>
                 <div>
-                  <div>Uploaded on {photo && photo.takenOn}</div>
+                  <div>Taken on {photo?.takenOn}</div>
                 </div>
               </div>
 

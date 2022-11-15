@@ -36,6 +36,14 @@ const LoginForm = () => {
     setPassword(e.target.value);
   };
 
+  const demoUser = async (e) => {
+    e.preventDefault();
+    const data = await dispatch(login('demo@aa.io', 'password'));
+    if (data) {
+      setErrors(data);
+    }
+  }
+
   /**************** render component *****************/
   if (user) {
     return <Redirect to='/' />;
@@ -95,6 +103,7 @@ const LoginForm = () => {
 
 
             <button type='submit' className='login-signup-form-button'>Sign in</button>
+            <button onClick={demoUser} className='login-signup-form-button'>Demo User</button>
           </form>
 
           <div className='form-redirect-prompt'>
