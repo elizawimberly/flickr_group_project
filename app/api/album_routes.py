@@ -4,15 +4,18 @@ from app.models import Album, db
 from app.forms.album_form import AlbumForm
 from app.api.auth_routes import validation_errors_to_error_messages 
 from app.models.photo import Photo
+from app.models.user import User
 
 album_routes = Blueprint('album', __name__)
 
 
-@album_routes.route('/')
+@album_routes.route('/', methods=['GET'])
 def albums():
     """
     Query for all albums and returns them in a list of user dictionaries
     """
+    print("----------THIS IS CURENT USER-------------", current_user)
+
     albums = Album.query.all()
 
     return jsonify({'Albums': [album.to_dict(True) for album in albums]})
