@@ -6,12 +6,13 @@ import { Link } from "react-router-dom";
 // local files
 import Account from "../../Account";
 import NavBarUser from "../../NavigationBars/NavBarUser";
-import thunkReadAllPhotosByUser from "../../../store/photosReducer";
 import './Photostream.css'
-
+import { useEffect, useState} from 'react';
+import { thunkReadAllPhotos } from '../../../store/photosReducer'
 
 /******************************* COMPONENT *******************************/
 function Photostream() {
+    const dispatch = useDispatch()
 
     /********* hard-coded data (remove later) **********/
     const photosState = {}
@@ -126,11 +127,13 @@ function Photostream() {
     const allPhotosArr = Object.values(allPhotos)
 
     /************ reducer/API communication ************/
-    // const dispatch = useDispatch();
+    const photos = useSelector(state => Object.values(state.photos.allPhotos))
 
-    // useEffect(() => {
-    //     dispatch(thunkReadAllPhotosByUser())
-    // }, [dispatch]);
+
+    
+    useEffect(()=> {
+        dispatch(thunkReadAllPhotos())
+    }, [dispatch])
 
     /**************** render component *****************/
     return (
@@ -142,12 +145,12 @@ function Photostream() {
             <div className="photostream-component">
 
                 <div className="photostream-feed">
-                    {allPhotosArr && allPhotosArr.map((photo) => (
+                    {photos && photos.map((photo) => (
                         <Link
                         to={`/photos/${photo.id}`}
                         key={`${photo.id}`}
                         >
-                            <img src={photo.url} className="photostream-photo-card"></img>
+                            <img src={photo.url} className="photostream-photo-card" alt=''></img>
                         </Link>
                     ))}
                 </div>
