@@ -20,7 +20,7 @@ const NavBarMain = () => {
   const sessionUser = useSelector(state => state.session.user);
 
   /************ key into pertinent values ************/
-  let userId = true
+  let userId = false;
   // let userId
   // if (sessionUser) userId = sessionUser.id
 
@@ -30,28 +30,42 @@ const NavBarMain = () => {
     sessionLinks = (
       <>
         <div className="nav-bar-right-A">
-          <ToggleYouMenu />
-          <ToggleExploreMenu />
+          <div>
+            <ToggleYouMenu />
+          </div>
+          <div>
+            <ToggleExploreMenu />
+          </div>
         </div>
 
         <div className='nav-bar-right-B'>
-          <NavLink to='/upload' exact={true}>
-            <i class="fa-solid fa-cloud" id="navbar-upload-photo-button"></i>
-          </NavLink>
-          <ToggleAccountMenu />
+          <div>
+            <NavLink to='/upload' exact={true}>
+              <i class="fa-solid fa-cloud" id="navbar-upload-photo-button"></i>
+            </NavLink>
+          </div>
+          <div>
+            <ToggleAccountMenu />
+          </div>
         </div>
       </>
     )
   } else {
     sessionLinks = (
       <>
-        <NavLink to='/login' exact={true} activeClassName='active'>
-          Login
-        </NavLink>
+        <div className='nav-bar-right-B'>
+          <div>
+            <NavLink to='/login' exact={true} activeClassName='active' id="login-button">
+              Log In
+            </NavLink>
+          </div>
 
-        <NavLink to='/sign-up' exact={true} activeClassName='active'>
-          Sign Up
-        </NavLink>
+          <div>
+            <NavLink to='/sign-up' exact={true} activeClassName='active'>
+              <button id="signup-button">Sign Up</button>
+            </NavLink>
+          </div>
+        </div>
       </>
     )
   }

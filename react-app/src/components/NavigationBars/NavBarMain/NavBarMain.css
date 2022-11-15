@@ -45,7 +45,6 @@
     grid-template-rows: repeat(1, 1fr);
     width: 100%;
     padding: 0 24px;
-
 }
 
 .nav-bar-right-A {
@@ -56,10 +55,38 @@
     align-items: center;
 }
 
+.nav-bar-right-A > div {
+    padding: 0px 5px;
+    color: #fff;
+    text-decoration: none;
+}
+
 .nav-bar-right-B {
     grid-column: 2 / 3;
     display: flex;
     flex-direction: row;
     justify-content: right;
     align-items: center;
+}
+
+.nav-bar-right-B > div {
+    padding: 0px 5px;
+    color: #fff;
+}
+
+#login-button {
+    color: #fff;
+    text-decoration: none;
+    padding: 0px 5px;
+}
+
+#signup-button {
+    color: #000;
+    text-decoration: none;
+    width: 96px;
+    height: 32px;
+    background-color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 3px;
 }
