@@ -40,18 +40,15 @@ function ToggleAccountMenu({ user }) {
         <img src={profilePic} className="navBar-profile-pic" onClick={openMenu}></img>
 
         {showMenu && (
-            <div className="account-dropdown-menu">
+            <div className="dropdown-menu" id="account-dropdown-menu">
 
-            <div id="welcome-user">
-                Welcome
-            </div>
+                <div id="welcome-user">
+                    Welcome!
+                </div>
 
-            <div id="line-break">
-            </div>
-
-            <div>
-                <LogoutButton />
-            </div>
+                <div id="logout-button">
+                    <LogoutButton />
+                </div>
 
             </div>
         )}

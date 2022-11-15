@@ -40,7 +40,7 @@ function ToggleExploreMenu({ user }) {
 
         {showMenu && (
 
-        <div className="account-dropdown-menu">
+        <div className="dropdown-menu" id="features-dropdown-menu">
 
             <div>
                 <NavLink to='/explore' exact={true}>

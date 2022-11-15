@@ -20,9 +20,8 @@ const NavBarMain = () => {
   const sessionUser = useSelector(state => state.session.user);
 
   /************ key into pertinent values ************/
-  let userId = false;
-  // let userId
-  // if (sessionUser) userId = sessionUser.id
+  let userId
+  if (sessionUser) userId = sessionUser.id
 
   /************* conditional components **************/
   let sessionLinks;
