@@ -1,7 +1,8 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
 from app.models import Album, db
-from app.forms import album_form
+from app.forms.album_form import AlbumForm
+from app.api.auth_routes import validation_errors_to_error_messages 
 
 album_routes = Blueprint('album', __name__)
 
@@ -24,20 +25,25 @@ def add_album():
     Create new album and return it in a dictionary
     """
 
-    form = album_form()
+    print('request data', request.get_json())
+
+    form = AlbumForm()
+
     form['csrf_token'].data = request.cookies['csrf_token']
+
     if form.validate_on_submit():
         data = form.data
+        print(data)
         new_album = Album(
-            user_id = current_user,
+            user_id = current_user.id,
             name = data['name'],
-            about = data['about'],
-            created_at = data['created_at']
+            about = data['about']
         )
         db.session.add(new_album)
         db.session.commit()
         return jsonify(new_album.to_dict(True))
-    return jsonify('album not added')
+    print(form.errors)
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
 
@@ -55,7 +61,7 @@ def edit_album(id):
     Query for a album by id, edits the album, and returns that album in a dictionary
     """
     album = Album.query.get(id)
-    form = album_form()
+    form = AlbumForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         data = form.data,
