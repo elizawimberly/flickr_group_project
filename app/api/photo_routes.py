@@ -134,7 +134,7 @@ def delete_tag(photo_id, tag_id):
 
 # Comments Routes
 
-@photo_routes.route('/<int:id>/comments', method=["POST"])
+@photo_routes.route('/<int:id>/comments', methods=["POST"])
 @login_required
 def add_comment(id):
     form = comment_form()
@@ -152,7 +152,7 @@ def add_comment(id):
     return jsonify("Comment not added")
 
 
-@photo_routes.route('/<int:photo_id>/comments/<int:comment_id>', method=["DELETE"])
+@photo_routes.route('/<int:photo_id>/comments/<int:comment_id>', methods=["DELETE"])
 @login_required
 def delete_comment(photo_id, comment_id):
     comment = Comment.query.get(comment_id)

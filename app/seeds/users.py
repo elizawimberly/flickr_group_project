@@ -18,7 +18,7 @@ def seed_users():
 
     user1 = User(
     username = 'Demo',
-    hashed_password = 'hashed_password',
+    password='password',
     email = 'demo@aa.io',
     first_name = "DemoUser",
     last_name = "last_name",
@@ -26,7 +26,7 @@ def seed_users():
     )
     user2 = User(
     username = "xXNitewingXx",
-    hashed_password = "hashed_password",
+    password='password',
     email = "nitewing@gotham.com",
     first_name = "Dick",
     last_name = "Grayson",
@@ -34,7 +34,7 @@ def seed_users():
     )
     user3 = User(
     username = "Oracle",
-    hashed_password = "hashed_password",
+    password='password',
     email = "batgirl@gotham.com",
     first_name = "Barbara",
     last_name = "Gordon",
@@ -42,7 +42,7 @@ def seed_users():
     )
     user4 = User(
     username = "Penguinz",
-    hashed_password = "hashed_password",
+    password='password',
     email = "penguinz@arkham.com",
     first_name = "Oswald",
     last_name = "Cobblepot",
@@ -50,7 +50,7 @@ def seed_users():
     )
     user5 = User(
     username = "Enigma",
-    hashed_password = "hashed_password",
+    password='password',
     email = "riddler@arkham.com",
     first_name = "Edward",
     last_name = "Nygma",
@@ -58,7 +58,7 @@ def seed_users():
     )
     user6 = User(
     username = "Loves2Laugh",
-    hashed_password = "hashed_password",
+    password='password',
     email = "joker@arkham.com",
     first_name = "Jack",
     last_name = "White",
@@ -66,7 +66,7 @@ def seed_users():
     )
     user7 = User(
     username = "RedHood",
-    hashed_password = "hashed_password",
+    password='password',
     email = "redhood@gotham.com",
     first_name = "Jason",
     last_name = "Todd",
@@ -74,7 +74,7 @@ def seed_users():
     )
     user8 = User(
     username = "RedRobin",
-    hashed_password = "hashed_password",
+    password='password',
     email = "redRobin@gotham.com",
     first_name = "Tim",
     last_name = "Drake",
@@ -82,7 +82,7 @@ def seed_users():
     )
     user9 = User(
     username = "BestRobinEver",
-    hashed_password = "hashed_password",
+    password='password',
     email = "robin@gotham.com",
     first_name = "Damien",
     last_name = "Wayne",
@@ -90,7 +90,7 @@ def seed_users():
     )
     user10 = User(
     username = "BatDad",
-    hashed_password = "hashed_password",
+    password='password',
     email = "batman@gotham.com",
     first_name = "Bruce",
     last_name = "Wayne",
