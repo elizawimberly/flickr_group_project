@@ -11,8 +11,8 @@ class Comment(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    user_id =  db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
-    photo_id = db.Column(db.Integer, db.ForeignKey('photos.id'), nullable=False)
+    user_id =  db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
+    photo_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('photos.id')), nullable=False)
     comment = db.Column(db.String(500), nullable=False)
     created_at = db.Column(db.String(50), nullable=False, default=date_str)
 
@@ -23,8 +23,8 @@ class Comment(db.Model):
     def to_dict(self):
         return {
             'id': self.id,
-            'user_id': self.user_id,
-            'photo_id': self.photo_id,
+            'userId': self.user_id,
+            'photoId': self.photo_id,
             'comment': self.comment,
-            'created_at': self.created_at
+            'createdAt': self.created_at
         }

@@ -39,16 +39,23 @@ export const actionDeleteSingleAlbum = (albumId) => ({
 
 
 /***************************** THUNKS (API) ******************************/
-export const thunkCreateSingleAlbum = (createAlbumData) => async (dispatch) => {
-    const response = await fetch(`/api/albums`, {
-        method: 'post',
-        headers: { 'Content-Type': 'application/json'} ,
-        body: JSON.stringify(createAlbumData)
+export const thunkCreateSingleAlbum = (name, about, photos) => async (dispatch) => {
+   
+    const response = await fetch(`/api/albums/`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+          },
+        body: JSON.stringify({
+            name,
+            about,
+            photos
+        })
     });
     if (response.ok) {
         const newAlbum = await response.json();
         dispatch(actionCreateSingleAlbum(newAlbum));
-        return newAlbum;
+        return response;
     };
 };
 
@@ -60,6 +67,7 @@ export const thunkReadAllAlbums = () => async (dispatch) => {
         return allAlbums;
     };
 };
+
 
 export const thunkReadSingleAlbumDetails = (albumId) => async (dispatch) => {
     const response = await fetch(`/api/albums/${albumId}`);
