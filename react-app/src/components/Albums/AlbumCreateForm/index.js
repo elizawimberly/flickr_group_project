@@ -24,8 +24,9 @@ function AlbumCreateForm() {
     }
 
     useEffect(()=>{
+        console.log('photos', photos)
         dispatch(thunkReadAllPhotosByUser())
-    },[dispatch])
+    },[dispatch, photos])
 
     const onSubmit = (e) => {
         e.preventDefault()
@@ -33,15 +34,13 @@ function AlbumCreateForm() {
         let errors = [];
 
         setSubmitted(true)
-        console.log('name', name)
-        console.log('about', about)
 
         if(!name) errors.push('You must enter a name between 2 and 5 characters.')
         if(!about) errors.push('You must enter a about between 35 and 500 characters.')
         if(errors.length >= 1) 
             setValidationErrors(errors);
         else
-            dispatch(thunkCreateSingleAlbum(name, about, photos))
+            dispatch(thunkCreateSingleAlbum(name, about, photos.toString()))
             .catch(async (res) => {
                 const data = await res.json();
                 if(data && data.errors) setValidationErrors(data.errors)
@@ -81,11 +80,11 @@ function AlbumCreateForm() {
                            return ( <div className='album-photo-div'>
                                 <img src={photo.url} alt='' id={photo.id} className='img-not-selected' key={photo.id} onClick={() => {
                                 let currentPhotos = [...photos]
-                                if(currentPhotos.find(e => e.id === photo.id)) {
-                                    let i = currentPhotos.findIndex(e => e.id === photo.id)
+                                if(currentPhotos.find(e => e === photo.id)) {
+                                    let i = currentPhotos.findIndex(e => e === photo.id)
                                     currentPhotos.splice(i, 1)
                                 } else {
-                                    currentPhotos.push(photo)
+                                    currentPhotos.push(photo.id)
                                 }
                                 setPhotos(currentPhotos)
                                 if(document.getElementById(photo.id).className === 'img-selected')

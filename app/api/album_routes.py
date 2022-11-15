@@ -3,6 +3,7 @@ from flask_login import login_required, current_user
 from app.models import Album, db
 from app.forms.album_form import AlbumForm
 from app.api.auth_routes import validation_errors_to_error_messages 
+from app.models.photo import Photo
 
 album_routes = Blueprint('album', __name__)
 
@@ -24,25 +25,37 @@ def add_album():
     """
     Create new album and return it in a dictionary
     """
-
-    print('request data', request.get_json())
-
     form = AlbumForm()
 
     form['csrf_token'].data = request.cookies['csrf_token']
 
     if form.validate_on_submit():
         data = form.data
-        print(data)
-        new_album = Album(
-            user_id = current_user.id,
-            name = data['name'],
-            about = data['about']
-        )
-        db.session.add(new_album)
-        db.session.commit()
+        print('THIS IS THE DATA', data)
+        if data['photos']:
+            photo_id_list = data['photos'].split(',')
+            photo_list = []
+            for photo_id in photo_id_list:
+                photo = Photo.query.get(photo_id)
+                photo_list.append(photo)
+            print('------- THIS IS THE PHOTOLIST -------', photo_list)
+            new_album = Album(
+                user_id = current_user.id,
+                name = data['name'],
+                about = data['about'],
+                photos = photo_list
+            )
+            db.session.add(new_album)
+            db.session.commit()
+        else:
+            new_album = Album(
+                user_id = current_user.id,
+                name = data['name'],
+                about = data['about']
+            )
+            db.session.add(new_album)
+            db.session.commit()
         return jsonify(new_album.to_dict(True))
-    print(form.errors)
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 

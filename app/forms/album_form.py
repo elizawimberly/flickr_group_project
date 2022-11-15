@@ -6,3 +6,4 @@ from wtforms.validators import DataRequired, Email, ValidationError
 class AlbumForm(FlaskForm):
   name = StringField('name', validators=[DataRequired()])
   about = StringField('about', validators=[DataRequired()])
+  photos = StringField('photos')
