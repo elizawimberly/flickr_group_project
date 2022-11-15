@@ -63,6 +63,7 @@ def add_album():
 @album_routes.route('/<int:id>')
 def get_album(id):
     album = Album.query.get(id)
+    print('ARE YOU HITTING THIS SHIT', album.to_dict(True))
 
     return album.to_dict(True)
 

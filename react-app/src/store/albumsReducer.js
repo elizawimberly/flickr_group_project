@@ -6,7 +6,7 @@ import { normalizeArray } from "../component-resources/index";
 /********************************* TYPES *********************************/
 const ALBUMS_CREATE_SINGLE_ALBUM = 'albums/CREATE_SINGLE_ALBUM';
 const ALBUMS_READ_ALL_ALBUMS = 'albums/READ_ALL_ALBUMS';
-const ALBUMS_READ_SINGLE_ALBUM_DETAILS = 'albums/READ_SINGLE_ALBUM_DETAILS';
+const ALBUMS_READ_SINGLE_ALBUM_DETAILS = 'albums/ALBUMS_READ_SINGLE_ALBUM_DETAILS';
 const ALBUMS_UPDATE_SINGLE_ALBUM = 'albums/UPDATE_SINGLE_ALBUM';
 const ALBUMS_DELETE_SINGLE_ALBUM = 'albums/DELETE_SINGLE_ALBUM';
 
@@ -40,7 +40,7 @@ export const actionDeleteSingleAlbum = (albumId) => ({
 
 /***************************** THUNKS (API) ******************************/
 export const thunkCreateSingleAlbum = (name, about, photos) => async (dispatch) => {
-    console.log(photos)
+
     const response = await fetch(`/api/albums/`, {
         method: 'POST',
         headers: {
@@ -115,6 +115,7 @@ const initialState = {
 const albumsReducer = (state = initialState, action) => {
 
     let newState = {...state};
+    console.log('ACTION BEING RAN', action)
 
     switch (action.type) {
 
