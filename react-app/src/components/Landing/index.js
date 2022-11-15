@@ -1,28 +1,32 @@
+/******************************** IMPORTS ********************************/
+// libraries
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
+// local files
 import LandingNoSession from "./LandingNoSession";
 import LandingSession from "./LandingSession";
 import './Landing.css'
+import Explore from "../Photos/Explore"
 
+
+/******************************* COMPONENT *******************************/
 function Landing() {
 
+    /****************** access store *******************/
     const sessionState = useSelector(state => state.session)
-    // console.log(sessionState)
+
+    /************* conditional components **************/
+    let landingComponent = sessionState.user ? <Explore /> : <LandingNoSession />
 
 
+    /**************** render component *****************/
     return (
         <div className='page-wrapper-container'>
 
-          <div className="landing-component">
-            <NavLink to="/landing/no-session">
-              <button type="submit">Landing No Session</button>
-            </NavLink>
-
-            <NavLink to="/landing/session">
-              <button type="submit">Landing Session</button>
-            </NavLink>
-          </div>
+          {/* <div className="landing-component"> */}
+            { landingComponent }
+          {/* </div> */}
 
         </div>
     )
