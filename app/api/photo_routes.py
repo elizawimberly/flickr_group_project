@@ -121,14 +121,14 @@ def add_tag(id):
         return jsonify(photo.to_dict())
     return jsonify('Tags not added')
 
-@photo_routes.route('/<int:photo_id>/tags/<int:tag_id>', methods=["POST"])
+
+
+@photo_routes.route('/<int:photo_id>/tags/<int:tag_id>', methods=["DELETE"])
 @login_required
 def delete_tag(photo_id, tag_id):
-    tag = tags_to_photos.query(photo_id = photo_id, tag_id = tag_id)
+    tag = tags_to_photos.query(photo_id = photo_id, tag_id = tag_id).first()
     db.session.delete(tag)
     return jsonify('Tag deleted')
-
-
 
 
 
