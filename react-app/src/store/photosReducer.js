@@ -87,6 +87,7 @@ export const thunkCreateSinglePhoto = (createPhotoData) => async (dispatch) => {
 };
 
 export const thunkReadAllPhotos = () => async (dispatch) => {
+  console.log("hit thunkReadAllPhotos");
   const response = await fetch(`/api/photos`);
   if (response.ok) {
     const allPhotos = await response.json();

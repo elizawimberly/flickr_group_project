@@ -24,3 +24,6 @@ class Tag(db.Model):
             'id': self.id,
             'tag': self.tag
         }
+
+    def tag_list(self):
+        return self.tag
