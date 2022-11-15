@@ -7,7 +7,6 @@ import { Link } from "react-router-dom";
 // local files
 import Account from "../../Account";
 import NavBarUser from "../../NavigationBars/NavBarUser";
-<<<<<<< HEAD
 import { thunkReadAllPhotosByUser } from "../../../store/photosReducer";
 import "./Photostream.css";
 
@@ -116,15 +115,6 @@ function Photostream() {
   //         createdAt: "createdAt",
   //     },
   // }
-=======
-import './Photostream.css'
-import { useEffect, useState} from 'react';
-import { thunkReadAllPhotos } from '../../../store/photosReducer'
-
-/******************************* COMPONENT *******************************/
-function Photostream() {
-    const dispatch = useDispatch()
->>>>>>> Connect_Account_to_Backend
 
   /****************** access store *******************/
   const photosState = useSelector((state) => state.photos);
@@ -141,44 +131,11 @@ function Photostream() {
     dispatch(thunkReadAllPhotosByUser());
   }, [dispatch]);
 
-<<<<<<< HEAD
   /**************** render component *****************/
   return (
     <div className="page-wrapper-container">
       <Account />
       <NavBarUser />
-=======
-    /************ reducer/API communication ************/
-    const photos = useSelector(state => Object.values(state.photos.allPhotos))
-
-
-    
-    useEffect(()=> {
-        dispatch(thunkReadAllPhotos())
-    }, [dispatch])
-
-    /**************** render component *****************/
-    return (
-        <div className='page-wrapper-container'>
-
-            <Account />
-            <NavBarUser />
-
-            <div className="photostream-component">
-
-                <div className="photostream-feed">
-                    {photos && photos.map((photo) => (
-                        <Link
-                        to={`/photos/${photo.id}`}
-                        key={`${photo.id}`}
-                        >
-                            <img src={photo.url} className="photostream-photo-card" alt=''></img>
-                        </Link>
-                    ))}
-                </div>
-
-            </div>
->>>>>>> Connect_Account_to_Backend
 
       <div className="photostream-component">
         <div className="photostream-feed">
