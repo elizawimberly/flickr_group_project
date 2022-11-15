@@ -4,9 +4,12 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 // local files
-import LogoutButton from '../../User/LogoutButton';
+import LogoutButton from './SessionButtons/LogoutButton';
 import './NavBarMain.css';
 import flareLogo from '../../../assets/flare-branding/logo/flare-logo-2.png';
+import ToggleAccountMenu from './SessionButtons/ToggleAccountMenu';
+import ToggleYouMenu from './SessionButtons/ToggleYouMenu';
+import ToggleExploreMenu from './SessionButtons/ToggleExploreMenu';
 
 /******************************* COMPONENT *******************************/
 const NavBarMain = () => {
@@ -25,27 +28,31 @@ const NavBarMain = () => {
   let sessionLinks;
   if (userId) {
     sessionLinks = (
-      <div className="nav-bar-right">
-        <button>Toggle You Menu component</button>
-        <button>Toggle Explore Menu component</button>
+      <>
+        <div className="nav-bar-right-A">
+          <ToggleYouMenu />
+          <ToggleExploreMenu />
+        </div>
 
-        <NavLink to='upload' exact={true}>
-          <i class="fa-solid fa-cloud" id="navbar-upload-photo-button"></i>
-        </NavLink>
-        <button>Toggle Account Menu component</button>
-      </div>
+        <div className='nav-bar-right-B'>
+          <NavLink to='/upload' exact={true}>
+            <i class="fa-solid fa-cloud" id="navbar-upload-photo-button"></i>
+          </NavLink>
+          <ToggleAccountMenu />
+        </div>
+      </>
     )
   } else {
     sessionLinks = (
-      <div className="nav-bar-right">
-      <NavLink to='/login' exact={true} activeClassName='active'>
-        Login
-      </NavLink>
+      <>
+        <NavLink to='/login' exact={true} activeClassName='active'>
+          Login
+        </NavLink>
 
-      <NavLink to='/sign-up' exact={true} activeClassName='active'>
-        Sign Up
-      </NavLink>
-    </div>
+        <NavLink to='/sign-up' exact={true} activeClassName='active'>
+          Sign Up
+        </NavLink>
+      </>
     )
   }
 
@@ -56,11 +63,15 @@ const NavBarMain = () => {
       {/* <div className={session ? "navigation-bar" : ""}></div> */}
       <nav className='navigation-bar' id="navbar-main">
 
+        <div class="nav-bar-left">
             <NavLink to='/' exact={true} activeClassName='active'>
               <img src={flareLogo} className="navigation-bar-logo"></img>
             </NavLink>
+        </div>
 
-            {sessionLinks}
+        <div className="nav-bar-right">
+          {sessionLinks}
+        </div>
 
             {/* <NavLink to='/users' exact={true} activeClassName='active'>
               Users
