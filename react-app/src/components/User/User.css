@@ -55,6 +55,12 @@
     font-weight: 900;
 }
 
+.demo-signup-form-button{
+    color: #006dac;
+    cursor: pointer;
+    font-size: 14.5px;
+}
+
 .disclaimer {
     width: 245px;
     font-size: 12px;
