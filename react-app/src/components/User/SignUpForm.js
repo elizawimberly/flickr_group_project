@@ -25,8 +25,11 @@ const SignUpForm = () => {
 
   /***************** handle events *******************/
   const onSignUp = async (e) => {
+    console.log(firstName, lastName, email, password, repeatPassword)
     e.preventDefault();
-    if (password === repeatPassword) {
+    if (password !== repeatPassword) {
+      setErrors(["Those passwords didn't match. Please try again."])
+    } else {
       const data = await dispatch(signUp(firstName, lastName, email, password));
       if (data) {
         setErrors(data)
@@ -76,7 +79,7 @@ const SignUpForm = () => {
         </div>
 
         <div>
-          <p className="login-signup-form-prompt">Log in to Flare</p>
+          <p className="login-signup-form-prompt">Sign up for Flare</p>
         </div>
 
         <form onSubmit={onSignUp}>
@@ -146,10 +149,10 @@ const SignUpForm = () => {
             ></input>
           </div>
 
-          <div>
-            {errors.map((error, ind) => (
-              <div key={ind}>{error}</div>
-            ))}
+          <div className='errors-container'>
+              {errors.map((error, ind) => (
+                <div key={ind} className='form-errors'>{error}</div>
+              ))}
           </div>
 
           <button type='submit' className='login-signup-form-button'>Sign up</button>
