@@ -73,11 +73,18 @@ export const actionDeleteSingleComment = (commentId) => ({
 
 /***************************** THUNKS (API) ******************************/
 // photos
-export const thunkCreateSinglePhoto = (createPhotoData) => async (dispatch) => {
+export const thunkCreateSinglePhoto = (name, about, url, privateVar, tags, albumId) => async (dispatch) => {
   const response = await fetch(`/api/photos/`, {
     method: "post",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(createPhotoData),
+    body: JSON.stringify({
+      name,
+      about,
+      url,
+      private: privateVar,
+      tags,
+      albumId: Number(albumId)
+    }),
   });
   if (response.ok) {
     const newPhoto = await response.json();
