@@ -1,6 +1,6 @@
 /******************************** IMPORTS ********************************/
 // libraries
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 // local files
@@ -127,17 +127,35 @@ function Explore() {
     dispatch(thunkReadAllPhotos());
   }, [dispatch]);
 
+  /****************** manage state *******************/
+  let [photoCardSize, setPhotoCardSize] = useState('explore-photo-card-small')
+
+
+  /***************** handle events *******************/
+  // function resizeGrid() {
+  //   photoCardSize  = "explore-photo-card-small" ? setPhotoCardSize("explore-photo-card-large") : setPhotoCardSize("explore-photo-card-small")
+  // }
+
   /**************** render component *****************/
   return (
     <div className="page-wrapper-container">
       <div className="explore-component">
-        <h1>Explore</h1>
+
+        <div className="title-strip">
+          <div className="title-strip-left">
+            <span>Explore</span>
+          </div>
+          <div className="title-strip-right">
+            <i class="fa-solid fa-grip" onClick={() => setPhotoCardSize("explore-photo-card-small")}></i>
+            <i class="fa-solid fa-square" onClick={() => setPhotoCardSize("explore-photo-card-large")}></i>
+          </div>
+        </div>
 
         <div className="explore-photo-feed">
           {allPhotosArr &&
             allPhotosArr.map((photo) => (
               <Link to={`/photos/${photo.id}`} key={`${photo.id}`}>
-                <img src={photo.url} className="explore-photo-card"></img>
+                <img src={photo.url} className={photoCardSize}></img>
               </Link>
             ))}
         </div>
