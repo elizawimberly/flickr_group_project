@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { thunkReadSinglePhotoDetails } from "../../../store/photosReducer";
 import "./PhotoDetailsPage.css";
 import CommentCreateForm from "../../Comments/CommentCreateForm";
-import TagCreateForm from "../../Tags";
+import TagCreateFormModal from "../../TagCreateFormModal";
 
 /******************************* COMPONENT *******************************/
 function PhotoDetailsPage() {
@@ -133,7 +133,7 @@ function PhotoDetailsPage() {
 
               <div className="tags-stats">
                 <div>Tags</div>
-                <TagCreateForm />
+                <TagCreateFormModal />
                 <div className="tag-container">
                   {tags &&
                     tags.map((tag) => (
