@@ -23,7 +23,6 @@ function Photostream() {
   // Uncomment to demo conditional render:
   // const allPhotosArr = []
 
-
   /************ reducer/API communication ************/
   const dispatch = useDispatch();
 
