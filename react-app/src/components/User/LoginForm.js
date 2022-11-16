@@ -105,7 +105,10 @@ const LoginForm = () => {
 
 
             <button type='submit' className='login-signup-form-button'>Sign in</button>
-            <button onClick={demoUser} className='login-signup-form-button'>Demo User</button>
+
+            <div onClick={demoUser} className='demo-signup-form-button'>
+              Continue as Demo User
+            </div>
           </form>
 
           <div className='form-redirect-prompt'>

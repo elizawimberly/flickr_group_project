@@ -37,6 +37,17 @@
     text-align: center;
 }
 
+.landing-no-session-text-box-container > h1 {
+    font-size: 56px;
+    font-weight: 900;
+    margin: 0px;
+}
+
+.landing-no-session-text-box-container > h2 {
+    font-size: 26px;
+    margin-bottom: 50px;
+}
+
 #landing-explore-button {
     width: 200px;
     height: 64px;
