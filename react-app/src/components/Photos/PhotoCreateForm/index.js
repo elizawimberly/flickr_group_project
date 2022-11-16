@@ -76,7 +76,7 @@ function PhotoCreateForm() {
                             type="text"
                             name="about"
                             placeholder="Add a description"
-                            onChange={(e) => setName(e.target.value)}
+                            onChange={(e) => setAbout(e.target.value)}
                             value={about}
                             />
                         </label>
