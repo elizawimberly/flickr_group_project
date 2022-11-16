@@ -101,7 +101,7 @@ photo_lst = [
         dict(
             user_id = 2,
             album_id = 4,
-            url = "https://cdn.photoworkout.com/images/guides/sun-flare-photography/sun-flare-photography-19.jpg?cw=100.0000%25&ch=100.0000%25&scale.option=fill&w=0&h=700",
+            url = "https://shotkit.com/wp-content/uploads/2020/11/lens-flare-example-2.jpg",
             ),
         dict(
             user_id = 2,
@@ -150,7 +150,7 @@ photo_lst = [
         dict(
             user_id = 3,
             album_id = 6,
-            url = "",
+            url = "https://images.ctfassets.net/3s5io6mnxfqz/2R5HMuKpKxz6HJxqKNwbur/61b55554c39d0a2a7be11c6d1641a6a2/AdobeStock_70441318.jpeg",
             ),
         dict(
             user_id = 3,
@@ -190,10 +190,11 @@ photo_lst = [
             album_id = 7,
             url = "https://www.bwillcreative.com/wp-content/uploads/2020/01/TofinoBoardwalkSunflare.jpg",
             ),
+            #34
         dict(
             user_id = 4,
             album_id = 7,
-            url = "https://images.ctfassets.net/3s5io6mnxfqz/jMkr5pxPzCed17AGRkzgA/b981f3e42de324b6ec82a4297fec29f1/AdobeStock_80110092.jpeg”",
+            url = "https://images.ctfassets.net/3s5io6mnxfqz/jMkr5pxPzCed17AGRkzgA/b981f3e42de324b6ec82a4297fec29f1/AdobeStock_80110092.jpeg",
             ),
         dict(
             user_id = 4,
@@ -234,10 +235,11 @@ photo_lst = [
             album_id = 9,
             url = "https://media.newyorker.com/photos/5952a9f17d94e97fee0c5d75/master/w_1600%2Cc_limit/Jerome%2520Sessini%2520Golden%2520Hour%2520SEJ2017030G0624Golden%2520Hour3043.JPG",
             ),
+            #42
         dict(
             user_id = 5,
             album_id = 9,
-            url = "https://cdn.photoworkout.com/images/guides/sun-flare-photography/sun-flare-photography-17.jpg?cw=100.0000%25&ch=100.0000%25&scale.option=fill&w=0&h=600",
+            url = "https://www.digitional.com/wp-content/uploads/2018/12/LensFlareFilterAdded-736x408.jpg",
             ),
         dict(
             user_id = 5,
@@ -293,11 +295,13 @@ photo_lst = [
             album_id = 11,
             url = "https://www.adorama.com/alc/wp-content/uploads/2020/05/bokeh-lens-feature-1024x576.jpg",
             ),
+            #53
         dict(
             user_id = 6,
             album_id = 11,
-            url = "",
+            url = "https://cdn.shopify.com/s/files/1/0163/6622/files/How_to_capture_starburst_in_photos.jpg?v=1590519811",
             ),
+            #54
         dict(
             user_id = 6,
             album_id = 11,
@@ -364,11 +368,11 @@ photo_lst = [
             url = "https://gridfiti.com/wp-content/uploads/2018/04/Gridfiti_Blog_FairyLightsPhotography_Idea_LeadingLines.jpg",
             ),
             # album 14
+            #66
         dict(
             user_id = 7,
             album_id = 14,
-            url = "https://cdn.photoworkout.com/images/guides/sun-flare-photography/sun-flare-photography-15.jpg?cw=100.0000%25&ch=100.0000%25&scale.option=fill&w=400&h=0",
-
+            url = "https://ipt.imgix.net/203076/x/0/",
             ),
         dict(
             user_id = 7,
@@ -547,11 +551,35 @@ photo_lst = [
             album_id = 20,
             url = "https://media.newyorker.com/photos/5964e5ea95a1ad492aa3d597/master/w_1600%2Cc_limit/Campbell-TIOTC_Book_IR_SDW_21.jpg",
             ),
+            #100
         dict(
             user_id = 10,
             album_id = 20,
             url = "https://neocha-content.oss-cn-hongkong.aliyuncs.com/wp-content/uploads/sites/2/2016/01/SamAlive15.jpg",
             ),
+        #     #101
+        # dict(
+        #     user_id = 1,
+        #     url = 'https://railphoto-art.org/wp-content/uploads/2022/07/1st-390-scaled.jpg',
+        #     ),
+        #     #102
+        # dict(
+        #     user_id = 1,
+        #     url = 'https://cdn.contrastly.com/wp-content/uploads/19-photography-tips-lens-flare.jpg',
+        #     ),
+        #     #103
+        # dict(
+        #     user_id = 1,
+        #     url = "https://learn.corel.com/wp-content/uploads/2022/02/hardest-1985097_1280-1024x683.jpg",
+        #     ),
+        #     #104
+        # dict(
+        #     user_id = 1,
+        #     url = 'https://mimeophotos.com/product_images/blog/tips-for-great-beach-photography-3.jpeg',
+        #     ),
+
+
+
 
     # Extra
     #     dict(user_id = ,
@@ -559,6 +587,46 @@ photo_lst = [
     #             url = "https://borisfx-com-res.cloudinary.com/video/upload/v1643236894/Optics%20Product%20Page/Optics%202022%20Product%20Page%20Images/Video%20Loops/Forest_Landscape_Loop.png",
     #           ),
         ]
+
+extra_1 = Photo(
+    user_id = 1,
+    url = 'https://railphoto-art.org/wp-content/uploads/2022/07/1st-390-scaled.jpg',
+    name = fake.sentence(),
+    about = fake.text(),
+    taken_on = fake.date_time(),
+    private = random.choice(boolean),
+    created_at = today,
+)
+
+extra_2 = Photo(
+    user_id = 1,
+    url = 'https://cdn.contrastly.com/wp-content/uploads/19-photography-tips-lens-flare.jpg',
+    name = fake.sentence(),
+    about = fake.text(),
+    taken_on = fake.date_time(),
+    private = random.choice(boolean),
+    created_at = today,
+)
+
+extra_3 = Photo(
+    user_id = 1,
+    url = 'https://www.dropicts.com/wp-content/uploads/sun-flare-photography-1024x574.jpg',
+    name = fake.sentence(),
+    about = fake.text(),
+    taken_on = fake.date_time(),
+    private = random.choice(boolean),
+    created_at = today,
+)
+
+extra_4 = Photo(
+    user_id = 1,
+    url ='https://mimeophotos.com/product_images/blog/tips-for-great-beach-photography-3.jpeg',
+    name = fake.sentence(),
+    about = fake.text(),
+    taken_on = fake.date_time(),
+    private = random.choice(boolean),
+    created_at = today,
+)
 
 
 def seed_photos():
@@ -586,6 +654,12 @@ def seed_photos():
             db.session.commit()
             new_photo.tags = tag_lst
             i += 1
+    #new photos here
+    db.session.add(extra_1)
+    db.session.add(extra_2)
+    db.session.add(extra_3)
+    db.session.add(extra_4)
+    db.session.commit()
 
 
 
