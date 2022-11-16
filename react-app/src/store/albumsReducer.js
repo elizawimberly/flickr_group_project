@@ -39,16 +39,9 @@ export const actionDeleteSingleAlbum = (albumId) => ({
 
 
 /***************************** THUNKS (API) ******************************/
-<<<<<<< HEAD
-<<<<<<< HEAD
-export const thunkCreateSingleAlbum = (name, about, photos) => async (dispatch) => {
-=======
-export const thunkCreateSingleAlbum = (name, about, photos = []) => async (dispatch) => {
 
->>>>>>> refs/remotes/origin/dev1
-=======
 export const thunkCreateSingleAlbum = (name, about, photos) => async (dispatch) => {
->>>>>>> connect_albums_to_backend
+
     const response = await fetch(`/api/albums/`, {
         method: 'POST',
         headers: {
