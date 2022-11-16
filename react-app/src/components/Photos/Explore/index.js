@@ -130,12 +130,6 @@ function Explore() {
   /****************** manage state *******************/
   let [photoCardSize, setPhotoCardSize] = useState('explore-photo-card-small')
 
-
-  /***************** handle events *******************/
-  // function resizeGrid() {
-  //   photoCardSize  = "explore-photo-card-small" ? setPhotoCardSize("explore-photo-card-large") : setPhotoCardSize("explore-photo-card-small")
-  // }
-
   /**************** render component *****************/
   return (
     <div className="page-wrapper-container">

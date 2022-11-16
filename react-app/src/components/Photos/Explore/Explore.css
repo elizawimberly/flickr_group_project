@@ -41,6 +41,9 @@
     padding-left: 15px;
     cursor: pointer;
 }
+/* .title-strip-right > i::selection {
+    color:red;
+} */
 
 .explore-photo-feed {
   display: flex;

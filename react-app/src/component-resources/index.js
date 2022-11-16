@@ -1,3 +1,45 @@
+/******************************** GENERATE GREETING FROM A RANDOM LANGUAGE **********************************/
+const languages = [
+    { language: "Arabic", greeting:	"Asalaam alaikum" },
+    { language: "Bulgarian", greeting: "Zdraveĭte"},
+    { language: "Chinese",	greeting: "Nǐn hǎo"},
+    { language: "Dutch", greeting: "Goede dag"},
+    { language: "English", greeting: "Hello"},
+    { language: "French", greeting: "Bonjour"},
+    { language: "Gaelic", greeting: "Dia dhuit"},
+    { language: "German", greeting: "Guten tag"},
+    { language: "Greek", greeting: "Kalimera"},
+    { language: "Hebrew", greeting: "Shalom aleichem"},
+    { language: "Hindi", greeting: "Namastē"},
+    { language: "Hungarian", greeting: "Szia"},
+    { language: "Icelandic", greeting: "Góðan dag"},
+    { language: "Indonesian", greeting: "Selamat siang"},
+    { language: "Italian", greeting: "Salve"},
+    { language: "Japanese",	greeting: "Konnichiwa"},
+    { language: "Kannada", greeting: "Namaskara"},
+    { language: "Khmer", greeting: "Suostei"},
+    { language: "Korean", greeting: "Anyoung haseyo"},
+    { language: "Polish", greeting: "Cześć"},
+    { language: "Polish", greeting: "Dzień dobry!"},
+    { language: "Portuguese", greeting: "Olá"},
+    { language: "Romanian",	greeting: "Bună ziua"},
+    { language: "Russian", greeting: "Zdravstvuyte"},
+    { language: "Spanish", greeting: "Hola"},
+    { language: "Swahili", greeting: "Habari"},
+    { language: "Swedish", greeting: "God dag"},
+    { language: "Tahitian", greeting: "Ia ora na"},
+    { language: "Turkish", greeting: "Merhaba"},
+    { language: "Vietnamese", greeting: "Xin chào"},
+    { language: "Welsh", greeting: "Shwmae"},
+    { language: "Zulu",	greeting: "Ngiyakwemukela"},
+]
+
+export function generateInternationalGreeting() {
+    let res = (Math.random() * 100).toFixed(0) % languages.length
+    return languages[res]
+}
+
+
 /*********************************** CONVERT ISO STRING TO "Month Year" ************************************/
 export function convertDate(iso) {
 
