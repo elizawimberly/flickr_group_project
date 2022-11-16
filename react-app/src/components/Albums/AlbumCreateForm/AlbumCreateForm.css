@@ -1,28 +1,40 @@
-.img-selected {
+.checked {
+    height: 190px;
+    width: 190px;
+    background-color: #ffffff;
+    box-shadow: 0 0 25px rgba(17, 1, 68, 0.08);
+    border-radius: 8px;
     position: relative;
-    display: flex;
-    height: 200px;
-    width: 400px;
+    cursor: pointer;
     border: 1px solid grey
 }
 
-.img-not-selected {
-    position: relative;
-    display: flex;
+.not-checked {
     height: 200px;
-    width: 400px;
+    width: 200px;
+    background-color: #ffffff;
+    box-shadow: 0 0 25px rgba(17, 1, 68, 0.08);
+    border-radius: 8px;
+    position: relative;
+    cursor: pointer;
 }
 
 .album-photo-div {
-    position: relative;
-    display: flex;
     height: 200px;
-    width: 400px;
-    margin: 2%
+    width: 200px;
+    background-color: #ffffff;
+    box-shadow: 0 0 25px rgba(17, 1, 68, 0.08);
+    border-radius: 8px;
+    position: relative;
+    cursor: pointer;
 }
 
-.album-photo-wrapper{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+.album-photo-container {
+    height: 200px;
+    width: 200px;
+    background-color: #ffffff;
+    box-shadow: 0 0 25px rgba(17, 1, 68, 0.08);
+    border-radius: 8px;
+    position: relative;
+    cursor: pointer;
 }

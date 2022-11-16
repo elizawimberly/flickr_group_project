@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import './SessionButtons.css'
 import profilePic from "../../../../assets/buddyicon.png"
 import LogoutButton from "./LogoutButton";
+import { generateInternationalGreeting } from "../../../../component-resources";
 
 
 /******************************* COMPONENT *******************************/
@@ -14,6 +15,11 @@ function ToggleAccountMenu({ user }) {
 
     /****************** access store *******************/
     const sessionState = useSelector(state => state.session)
+
+    /************ key into pertinent values ************/
+    const userName = sessionState.user.first_name
+    let greeting = generateInternationalGreeting()
+
 
     /************ reducer/API communication ************/
     const dispatch = useDispatch();
@@ -43,7 +49,13 @@ function ToggleAccountMenu({ user }) {
             <div className="dropdown-menu" id="account-dropdown-menu">
 
                 <div id="welcome-user">
-                    Welcome!
+                    <div id="menu-greeting">
+                        {greeting.greeting}, {userName}!
+                    </div>
+                    <div id="menu-language">
+                        <p>Now you know how to greet people</p>
+                        <p>in {greeting.language}</p>
+                    </div>
                 </div>
 
                 <div id="logout-button">

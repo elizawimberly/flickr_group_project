@@ -11,6 +11,9 @@ tags_to_photos = db.Table(
     db.Column('photo_id', db.Integer, db.ForeignKey(add_prefix_for_prod('photos.id')), primary_key=True)
   )
 
+if environment == "production":
+    tags_to_photos.schema = SCHEMA
+
 class Photo(db.Model):
     __tablename__ = "photos"
 

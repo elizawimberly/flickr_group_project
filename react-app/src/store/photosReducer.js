@@ -74,7 +74,7 @@ export const actionDeleteSingleComment = (commentId) => ({
 /***************************** THUNKS (API) ******************************/
 // photos
 export const thunkCreateSinglePhoto = (createPhotoData) => async (dispatch) => {
-  const response = await fetch(`/api/photos`, {
+  const response = await fetch(`/api/photos/`, {
     method: "post",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(createPhotoData),
@@ -87,7 +87,6 @@ export const thunkCreateSinglePhoto = (createPhotoData) => async (dispatch) => {
 };
 
 export const thunkReadAllPhotos = () => async (dispatch) => {
-  console.log("hit thunkReadAllPhotos");
   const response = await fetch(`/api/photos/`);
   if (response.ok) {
     const allPhotos = await response.json();
@@ -97,7 +96,6 @@ export const thunkReadAllPhotos = () => async (dispatch) => {
 };
 
 export const thunkReadAllPhotosByUser = () => async (dispatch) => {
-  console.log("hit thunk");
   const response = await fetch(`/api/photos/current`);
   console.log("response:", response);
   if (response.ok) {
@@ -206,8 +204,8 @@ const initialState = {
 
 /******************************* REDUCER *********************************/
 const photosReducer = (state = initialState, action) => {
+
   let newState = { ...state };
-  console.log("action:", action);
 
   switch (action.type) {
     // photos

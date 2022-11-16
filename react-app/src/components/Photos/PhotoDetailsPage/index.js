@@ -8,45 +8,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { thunkReadSinglePhotoDetails } from "../../../store/photosReducer";
 import "./PhotoDetailsPage.css";
 import CommentCreateForm from "../../Comments/CommentCreateForm";
-import TagCreateForm from "../../Tags";
+import TagCreateFormModal from "../../TagCreateFormModal";
 
 /******************************* COMPONENT *******************************/
 function PhotoDetailsPage() {
-  /********* hard-coded data (remove later) **********/
-  // const photoState = {}
-  // photoState.singlePhotoDetails = {
-  //     id: 1,
-  //     userId: 1,
-  //     albumId: 1,
-  //     name: "name",
-  //     about: "about",
-  //     url: "https://www.printablee.com/postpic/2014/09/pusheen-cat-coloring-pages_200482.jpg",
-  //     private: true,
-  //     takenOn: "takenOn",
-  //     createdAt: "createdAt",
-  //     Comments: {
-  //         1: {
-  //             commentId: 1,
-  //             userId: 1,
-  //             comment: "comment string 1",
-  //         },
-  //         2: {
-  //             commentId: 2,
-  //             userId: 1,
-  //             comment: "comment string 2",
-  //         },
-  //     },
-  //     Tags: {
-  //         1: {
-  //             tagId: 1,
-  //             tag: "tag string 1",
-  //         },
-  //         2: {
-  //             tagId: 2,
-  //             tag: "tag string 2",
-  //         },
-  //     },
-  // }
 
   /****************** access store *******************/
   const sessionState = useSelector((state) => state.session);
@@ -133,7 +98,7 @@ function PhotoDetailsPage() {
 
               <div className="tags-stats">
                 <div>Tags</div>
-                <TagCreateForm />
+                <TagCreateFormModal />
                 <div className="tag-container">
                   {tags &&
                     tags.map((tag) => (
