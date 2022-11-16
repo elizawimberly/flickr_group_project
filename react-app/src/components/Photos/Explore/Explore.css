@@ -7,7 +7,6 @@
 }
 
 .explore-photo-feed {
-  /* display: inline-block; */
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
