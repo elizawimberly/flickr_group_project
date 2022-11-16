@@ -36,6 +36,14 @@ const LoginForm = () => {
     setPassword(e.target.value);
   };
 
+  const demoUser = async (e) => {
+    e.preventDefault();
+    const data = await dispatch(login('demo@aa.io', 'password'));
+    if (data) {
+      setErrors(data);
+    }
+  }
+
   /**************** render component *****************/
   if (user) {
     return <Redirect to='/' />;
@@ -71,6 +79,7 @@ const LoginForm = () => {
                 placeholder='Email address'
                 value={email}
                 onChange={updateEmail}
+                required={true}
                 className="login-signup-form-input-field"
                 />
             </div>
@@ -83,18 +92,23 @@ const LoginForm = () => {
                 placeholder='Password'
                 value={password}
                 onChange={updatePassword}
+                required={true}
                 className="login-signup-form-input-field"
                 />
             </div>
 
-            <div>
+            <div className='errors-container'>
               {errors.map((error, ind) => (
-                <div key={ind}>{error}</div>
+                <div className='form-errors' key={ind}>{error}</div>
                 ))}
             </div>
 
 
             <button type='submit' className='login-signup-form-button'>Sign in</button>
+
+            <div onClick={demoUser} className='demo-signup-form-button'>
+              Continue as Demo User
+            </div>
           </form>
 
           <div className='form-redirect-prompt'>

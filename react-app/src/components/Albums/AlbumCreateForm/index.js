@@ -24,9 +24,8 @@ function AlbumCreateForm() {
     }
 
     useEffect(()=>{
-        console.log('photos', photos)
         dispatch(thunkReadAllPhotosByUser())
-    },[dispatch, photos])
+    },[dispatch])
 
     const onSubmit = (e) => {
         e.preventDefault()

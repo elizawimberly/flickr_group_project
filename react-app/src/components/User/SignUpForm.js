@@ -25,8 +25,11 @@ const SignUpForm = () => {
 
   /***************** handle events *******************/
   const onSignUp = async (e) => {
+    console.log(firstName, lastName, email, password, repeatPassword)
     e.preventDefault();
-    if (password === repeatPassword) {
+    if (password !== repeatPassword) {
+      setErrors(["Those passwords didn't match. Please try again."])
+    } else {
       const data = await dispatch(signUp(firstName, lastName, email, password));
       if (data) {
         setErrors(data)
@@ -35,11 +38,11 @@ const SignUpForm = () => {
   };
 
   const updateFirstName = (e) => {
-    setEmail(e.target.value);
+    setFirstName(e.target.value);
   };
 
   const updateLastName = (e) => {
-    setEmail(e.target.value);
+    setLastName(e.target.value);
   };
 
   const updateEmail = (e) => {
@@ -76,7 +79,7 @@ const SignUpForm = () => {
         </div>
 
         <div>
-          <p className="login-signup-form-prompt">Log in to Flare</p>
+          <p className="login-signup-form-prompt">Sign up for Flare</p>
         </div>
 
         <form onSubmit={onSignUp}>
@@ -89,6 +92,7 @@ const SignUpForm = () => {
               placeholder='First name'
               onChange={updateFirstName}
               value={firstName}
+              required={true}
               className="login-signup-form-input-field"
             ></input>
           </div>
@@ -101,6 +105,7 @@ const SignUpForm = () => {
               placeholder='Last name'
               onChange={updateLastName}
               value={lastName}
+              required={true}
               className="login-signup-form-input-field"
             ></input>
           </div>
@@ -113,6 +118,7 @@ const SignUpForm = () => {
               placeholder='Email address'
               onChange={updateEmail}
               value={email}
+              required={true}
               className="login-signup-form-input-field"
             ></input>
           </div>
@@ -125,6 +131,7 @@ const SignUpForm = () => {
               placeholder='Password'
               onChange={updatePassword}
               value={password}
+              required={true}
               className="login-signup-form-input-field"
             ></input>
           </div>
@@ -142,10 +149,10 @@ const SignUpForm = () => {
             ></input>
           </div>
 
-          <div>
-            {errors.map((error, ind) => (
-              <div key={ind}>{error}</div>
-            ))}
+          <div className='errors-container'>
+              {errors.map((error, ind) => (
+                <div key={ind} className='form-errors'>{error}</div>
+              ))}
           </div>
 
           <button type='submit' className='login-signup-form-button'>Sign up</button>

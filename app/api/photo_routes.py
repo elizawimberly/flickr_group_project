@@ -1,7 +1,9 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
-from app.models import Photo, Comment, db
-from app.forms import photo_form, comment_form
+from app.models import Photo, Comment, Tag, tags_to_photos, db
+from app.forms import PhotoForm
+from app.forms import CommentForm
+from app.forms import TagForm
 
 photo_routes = Blueprint('photos', __name__)
 
@@ -27,7 +29,7 @@ def add_photo():
     Create new photo and return it in a dictionary
     """
 
-    form = photo_form()
+    form = PhotoForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         data = form.data
@@ -62,7 +64,7 @@ def edit_photo(id):
     Query for a photo by id, edits the photo, and returns that photo in a dictionary
     """
     photo = Photo.query.get(id)
-    form = photo_form()
+    form = PhotoForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         data = form.data
@@ -101,13 +103,43 @@ def current():
     return jsonify({'Photos': [photo.to_dict(True) for photo in photos]})
 
 # Tags Routes
+@photo_routes.route('/<int:id>/tags', methods=["POST"])
+@login_required
+def add_tag(id):
+    photo = Photo.query.get(id)
+    tags = Tag.query.all()
+    tags_list = [tag.tag_list() for tag in tags]
+    form = TagForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        data = form.data
+        new_tags = data['tags'].split('')
+        for tag in new_tags:
+            if tag not in tags_list:
+                db.session.add(Tag(tag = tag))
+            new = Tag.query(tag = tag).first()
+            photo.tags.append(new)
+        db.session.commit()
+        return jsonify(photo.to_dict())
+    return jsonify('Tags not added')
+
+
+
+@photo_routes.route('/<int:photo_id>/tags/<int:tag_id>', methods=["DELETE"])
+@login_required
+def delete_tag(photo_id, tag_id):
+    tag = tags_to_photos.query(photo_id = photo_id, tag_id = tag_id).first()
+    db.session.delete(tag)
+    return jsonify('Tag deleted')
+
+
 
 # Comments Routes
 
 @photo_routes.route('/<int:id>/comments', methods=["POST"])
 @login_required
 def add_comment(id):
-    form = comment_form()
+    form = CommentForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         data = form.data
