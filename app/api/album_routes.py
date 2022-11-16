@@ -35,14 +35,14 @@ def add_album():
 
     if form.validate_on_submit():
         data = form.data
-        print('THIS IS THE DATA', data)
+
         if data['photos']:
             photo_id_list = data['photos'].split(',')
             photo_list = []
             for photo_id in photo_id_list:
                 photo = Photo.query.get(photo_id)
                 photo_list.append(photo)
-            print('------- THIS IS THE PHOTOLIST -------', photo_list)
+
             new_album = Album(
                 user_id = current_user.id,
                 name = data['name'],
@@ -82,12 +82,24 @@ def edit_album(id):
     form = AlbumForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        data = form.data,
-        album.name = data['name']
-        album.about = data['about']
-        db.session.commit()
+        data = form.data
+        if data['photos']:
+            photo_id_list = data['photos'].split(',')
+            photo_list = []
+            for photo_id in photo_id_list:
+                photo = Photo.query.get(photo_id)
+                photo_list.append(photo)
+            album.name = data['name'],
+            album.about = data['about'],
+            album.photos = photo_list
+            db.session.commit()
+        else:
+            album.name = data['name'],
+            album.about = data['about']
+            db.session.commit()
         return jsonify(album.to_dict(True))
-    return jsonify('photo not updated')
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
 
 
 @album_routes.route('/<int:id>', methods=["DELETE"])

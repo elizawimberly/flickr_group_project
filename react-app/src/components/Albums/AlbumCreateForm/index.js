@@ -71,14 +71,14 @@ function AlbumCreateForm() {
                 <label>Name</label>
                 <input type='text' onChange={e => setName(e.target.value)} value={name} placeholder='Enter a Name' minLength={2} maxLength={50} required></input>
                 <label>About</label>
-                <input type='text' onChange={e => setAbout(e.target.value)} vallue={about} placeholder='Enter a Description' minLength={25} maxLength={500} required></input>
+                <input type='text' onChange={e => setAbout(e.target.value)} value={about} placeholder='Enter a Description' minLength={25} maxLength={500} required></input>
                 <label>Choose Photos</label>
                 <div>
                 {userPhotos && (
                     <div className='album-photo-wrapper'>
                         {userPhotos.map(photo => {
                            return ( <div className='album-photo-div'>
-                                <img src={photo.url} alt='' id={photo.id} className='img-not-selected' key={photo.id} onClick={() => {
+                                <img src={photo.url} alt='' id={photo.id} className='not-checked' key={photo.id} onClick={() => {
                                 let currentPhotos = [...photos]
                                 if(currentPhotos.find(e => e === photo.id)) {
                                     let i = currentPhotos.findIndex(e => e === photo.id)
@@ -87,10 +87,10 @@ function AlbumCreateForm() {
                                     currentPhotos.push(photo.id)
                                 }
                                 setPhotos(currentPhotos)
-                                if(document.getElementById(photo.id).className === 'img-selected')
-                                    document.getElementById(photo.id).className = 'img-not-selected'
+                                if(document.getElementById(photo.id).className === 'checked')
+                                    document.getElementById(photo.id).className = 'not-checked'
                                 else
-                                    document.getElementById(photo.id).className = 'img-selected'
+                                    document.getElementById(photo.id).className = 'checked'
                                 }} />
                            </div>
                             )}

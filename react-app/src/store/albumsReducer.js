@@ -39,7 +39,7 @@ export const actionDeleteSingleAlbum = (albumId) => ({
 
 
 /***************************** THUNKS (API) ******************************/
-export const thunkCreateSingleAlbum = (name, about, photos) => async (dispatch) => {
+export const thunkCreateSingleAlbum = (name, about, photos = []) => async (dispatch) => {
 
     const response = await fetch(`/api/albums/`, {
         method: 'POST',
@@ -78,11 +78,15 @@ export const thunkReadSingleAlbumDetails = (albumId) => async (dispatch) => {
     };
 };
 
-export const thunkUpdateSingleAlbum = (albumId, updateAlbumData) => async (dispatch) => {
+export const thunkUpdateSingleAlbum = (name, about, photos, albumId) => async (dispatch) => {
     const response = await fetch(`/api/albums/${albumId}`, {
         method: 'put',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(updateAlbumData)
+        body: JSON.stringify({
+            name,
+            about,
+            photos
+        })
     });
     if (response.ok) {
         const updateAlbum = await response.json()
@@ -115,7 +119,6 @@ const initialState = {
 const albumsReducer = (state = initialState, action) => {
 
     let newState = {...state};
-    console.log('ACTION BEING RAN', action)
 
     switch (action.type) {
 
