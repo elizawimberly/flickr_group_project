@@ -7,7 +7,7 @@
   align-items: center;
   align-self: center;
   /* remove this once navbar issue fixed */
-  padding: 70px 100px 0px 100px;
+  padding: 80px 100px 0px 100px;
 }
 
 .title-strip {
@@ -21,6 +21,7 @@
     grid-column: 1 / 2;
     display: flex;
     justify-content: left;
+    align-items: center;
     height: 30px;
 }
 .title-strip-right {
@@ -41,9 +42,9 @@
     padding-left: 15px;
     cursor: pointer;
 }
-/* .title-strip-right > i::selection {
-    color:red;
-} */
+.title-strip-right > i:active {
+  color: #018fde;
+}
 
 .explore-photo-feed {
   display: flex;
