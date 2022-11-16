@@ -93,7 +93,7 @@ def delete_photo(id):
 @login_required
 def current():
     photos = current_user.photos
-
+    print("----------THIS IS CURENT USER-------------", current_user)
     # normalized
     # return { 'Photos': { photo['id'] : photo.to_dict(True) for photo in photos} }
 

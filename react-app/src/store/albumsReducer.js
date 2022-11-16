@@ -60,7 +60,7 @@ export const thunkCreateSingleAlbum = (name, about, photos) => async (dispatch) 
 };
 
 export const thunkReadAllAlbums = () => async (dispatch) => {
-    const response = await fetch(`/api/albums`);
+    const response = await fetch(`/api/albums/`);
     if (response.ok) {
         const allAlbums = await response.json();
         dispatch(actionReadAllAlbums(allAlbums.Albums));
