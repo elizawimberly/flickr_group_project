@@ -23,7 +23,6 @@ function AlbumDetailsPage() {
     const albumDescription = album.about;
     // photos
     const allPhotosArr = Object.values(album.Photos)
-    console.log("album", album)
     const { albumId } = useParams();
 
     /************ reducer/API communication ************/

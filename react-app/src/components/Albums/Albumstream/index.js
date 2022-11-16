@@ -3,7 +3,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useHistory } from "react-router-dom";
 // local files
 import Account from "../../Account";
 import NavBarUser from "../../NavigationBars/NavBarUser";
@@ -31,6 +31,13 @@ function Albumstream() {
     useEffect(() => {
         dispatch(thunkReadAllAlbums())
     }, [dispatch]);
+
+    /***************** handle events *******************/
+    const history = useHistory()
+
+    function navigateToAlbum(id) {
+        return history.push(`/albums/${id}`);
+    }
 
     /************* conditional components **************/
     let albumstreamFeed = (
@@ -71,19 +78,31 @@ function Albumstream() {
                     </NavLink>
                 </div>
             </div>
-            {allAlbumsArr && allAlbumsArr.map((album) => (
-                    <Link
-                    to={`/albums/${album.id}`}
-                    key={`${album.id}`}
+
+            <div className="albumstream-feed">
+
+                {allAlbumsArr && allAlbumsArr.map((album) => (
+
+                    <div className="albumstream-album-card"
+                    style={{
+                        backgroundImage:`url("${allAlbumsArr.length ? album.Photos[0].url : albumPlaceholderImage }")`,
+                        backgroundRepeat:"no-repeat",
+                        backgroundPosition: "center",
+                        backgroundSize: "cover"
+                        // objectFit:"contain"
+                    }}
+                    onClick={() => navigateToAlbum(album.id)}
                     >
-                        <img
-                        src={album.Photos.length ? album.Photos[0].url : albumPlaceholderImage }
-                        className="albumstream-album-card"
-                        >
-                        </img>
-                    </Link>
-                )
-            )}
+                        <div id="albumstream-album-name">{album.name}</div>
+                        <div id="albumstream-album-photo-count">
+                            {album.Photos.length} photo{allAlbumsArr.length === 1 ? "" : "s"}
+                        </div>
+                    </div>
+
+                    )
+                )}
+            </div>
+
         </>
         )
     }
@@ -98,9 +117,7 @@ function Albumstream() {
 
             <div className="albumstream-component">
 
-                <div className="albumstream-feed">
-                    { albumstreamFeed }
-                </div>
+                { albumstreamFeed }
 
             </div>
 
