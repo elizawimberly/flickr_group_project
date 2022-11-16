@@ -4,8 +4,7 @@ import background from '../../assets/background-landing-no-session.jpg'
 import './Landing.css'
 
 function LandingNoSession() {
-
-
+    // let landingNoSession = true;
 
     return (
         <div className='page-wrapper-container'>
