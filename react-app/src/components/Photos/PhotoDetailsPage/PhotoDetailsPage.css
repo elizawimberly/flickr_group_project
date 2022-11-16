@@ -3,27 +3,33 @@
   flex-direction: row;
   justify-content: center;
   /* align-items: ; */
+  padding-top: 40px;
 }
 
 .top-half {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  /* background-color: blue; */
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(3, 1fr);
+  /* min-height: 500px; */
+}
+.top-half-section-A {
+  grid-row: 1 / 2;
+  background-color: red;
+}
+.top-half-section-B {
+  grid-row: 2 / 3;
+  background-color: blue;
+}
+.top-half-section-C {
+  grid-row: 3 / 4;
+  background-color: yellow;
 }
 
-.photo-viewing-background {
-  height: 800px;
-  max-height: 800px;
-  width: 100vw;
-  background-color: #212124;
-  z-index: -1;
-}
-
-.photo-view {
+.view-photo {
   width: 700px;
   height: 500px;
   object-fit: cover;
+  margin: 50px 0px;
 }
 
 .bottom-half {

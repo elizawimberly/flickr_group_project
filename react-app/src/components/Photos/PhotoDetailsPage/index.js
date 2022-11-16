@@ -43,28 +43,50 @@ function PhotoDetailsPage() {
   return (
     <div className="page-wrapper-container">
       <div className="PhotoDetailsPage-component">
-        <div className="top-half">
-          <div className="photo-viewing-background"></div>
 
-          <div>
-            <NavLink to="/photostream">
-              <button type="submit">Back to photostream</button>
-            </NavLink>
+        <div className="top-half"
+                    style={{
+                      backgroundColor: "#212124",
+                      backgroundRepeat:"no-repeat",
+                      backgroundPosition: "center",
+                      backgroundSize: "cover",
+                      }}
+                  >
+
+          <div className="top-half-section-A">
+            <div>
+              <NavLink to="/photostream">
+              <i class="fa-solid fa-arrow-left-long"></i> Back to photostream
+              </NavLink>
+            </div>
           </div>
 
-          <div>
-            <img src={photo.url} atl={photo.name} className="photo-view"></img>
+          <div className="top-half-section-B">
+            <div>
+              <i class="fa-solid fa-chevron-left"></i>
+            </div>
+
+            <div>
+              <img src={photo.url} atl={photo.name} className="view-photo"></img>
+            </div>
+
+            <div>
+              <i class="fa-solid fa-chevron-right"></i>
+            </div>
           </div>
 
-          <div>
-            <NavLink to={`/photos/${photoId}/edit`}>
-              <button type="submit">Edit icon</button>
-            </NavLink>
+          <div className="top-half-section-C">
+            <div>
+              <NavLink to={`/photos/${photoId}/edit`}>
+                <button type="submit">Edit icon</button>
+              </NavLink>
+            </div>
+
+            <div>
+              <button type="submit">Delete icon</button>
+            </div>
           </div>
 
-          <div>
-            <button type="submit">Delete icon</button>
-          </div>
         </div>
 
         <div className="bottom-half">
