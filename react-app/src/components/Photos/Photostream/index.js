@@ -20,7 +20,7 @@ function Photostream() {
   /************ key into pertinent values ************/
   const allPhotos = photosState.userPhotos;
   const allPhotosArr = Object.values(allPhotos);
-  // Uncomment for demo conditional render:
+  // Uncomment to demo conditional render:
   // const allPhotosArr = []
 
 
@@ -71,12 +71,13 @@ function Photostream() {
   /**************** render component *****************/
   return (
     <div className="page-wrapper-container">
+
       <Account />
       <NavBarUser />
 
       <div className="photostream-component">
 
-      <div className="photostream-title-strip">
+        <div className="photostream-title-strip">
           <div className="photostream-title-strip-left">
             <span>View all</span>
           </div>

@@ -19,5 +19,6 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    z-index: inherit;
     /* align-items: center; */
 }

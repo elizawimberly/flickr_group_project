@@ -41,6 +41,11 @@ export function generateInternationalGreeting() {
 }
 
 
+/***************************************** ALBUM PLACEHOLDER IMAGE *****************************************/
+export const albumPlaceholderImage = "https://www.springsmontessori.com/wp-content/uploads/2022/06/Photo-Coming-Soon.png"
+
+
+
 /*********************************** CONVERT ISO STRING TO "Month Year" ************************************/
 export function convertDate(iso) {
 

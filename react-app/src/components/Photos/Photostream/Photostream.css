@@ -8,13 +8,15 @@
     align-self: center;
     /* remove this once navbar issue fixed */
     padding: 10px 100px 0px 100px;
-  }
+}
 
+/* ⛔️ PROPERTIES SHARED WITH ALBUMSTREAM ⛔️ */
 .photostream-title-strip {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: 1fr;
-    width: 100%;
+    width: 1536px;
+    /* width: 100%; */
     margin-bottom: 8px;
 }
 .photostream-title-strip-left {
@@ -30,7 +32,6 @@
     justify-content: flex-end;
     align-items: center;
 }
-
 .photostream-title-strip > div > span {
     font-size: 18.5px;
     color: #8e9297;
@@ -46,7 +47,7 @@
 .photostream-title-strip-right > i:active {
     color: #018fde;
 }
-
+/* ⛔️ END SHARE ⛔️ */
 
 .photostream-feed {
     display: flex;
@@ -70,6 +71,7 @@
 }
 
 /* NO PHOTOS CONDITION */
+/* ⛔️ PROPERTIES SHARED WITH ALBUMSTREAM ⛔️ */
 .no-photos-or-albums-text-box-container {
     display: flex;
     flex-direction: column;
@@ -112,3 +114,5 @@
     width: 1536px;
     object-fit: cover;
 }
+
+/* ⛔️ END SHARE ⛔️ */
