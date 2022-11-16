@@ -211,8 +211,8 @@ const initialState = {
 
 /******************************* REDUCER *********************************/
 const photosReducer = (state = initialState, action) => {
+
   let newState = { ...state };
-  console.log("action:", action);
 
   switch (action.type) {
     // photos

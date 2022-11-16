@@ -1,7 +1,57 @@
 .albumstream-component{
-    max-width: 1536px;
+    /* max-width: 1536px; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+    /* remove this once navbar issue fixed */
+    padding: 10px 100px 0px 100px;
+}
+
+.albumstream-feed {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    max-width: 100%;
 }
 
 .albumstream-album-card {
-    max-height: 340px;
+    height: 240px;
+    width: 240px;
+    object-fit: cover;
+    margin: 0px 15px;
+    cursor: pointer;
+    color: #fff;
+    text-shadow: 0 1px 1px #000;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+}
+.albumstream-album-card > div{
+    margin: none;
+    padding-left: 20px;
+}
+
+#albumstream-album-name {
+    font-size: 20px;
+}
+
+#albumstream-album-photo-count {
+    font-size: 16px;
+    padding-bottom: 20px;
+}
+
+#no-albums-text-box{
+    width: 710px;
+    margin-top: 24px;
+}
+
+#albumstream-new-album-button {
+    font-size: 18.5px;
+    color: #8e9297;
+    padding-left: 15px;
+    cursor: pointer;
+    text-decoration: none;
 }
