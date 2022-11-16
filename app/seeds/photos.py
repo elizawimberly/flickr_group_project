@@ -20,7 +20,7 @@ photo_lst = [
         dict(
             user_id = 1,
             album_id = 1,
-            url = "https://cdn.photoworkout.com/wp-content/uploads/2020/07/sun-flare-photography-271-scaled.jpg",
+            url = "https://cms-assets.tutsplus.com/cdn-cgi/image/width=850/uploads/users/1990/posts/34285/image/1.8.jpg",
             ),
         dict(
             user_id = 1,
@@ -328,7 +328,7 @@ photo_lst = [
             user_id = 6,
             album_id = 12,
             url = "https://www.bwillcreative.com/sun-flare-photography-guide/rolleylakefallsautumnorton/",
-          
+
             ),
         dict(
             user_id = 6,
@@ -368,7 +368,7 @@ photo_lst = [
             user_id = 7,
             album_id = 14,
             url = "https://cdn.photoworkout.com/images/guides/sun-flare-photography/sun-flare-photography-15.jpg?cw=100.0000%25&ch=100.0000%25&scale.option=fill&w=400&h=0",
-          
+
             ),
         dict(
             user_id = 7,

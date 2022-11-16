@@ -35,14 +35,14 @@ def add_album():
 
     if form.validate_on_submit():
         data = form.data
-        print('THIS IS THE DATA', data)
+
         if data['photos']:
             photo_id_list = data['photos'].split(',')
             photo_list = []
             for photo_id in photo_id_list:
                 photo = Photo.query.get(photo_id)
                 photo_list.append(photo)
-            print('------- THIS IS THE PHOTOLIST -------', photo_list)
+
             new_album = Album(
                 user_id = current_user.id,
                 name = data['name'],

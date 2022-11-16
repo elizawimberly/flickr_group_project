@@ -18,7 +18,7 @@ function LandingNoSession() {
             <div className="landing-no-session-component">
                 <div className="landing-no-session-text-box-container">
                     <h1>Find your inspiration.</h1>
-                    <h2>Join the Flickr community, home to tens of billions of photos and 2 million groups.</h2>
+                    <h2>Join the Flare community, home to tens of billions of photos and 2 million groups.</h2>
 
                     <NavLink to="/explore">
                     <button id="landing-explore-button" type="submit">Explore</button>
@@ -32,3 +32,4 @@ function LandingNoSession() {
 
 
 export default LandingNoSession
+
