@@ -73,6 +73,7 @@ export const actionDeleteSingleComment = (commentId) => ({
 
 /***************************** THUNKS (API) ******************************/
 // photos
+
 export const thunkCreateSinglePhoto = (name, about, url, takenOn, privateVar, tags, albumId) => async (dispatch) => {
   console.log('typeof for takeON', typeof takenOn)
   console.log('privateVar', privateVar)
@@ -81,6 +82,7 @@ export const thunkCreateSinglePhoto = (name, about, url, takenOn, privateVar, ta
   console.log('typeof for url', typeof url)
   console.log('typeof tags', typeof tags)
   console.log('typeof albumId', typeof albumId)
+
   const response = await fetch(`/api/photos/`, {
     method: "post",
     headers: { "Content-Type": "application/json" },
@@ -88,10 +90,12 @@ export const thunkCreateSinglePhoto = (name, about, url, takenOn, privateVar, ta
       name,
       about,
       url,
+
       takenOn,
       private: privateVar,
       tags,
       albumId
+
     }),
   });
   if (response.ok) {

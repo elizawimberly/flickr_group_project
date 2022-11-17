@@ -13,6 +13,7 @@ import { thunkReadAllAlbums } from '../../../store/albumsReducer'
 
 /******************************* COMPONENT *******************************/
 function PhotoCreateForm() {
+    const history = useHistory()
 
     /****************** access store *******************/
     const sessionUser = useSelector(state => state.session.user);
@@ -27,6 +28,7 @@ function PhotoCreateForm() {
     if(day < 10) day = `0${day}`
     const date = `${year}-${month}-${day}`
 
+
     /****************** manage state *******************/
     const [albums, setAlbums] = useState("");
     const [name, setName] = useState("");
@@ -37,6 +39,7 @@ function PhotoCreateForm() {
     const [validationErrors, setValidationErrors] = useState([]);
     const [takenOn, setTakenOn] = useState("")
     const [albumId, setAlbumId] = useState("")
+
 
     /************ reducer/API communication ************/
     const dispatch = useDispatch();
@@ -50,15 +53,18 @@ function PhotoCreateForm() {
     const history = useHistory()
 
 
+
     const handleSubmit = () => {
         let errors = [];
         if(!name) errors.push('Name needs to be between 2 and 50 characters.')
         if(!about) errors.push('About needs to be between 10 and 500 characters.')
         if(!url) errors.push('You must enter a valid url')
+
         if(errors.length >= 1)
             setValidationErrors(errors);
         else
             dispatch(thunkCreateSinglePhoto(name, about, url, takenOn, private_var, tags, albumId))
+
             .catch(async (res) => {
                 const data = await res.json();
                 if(data && data.errors) errors.push(data.errors)
@@ -82,11 +88,14 @@ function PhotoCreateForm() {
             <div className="PhotoCreateForm-component">
 
                     <form
+
                         className="photo-form-container"
+
                         onSubmit={handleSubmit}
                         >
 
                         <div className="mock-upload-navbar">
+
                             <button
                                 className="photo-submit-button"
                                 type="submit"
@@ -200,6 +209,7 @@ function PhotoCreateForm() {
                                     </div>
                                     )}
                             </div>
+
                     </div>
                 </form>
             </div>

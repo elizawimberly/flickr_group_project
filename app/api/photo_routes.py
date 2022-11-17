@@ -64,7 +64,9 @@ def add_photo():
                 url = data['url'],
                 name = data['name'],
                 about = data['about'],
+
                 taken_on = data['takenOn'],
+
                 private = data['private'],
                 tags = tag_list
                 )
@@ -114,6 +116,7 @@ def add_photo():
             db.session.commit()
             return jsonify(new_photo.to_dict())
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
 
 
 
