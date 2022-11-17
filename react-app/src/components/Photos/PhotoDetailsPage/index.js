@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { thunkDeleteSingleComment, thunkDeleteSinglePhoto, thunkReadSinglePhotoDetails } from "../../../store/photosReducer";
 import "./PhotoDetailsPage.css";
 import CommentCreateFormModal from '../../Comments/CommentCreateFormModal'
-import TagCreateFormModal from "../../TagCreateFormModal";
+import TagCreateFormModal from "../../Tags/TagCreateFormModal";
 import buddyIcon from "../../../assets/buddyicon.png"
 import { convertDate } from "../../../component-resources";
 

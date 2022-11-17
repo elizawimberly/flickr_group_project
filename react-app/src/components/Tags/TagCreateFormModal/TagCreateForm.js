@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import {thunkCreateSingleTag} from '../../store/photosReducer'
+import {thunkCreateSingleTag} from '../../../store/photosReducer'
 
 function TagCreateForm({onClose}) {
 
