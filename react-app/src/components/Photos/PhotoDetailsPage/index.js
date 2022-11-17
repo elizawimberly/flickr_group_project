@@ -2,10 +2,10 @@
 // libraries
 import React from "react";
 import { useEffect } from "react";
-import { NavLink, useParams } from "react-router-dom";
+import { NavLink, useHistory, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 // local files
-import { thunkReadSinglePhotoDetails } from "../../../store/photosReducer";
+import { thunkDeleteSinglePhoto, thunkReadSinglePhotoDetails } from "../../../store/photosReducer";
 import "./PhotoDetailsPage.css";
 import CommentCreateForm from "../../Comments/CommentCreateForm";
 import TagCreateFormModal from "../../TagCreateFormModal";
@@ -39,6 +39,14 @@ function PhotoDetailsPage() {
   /************* conditional components **************/
   // render tag components if current user === photo.userId
 
+  /***************** handle events *******************/
+  const history = useHistory()
+
+  function deletePhoto() {
+    dispatch(thunkDeleteSinglePhoto(photoId));
+    history.push('/photostream')
+  }
+
   /**************** render component *****************/
   return (
     <div className="page-wrapper-container">
@@ -55,35 +63,35 @@ function PhotoDetailsPage() {
 
           <div className="top-half-section-A">
             <div>
-              <NavLink to="/photostream">
+              <NavLink to="/photostream" id="back-to-photostream">
               <i class="fa-solid fa-arrow-left-long"></i> Back to photostream
               </NavLink>
             </div>
           </div>
 
           <div className="top-half-section-B">
-            <div>
+            {/* <div>
               <i class="fa-solid fa-chevron-left"></i>
-            </div>
+            </div> */}
 
             <div>
               <img src={photo.url} atl={photo.name} className="view-photo"></img>
             </div>
 
-            <div>
+            {/* <div>
               <i class="fa-solid fa-chevron-right"></i>
-            </div>
+            </div> */}
           </div>
 
           <div className="top-half-section-C">
             <div>
-              <NavLink to={`/photos/${photoId}/edit`}>
-                <button type="submit">Edit icon</button>
+              <NavLink to={`/photos/${photoId}/edit`} id="photo-page-edit-button">
+                <i class="fa-solid fa-pen"></i>
               </NavLink>
             </div>
 
-            <div>
-              <button type="submit">Delete icon</button>
+            <div id="photo-page-delete-button">
+              <i class="fa-solid fa-trash" onClick={deletePhoto}></i>
             </div>
           </div>
 
@@ -91,19 +99,23 @@ function PhotoDetailsPage() {
 
         <div className="bottom-half">
           <div className="bottom-half-left">
+{/* 1/3 */}
             <div className="photo-blurb">
               <div>{photo && photo.name}</div>
               <div>{photo && photo.about}</div>
             </div>
+
             <div>
               {comments &&
                 comments.map((comment) => (
                   <div className="display-comment">{comment.comment}</div>
                 ))}
             </div>
+
             <div>
               <CommentCreateForm />
             </div>
+
           </div>
 
           <div className="bottom-half-right">
