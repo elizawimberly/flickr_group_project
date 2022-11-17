@@ -25,16 +25,15 @@ function PhotoUpdateForm() {
     const [takenOn, setTakenOn] = useState(null)
     const [albumId, setAlbumId] = useState(null)
     const [loaded, setLoaded] = useState(false)
-    console.log('--photo---', photo)
-
 
     const longDate = new Date();
     const year = longDate.getFullYear()
-    let month = longDate.getMonth()
-    let day = longDate.getDate()
+    let month = longDate.getMonth() + 1
+    let day = longDate.getDate() + 1
     if(month < 10) month = `0${month}`
-    if(day < 10) day = `0${day}`
+    if(day < 10) day = `0${Number(day + 1)}`
     const date = `${year}-${month}-${day}`
+   
 
     useEffect(()=>{
         dispatch(thunkReadAllAlbums())

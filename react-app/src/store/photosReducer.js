@@ -75,6 +75,25 @@ export const actionDeleteSingleComment = (commentId) => ({
 // photos
 
 export const thunkCreateSinglePhoto = (name, about, url, takenOn, privateVar, tags, albumId) => async (dispatch) => {
+  if(!albumId){
+    const response = await fetch(`/api/photos/`, {
+      method: "post",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name,
+        about,
+        url,
+        takenOn,
+        private: privateVar,
+        tags,
+      }),
+    });
+    if (response.ok) {
+      const newPhoto = await response.json();
+      dispatch(actionCreateSinglePhoto(newPhoto));
+      return newPhoto;
+    }
+  }
   const response = await fetch(`/api/photos/`, {
     method: "post",
     headers: { "Content-Type": "application/json" },
@@ -82,12 +101,10 @@ export const thunkCreateSinglePhoto = (name, about, url, takenOn, privateVar, ta
       name,
       about,
       url,
-
       takenOn,
       private: privateVar,
       tags,
       albumId
-
     }),
   });
   if (response.ok) {

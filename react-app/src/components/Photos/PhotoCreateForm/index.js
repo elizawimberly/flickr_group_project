@@ -21,12 +21,11 @@ function PhotoCreateForm() {
     /************ key into pertinent values ************/
     const longDate = new Date();
     const year = longDate.getFullYear()
-    let month = longDate.getMonth()
-    let day = longDate.getDate()
+    let month = longDate.getMonth() + 1
+    let day = longDate.getDate() + 1
     if(month < 10) month = `0${month}`
-    if(day < 10) day = `0${day}`
+    if(day < 10) day = `0${Number(day)}`
     const date = `${year}-${month}-${day}`
-
 
     /****************** manage state *******************/
     const [name, setName] = useState("");
@@ -37,8 +36,8 @@ function PhotoCreateForm() {
     const [validationErrors, setValidationErrors] = useState([]);
     const [takenOn, setTakenOn] = useState("")
     const [albumId, setAlbumId] = useState("")
-
-
+    
+ 
     /************ reducer/API communication ************/
     const dispatch = useDispatch();
 
