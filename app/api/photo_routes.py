@@ -121,7 +121,6 @@ def add_tag(id):
             new = Tag.query.filter(Tag.tag == tag).first()
             tags_to_send.append(new)
             photo.tags.append(new)
-        print('tags-----------------------', tags_to_send)
         db.session.commit()
         return jsonify({'Tags': [tag.to_dict() for tag in tags_to_send]})
     return jsonify('Tags not added')

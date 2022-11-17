@@ -171,11 +171,11 @@ export const thunkCreateSingleComment =
     const response = await fetch(`/api/photos/${photoId}/comments`, {
       method: "post",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(createCommentData),
+      body: JSON.stringify({comment: createCommentData}),
     });
     if (response.ok) {
       const newComment = await response.json();
-      dispatch(actionCreateSinglePhoto(newComment));
+      dispatch(actionCreateSingleComment(newComment));
       return newComment;
     }
   };
@@ -279,7 +279,6 @@ const photosReducer = (state = initialState, action) => {
       newState.singlePhotoDetails.Comments = normalizeArray(
         action.payload.Comments
       );
-      console.log(action.payload)
       newState.singlePhotoDetails.Tags = normalizeArray(action.payload.Tags);
       return newState;
 
@@ -385,6 +384,7 @@ const photosReducer = (state = initialState, action) => {
       newState.singlePhotoDetails.Comments =
         createSingleComment_NewCopyCommentsObj;
       // add new comment
+      console.log('payload ---------------------', action.payload)
       newState.singlePhotoDetails.Comments[action.payload.id] = {
         ...action.payload,
       };

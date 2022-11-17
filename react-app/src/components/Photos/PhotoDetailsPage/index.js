@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 // local files
 import { thunkReadSinglePhotoDetails } from "../../../store/photosReducer";
 import "./PhotoDetailsPage.css";
-import CommentCreateForm from "../../Comments/CommentCreateForm";
+import CommentCreateFormModal from '../../Comments/CommentCreateFormModal'
 import TagCreateFormModal from "../../TagCreateFormModal";
 
 /******************************* COMPONENT *******************************/
@@ -115,7 +115,7 @@ function PhotoDetailsPage() {
                 ))}
             </div>
             <div>
-              <CommentCreateForm />
+              <CommentCreateFormModal />
             </div>
           </div>
 
