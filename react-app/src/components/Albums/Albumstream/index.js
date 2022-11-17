@@ -12,8 +12,10 @@ import "./Albumstream.css";
 import { albumPlaceholderImage } from "../../../component-resources";
 import watermark from "../../../assets/no-albums-watermark.jpeg";
 
+
 /******************************* COMPONENT *******************************/
 function Albumstream() {
+
   /****************** access store *******************/
   const albumsState = useSelector((state) => state.albums);
 
@@ -120,4 +122,6 @@ function Albumstream() {
   );
 }
 
+
+/******************************** EXPORTS ********************************/
 export default Albumstream;

@@ -10,6 +10,7 @@ import "./PhotoDetailsPage.css";
 import CommentCreateForm from "../../Comments/CommentCreateForm";
 import TagCreateFormModal from "../../TagCreateFormModal";
 
+
 /******************************* COMPONENT *******************************/
 function PhotoDetailsPage() {
 
