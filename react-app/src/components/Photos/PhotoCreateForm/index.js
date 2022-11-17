@@ -31,11 +31,13 @@ function PhotoCreateForm() {
     const [name, setName] = useState("");
     const [about, setAbout] = useState("");
     const [url, setUrl] = useState("");
+    const [checkUrl, setCheckUrl] = useState("");
     const [private_var, setPrivate_var] = useState(false);
     const [tags, setTags] = useState("");
     const [validationErrors, setValidationErrors] = useState([]);
     const [takenOn, setTakenOn] = useState("")
     const [albumId, setAlbumId] = useState("")
+    const [submitted, setSubmitted] = useState(false)
     
  
     /************ reducer/API communication ************/
@@ -45,18 +47,28 @@ function PhotoCreateForm() {
         dispatch(thunkReadAllAlbums())
     },[dispatch])
 
+    useEffect(()=>{
+        let errors = []
+        if(!name) errors.push('Name needs to be between 2 and 50 characters.')
+        if(!about) errors.push('About needs to be between 10 and 500 characters.')
+        if(!url || checkUrl === 'https://learn.getgrav.org/user/pages/11.troubleshooting/01.page-not-found/error-404.png') errors.push('You must enter a valid url')
+        setValidationErrors(errors)
+    },[submitted, name, about, url])
+
     /***************** handle events *******************/
     const history = useHistory()
 
-    const handleSubmit = () => {
+    const handleSubmit = (e) => {
+        e.preventDefault()
         let errors = [];
+        setSubmitted(true)
         if(!name) errors.push('Name needs to be between 2 and 50 characters.')
         if(!about) errors.push('About needs to be between 10 and 500 characters.')
-        if(!url) errors.push('You must enter a valid url')
+        if(!url || checkUrl === 'https://learn.getgrav.org/user/pages/11.troubleshooting/01.page-not-found/error-404.png') errors.push('You must enter a valid url')
 
         if(errors.length >= 1)
             setValidationErrors(errors);
-        else
+        if(errors.length <= 1 && validationErrors <= 1){
             dispatch(thunkCreateSinglePhoto(name, about, url, takenOn, private_var, tags, albumId))
 
             .catch(async (res) => {
@@ -64,7 +76,8 @@ function PhotoCreateForm() {
                 if(data && data.errors) errors.push(data.errors)
                 setValidationErrors(errors)
             })
-
+        }
+            
         if(errors.length <= 0) {
             setName('')
             setAbout('')
@@ -72,6 +85,12 @@ function PhotoCreateForm() {
             setTags('')
             history.push('/')
         }
+    }
+    console.log(validationErrors)
+
+    const onError = (e) => {
+        setCheckUrl('https://learn.getgrav.org/user/pages/11.troubleshooting/01.page-not-found/error-404.png')
+        e.target.src = 'https://learn.getgrav.org/user/pages/11.troubleshooting/01.page-not-found/error-404.png'
     }
 
     /**************** render component *****************/
@@ -93,7 +112,6 @@ function PhotoCreateForm() {
                             <button
                                 className="photo-submit-button"
                                 type="submit"
-                                disabled={!!validationErrors.length}
                                 >
                                 Upload 1 Photo
                             </button>
@@ -132,7 +150,10 @@ function PhotoCreateForm() {
                                     type="text"
                                     name="url"
                                     placeholder="Add a photo url"
-                                    onChange={(e) => setUrl(e.target.value)}
+                                    onChange={(e) => {
+                                        setCheckUrl(e.target.value)
+                                        setUrl(e.target.value)
+                                    }}
                                     value={url}
                                     />
                                 </label>
@@ -188,7 +209,7 @@ function PhotoCreateForm() {
                                 </label>
 
                                 <div className='errors-container'>
-                                    {validationErrors && validationErrors.map((error, ind) => (
+                                    {submitted && validationErrors && validationErrors.map((error, ind) => (
                                         <div className='form-errors' key={ind}>{error}</div>
                                         ))}
                                 </div>
@@ -199,7 +220,7 @@ function PhotoCreateForm() {
                             <div className="photo-form-top-right-sub-container">
                                     {url && (
                                         <div className="view-uploaded-image">
-                                        <img alt='' src={url}/>
+                                        <img onError={onError} alt='' src={url}/>
                                     </div>
                                     )}
                             </div>

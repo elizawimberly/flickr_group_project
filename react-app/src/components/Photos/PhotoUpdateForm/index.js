@@ -60,7 +60,8 @@ function PhotoUpdateForm() {
         }
     },[dispatch, photo.name, name, about, url, tags, albumId, photoId, takenOn])
 
-    const handleSubmit = () => {
+    const handleSubmit = (e) => {
+        e.preventDefault()
         let errors = [];
         if(!name) errors.push('Name needs to be between 2 and 50 characters.')
         if(!about) errors.push('About needs to be between 10 and 500 characters.')
