@@ -100,11 +100,8 @@ function AlbumUpdateForm() {
                 {userPhotos && (
                     <div className='album-photo-wrapper'>
                         {userPhotos.map(photo => {
-                            console.log('photo', photo.album_id)
-                            console.log(albumId)
-                            if ( photo['album_id'] === +albumId || !photo.album_id ){
-                                console.log('yeessss')
-                              return ( <div id={photo.id} className='album-photo-container not-checked'>
+                            if ( photo.albumId === +albumId || !photo.albumId ){
+                              return ( <div id={photo.id} className='album-photo-container'>
                                 <input className='Checkbox' type='checkbox' onChange={()=> {
                                      let currentPhotos = [...photos]
                                      if(currentPhotos.find(e => e === photo.id)) {
@@ -114,12 +111,8 @@ function AlbumUpdateForm() {
                                          currentPhotos.push(photo.id)
                                      }
                                      setPhotos(currentPhotos)
-                                     if(document.getElementById(photo.id).className === 'checked' && photos.find(e => e === photo.id))
-                                         document.getElementById(photo.id).className = 'not-checked'
-                                     else
-                                         document.getElementById(photo.id).className = 'checked'
                                 }} checked={photos.find(e => e === photo.id)}/>
-                                <img src={photo.url} alt='' className='not-checked' key={photo.id} onClick={() => {
+                                <img src={photo.url} alt='' className={photos.find(e => e === photo.id) ? 'checked' : 'not-checked'} key={photo.id} onClick={() => {
                                 let currentPhotos = [...photos]
                                 if(currentPhotos.find(e => e === photo.id)) {
                                     let i = currentPhotos.findIndex(e => e === photo.id)
@@ -128,12 +121,6 @@ function AlbumUpdateForm() {
                                     currentPhotos.push(photo.id)
                                 }
                                 setPhotos(currentPhotos)
-                                if(document.getElementById(photo.id).className === 'checked' && photos.find(e => e === photo.id)){
-                                    document.getElementById(photo.id).className = 'not-checked'
-                                }
-                                else {
-                                    document.getElementById(photo.id).className = 'checked'
-                                }
                                 }} />
                            </div>
                             )  

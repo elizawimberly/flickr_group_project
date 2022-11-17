@@ -33,15 +33,60 @@ def add_photo():
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         data = form.data
-        new_photo = Photo(
-            user_id=current_user.id,
-            url=data['url'],
-            name=data['name'],
-            about=data['about'],
-            taken_on=data['taken_on'],
-            private=data['private']
-        )
-        db.session.add(new_photo)
+        tag_list = []
+        tag_list_tags = data['tags'].split()
+        if data['tags']:
+            for tag in tag_list_tags:
+                if Tag.query(tag == tag).first():
+                    old_tag = Tag.query(tag = tag).first()
+                    tag_list.append(old_tag)
+                else:
+                    tag_list.append(tag)
+
+        if data['tags'] and not data['albumId']:
+            new_photo = Photo(
+                user_id = current_user.id,
+                url = data['url'],
+                name = data['name'],
+                about = data['about'],
+                taken_on = data['taken_on'],
+                private = data['private'],
+                tags = tag_list
+                )
+            db.session.add(new_photo)
+        if data['albumId'] and not data['tags']:
+             new_photo = Photo(
+                user_id = current_user.id,
+                url = data['url'],
+                name = data['name'],
+                about = data['about'],
+                taken_on = data['taken_on'],
+                private = data['private'],
+                album_id = data['albumId']
+                )
+             db.session.add(new_photo)
+        if data['albumId'] and data['tags']:
+             new_photo = Photo(
+                user_id = current_user.id,
+                url = data['url'],
+                name = data['name'],
+                about = data['about'],
+                taken_on = data['taken_on'],
+                private = data['private'],
+                tags = tag_list,
+                album_id = data['albumId']
+                )
+             db.session.add(new_photo)
+        else:
+            new_photo = Photo(
+                user_id = current_user.id,
+                url = data['url'],
+                name = data['name'],
+                about = data['about'],
+                taken_on = data['taken_on'],
+                private = data['private']
+                )
+            db.session.add(new_photo)
         db.session.commit()
         return jsonify(new_photo.to_dict())
     return jsonify('photo not added')
