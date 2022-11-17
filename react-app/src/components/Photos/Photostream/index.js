@@ -9,11 +9,10 @@ import Account from "../../Account";
 import NavBarUser from "../../NavigationBars/NavBarUser";
 import { thunkReadAllPhotosByUser } from "../../../store/photosReducer";
 import "./Photostream.css";
-import watermark from "../../../assets/no-albums-watermark.jpeg"
+import watermark from "../../../assets/no-albums-watermark.jpeg";
 
 /******************************* COMPONENT *******************************/
 function Photostream() {
-
   /****************** access store *******************/
   const photosState = useSelector((state) => state.photos);
 
@@ -21,7 +20,7 @@ function Photostream() {
   const allPhotos = photosState.userPhotos;
   const allPhotosArr = Object.values(allPhotos);
   // Uncomment to demo conditional render:
-  // const allPhotosArr = []
+  // const allPhotosArr = [];
 
   /************ reducer/API communication ************/
   const dispatch = useDispatch();
@@ -31,66 +30,75 @@ function Photostream() {
   }, [dispatch]);
 
   /****************** manage state *******************/
-  let [photostreamCardSize, setPhotostreamCardSize] = useState('photostream-photo-card-small')
+  let [photostreamCardSize, setPhotostreamCardSize] = useState(
+    "photostream-photo-card-small"
+  );
 
   /************* conditional components **************/
-  let photostreemFeed = (
-    <></>
-  )
+  let photostreemFeed = <></>;
 
   if (allPhotosArr.length <= 0) {
     photostreemFeed = (
       <div className="no-photos-or-albums-text-box-container">
         <div className="no-photos-or-albums-text-box">
           <p className="no-photos-or-albums">You have no public photos.</p>
-          <p className="no-photos-or-albums-upload-prompt">Your photostream is your public-facing portfolio. Set your photos to public within the Upload tool to populate your photostream.</p>
+          <p className="no-photos-or-albums-upload-prompt">
+            Your photostream is your public-facing portfolio. Set your photos to
+            public within the Upload tool to populate your photostream.
+          </p>
           <div>
-            <NavLink to='/upload' exact={true}>
-              <button className="no-photos-or-albums-upload-button">Go to Upload</button>
+            <NavLink to="/upload" exact={true}>
+              <button className="no-photos-or-albums-upload-button">
+                Go to Upload
+              </button>
             </NavLink>
           </div>
         </div>
         <img src={watermark} className="watermark"></img>
       </div>
-    )
-
+    );
   } else {
     photostreemFeed = (
       <>
-      {allPhotosArr &&
-        allPhotosArr.map((photo) => (
-          <Link to={`/photos/${photo.id}`} key={`${photo.id}`}>
-            <img src={photo.url} className={photostreamCardSize}></img>
-          </Link>
-        ))}
+        {allPhotosArr &&
+          allPhotosArr.map((photo) => (
+            <Link to={`/photos/${photo.id}`} key={`${photo.id}`}>
+              <img src={photo.url} className={photostreamCardSize}></img>
+            </Link>
+          ))}
       </>
-    )
+    );
   }
 
   /**************** render component *****************/
   return (
     <div className="page-wrapper-container">
-
       <Account />
       <NavBarUser />
 
       <div className="photostream-component">
-
         <div className="photostream-title-strip">
           <div className="photostream-title-strip-left">
             <span>View all</span>
           </div>
           <div className="photostream-title-strip-right">
-            <i class="fa-solid fa-grip" onClick={() => setPhotostreamCardSize("photostream-photo-card-small")}></i>
-            <i class="fa-solid fa-square" onClick={() => setPhotostreamCardSize("photostream-photo-card-large")}></i>
+            <i
+              class="fa-solid fa-grip"
+              onClick={() =>
+                setPhotostreamCardSize("photostream-photo-card-small")
+              }
+            ></i>
+            <i
+              class="fa-solid fa-square"
+              onClick={() =>
+                setPhotostreamCardSize("photostream-photo-card-large")
+              }
+            ></i>
           </div>
         </div>
 
-        <div className="photostream-feed">
-          { photostreemFeed }
-        </div>
+        <div className="photostream-feed">{photostreemFeed}</div>
       </div>
-
     </div>
   );
 }
