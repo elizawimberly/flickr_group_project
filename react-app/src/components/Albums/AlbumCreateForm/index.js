@@ -76,6 +76,7 @@ function AlbumCreateForm() {
                 {userPhotos && (
                     <div className='album-photo-wrapper'>
                         {userPhotos.map(photo => {
+                            if(!photo.albumId){
                            return ( <div className='album-photo-div'>
                                 <img src={photo.url} alt='' id={photo.id} className='not-checked' key={photo.id} onClick={() => {
                                 let currentPhotos = [...photos]
@@ -92,7 +93,8 @@ function AlbumCreateForm() {
                                     document.getElementById(photo.id).className = 'checked'
                                 }} />
                            </div>
-                            )}
+                            )
+                            }}
                         )}
                      </div>
                 )}
