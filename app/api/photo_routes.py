@@ -21,10 +21,10 @@ def photos():
     # not normalized
     return jsonify({'Photos': [photo.to_dict() for photo in photos]})
 
+
 @photo_routes.route('/', methods=["POST"])
 @login_required
 def add_photo():
-
     """
     Create new photo and return it in a dictionary
     """
@@ -101,7 +101,6 @@ def photo(id):
     return jsonify(photo.to_dict())
 
 
-
 @photo_routes.route('/<int:id>', methods=["PUT"])
 @login_required
 def edit_photo(id):
@@ -135,7 +134,6 @@ def delete_photo(id):
     return jsonify('Photo Deleted')
 
 
-
 @photo_routes.route('/current')
 @login_required
 def current():
@@ -148,6 +146,8 @@ def current():
     return jsonify({'Photos': [photo.to_dict(True) for photo in photos]})
 
 # Tags Routes
+
+
 @photo_routes.route('/<int:id>/tags', methods=["POST"])
 @login_required
 def add_tag(id):
@@ -161,22 +161,20 @@ def add_tag(id):
         new_tags = data['tags'].split('')
         for tag in new_tags:
             if tag not in tags_list:
-                db.session.add(Tag(tag = tag))
-            new = Tag.query(tag = tag).first()
+                db.session.add(Tag(tag=tag))
+            new = Tag.query(tag=tag).first()
             photo.tags.append(new)
         db.session.commit()
         return jsonify(photo.to_dict())
     return jsonify('Tags not added')
 
 
-
 @photo_routes.route('/<int:photo_id>/tags/<int:tag_id>', methods=["DELETE"])
 @login_required
 def delete_tag(photo_id, tag_id):
-    tag = tags_to_photos.query(photo_id = photo_id, tag_id = tag_id).first()
+    tag = tags_to_photos.query(photo_id=photo_id, tag_id=tag_id).first()
     db.session.delete(tag)
     return jsonify('Tag deleted')
-
 
 
 # Comments Routes
@@ -189,9 +187,9 @@ def add_comment(id):
     if form.validate_on_submit():
         data = form.data
         new_comment = Comment(
-            user_id = current_user.id,
-            photo_id = id,
-            comment = data["comment"]
+            user_id=current_user.id,
+            photo_id=id,
+            comment=data["comment"]
         )
         db.session.add(new_comment)
         db.session.commit()

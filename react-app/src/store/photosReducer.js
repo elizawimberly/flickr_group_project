@@ -155,7 +155,7 @@ export const thunkCreateSingleTag =
     });
     if (response.ok) {
       const newTag = await response.json();
-      dispatch(actionCreateSinglePhoto(newTag.Tags));
+      dispatch(actionCreateSingleTag(newTag.Tags));
       return newTag;
     }
   };

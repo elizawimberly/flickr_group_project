@@ -14,7 +14,7 @@ import { thunkReadAllPhotosByUser } from "../../store/photosReducer";
 function Account() {
 
     /****************** access store *******************/
-    const sessionUser = useSelector(state => state.session.user )
+    const sessionUser = useSelector(state => state.session.user)
     console.log("sessionUser",sessionUser)
 
     /************ key into pertinent values ************/
