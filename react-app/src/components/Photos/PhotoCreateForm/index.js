@@ -30,7 +30,6 @@ function PhotoCreateForm() {
 
 
     /****************** manage state *******************/
-    const [albums, setAlbums] = useState("");
     const [name, setName] = useState("");
     const [about, setAbout] = useState("");
     const [url, setUrl] = useState("");
@@ -45,7 +44,6 @@ function PhotoCreateForm() {
     const dispatch = useDispatch();
 
     useEffect(()=>{
-        console.log(typeof takenOn)
         dispatch(thunkReadAllAlbums())
     },[dispatch])
 

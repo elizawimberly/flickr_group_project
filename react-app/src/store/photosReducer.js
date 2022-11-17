@@ -75,6 +75,7 @@ export const actionDeleteSingleComment = (commentId) => ({
 // photos
 
 export const thunkCreateSinglePhoto = (name, about, url, takenOn, privateVar, tags, albumId) => async (dispatch) => {
+<<<<<<< HEAD
   console.log('typeof for takeON', typeof takenOn)
   console.log('privateVar', privateVar)
   console.log('typeof for private', typeof privateVar)
@@ -83,6 +84,8 @@ export const thunkCreateSinglePhoto = (name, about, url, takenOn, privateVar, ta
   console.log('typeof tags', typeof tags)
   console.log('typeof albumId', typeof albumId)
 
+=======
+>>>>>>> create-photo-update-form
   const response = await fetch(`/api/photos/`, {
     method: "post",
     headers: { "Content-Type": "application/json" },
@@ -134,11 +137,19 @@ export const thunkReadSinglePhotoDetails = (photoId) => async (dispatch) => {
 };
 
 export const thunkUpdateSinglePhoto =
-  (photoId, updatePhotoData) => async (dispatch) => {
+  (photoId, name, about, url, takenOn, privateVar, tags, albumId) => async (dispatch) => {
     const response = await fetch(`/api/photos/${photoId}`, {
       method: "put",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(updatePhotoData),
+      body: JSON.stringify({
+        name,
+        about,
+        url,
+        takenOn,
+        private: privateVar,
+        tags,
+        albumId
+      }),
     });
     if (response.ok) {
       const updatePhoto = await response.json();
