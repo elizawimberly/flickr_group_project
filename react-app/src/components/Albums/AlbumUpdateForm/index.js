@@ -39,13 +39,10 @@ function AlbumUpdateForm() {
 
     useEffect(()=> {
         dispatch(thunkReadAllPhotosByUser())
-        console.log('------album-----', album)
         if(album && albumPhotos){
             if(name === null || name === undefined) setName(album.name)
             if(about === null || about === undefined) setAbout(album.about)
             let photoList = albumPhotos.map(photo => photo.id)
-            console.log(photoList)
-            console.log('PHOTOTS HIT IN IF BLOCK', photos)
             setPhotos(photoList)
             setLoaded(true)
         }

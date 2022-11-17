@@ -8,7 +8,7 @@ class PhotoForm(FlaskForm):
   name = StringField('name', validators=[DataRequired()])
   about = StringField('about', validators=[DataRequired()])
   takenOn = StringField('takenOn')
-  private = BooleanField('private',)
+  private = BooleanField('private')
   tags = StringField('tags')
   albumId = IntegerField('albumId')
   
