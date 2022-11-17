@@ -8,13 +8,14 @@ import './Account.css'
 import coverphoto from '../../assets/coverphoto.jpg'
 import profilePic from '../../assets/buddyicon.png';
 import { thunkReadAllPhotosByUser } from "../../store/photosReducer";
+import { Redirect } from "react-router-dom";
 
 
 /******************************* COMPONENT *******************************/
 function Account() {
 
     /****************** access store *******************/
-    const sessionUser = useSelector(state => state.session.user )
+    const sessionUser = useSelector(state => state.session.user)
     console.log("sessionUser",sessionUser)
 
     /************ key into pertinent values ************/
@@ -28,6 +29,8 @@ function Account() {
     },[dispatch])
 
     /**************** render component *****************/
+    if (!sessionUser) return <Redirect to="/" />;
+
     return (
         <div className='page-wrapper-container'>
             <div className="account-component"
@@ -46,6 +49,7 @@ function Account() {
                             <img src={profilePic} className="account-profile-pic"></img>
                         </div>
                         <div className="account-profile-names-container">
+                            {/* <h1 id="banner-user-full-name">{sessionUser.firstName} {sessionUser.lastName}</h1> */}
                             <h1 id="banner-user-full-name">{sessionUser.first_name} {sessionUser.last_name}</h1>
                             <p id="banner-user-username">{sessionUser.username}</p>
                         </div>

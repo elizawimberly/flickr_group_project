@@ -14,7 +14,11 @@ function TagCreateForm() {
 
     const createTag = async (e) => {
         e.preventDefault()
-        await dispatch(thunkCreateSingleTag(photo.id, tags));
+        console.log("tags", tags)
+        let tagData = {
+            tags: tags
+        }
+        await dispatch(thunkCreateSingleTag(photo.id, tagData));
     }
 
 
