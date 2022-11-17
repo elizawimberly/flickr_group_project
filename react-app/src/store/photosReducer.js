@@ -223,7 +223,7 @@ export const thunkDeleteSingleComment =
       }
     );
     if (response.ok) {
-      dispatch(actionDeleteSingleTag(commentId));
+      dispatch(actionDeleteSingleComment(commentId));
       return;
     }
   };
@@ -418,7 +418,6 @@ const photosReducer = (state = initialState, action) => {
       newState.singlePhotoDetails.Comments =
         createSingleComment_NewCopyCommentsObj;
       // add new comment
-      console.log('payload ---------------------', action.payload)
       newState.singlePhotoDetails.Comments[action.payload.id] = {
         ...action.payload,
       };
@@ -443,10 +442,11 @@ const photosReducer = (state = initialState, action) => {
       let deleteSingleComment_NewCopyCommentsObj = normalizeArray(
         deleteSingleComment_RevertCommentsArr
       );
+      // delete deleteSingleComment_NewCopyCommentsObj[action.payload.id];
       newState.singlePhotoDetails.Comments =
-        deleteSingleComment_NewCopyCommentsObj;
+      deleteSingleComment_NewCopyCommentsObj;
       // remove comment
-      delete newState.singlePhotoDetails.Comments[action.payload.id];
+      delete newState.singlePhotoDetails.Comments[action.payload];
       // deep copy nested structures: singlePhotoDetails.Tags
       let deleteSingleComment_RevertTagsArr = Object.values(
         newState.singlePhotoDetails.Tags
