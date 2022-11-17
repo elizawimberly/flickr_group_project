@@ -9,6 +9,8 @@ import { thunkDeleteSinglePhoto, thunkReadSinglePhotoDetails } from "../../../st
 import "./PhotoDetailsPage.css";
 import CommentCreateForm from "../../Comments/CommentCreateForm";
 import TagCreateFormModal from "../../TagCreateFormModal";
+import buddyIcon from "../../../assets/buddyicon.png"
+import { convertDate } from "../../../component-resources";
 
 
 /******************************* COMPONENT *******************************/
@@ -26,6 +28,7 @@ function PhotoDetailsPage() {
   // comments
   const photoComments = photo.Comments;
   const comments = Object.values(photoComments);
+  console.log("comments", comments)
   // tags
   const photoTags = photo.Tags;
   const tags = Object.values(photoTags);
@@ -66,8 +69,6 @@ function PhotoDetailsPage() {
       </>
     )
   }
-
-  // render tag components if current user === photo.userId
 
   /***************** handle events *******************/
   const history = useHistory()
@@ -117,18 +118,29 @@ function PhotoDetailsPage() {
 
         </div>
 
+
+
         <div className="bottom-half">
           <div className="bottom-half-left">
-{/* 1/3 */}
+
             <div className="photo-blurb">
-              <div>{photo && photo.name}</div>
-              <div>{photo && photo.about}</div>
+              <div className="photo-blurb-profile-pic-container">
+                <img src={buddyIcon} alt="profile picture" className="photo-blurb-profile-pic"></img>
+              </div>
+              <div className="photo-blurb-about-container">
+                <div className="photo-blurb-photographer">{user.first_name} {user.last_name}</div>
+                <div className="photo-blurb-name">{photo && photo.name}</div>
+                <div className="photo-blurb-about">{photo && photo.about}</div>
+              </div>
             </div>
 
-            <div>
+            <div className="comments-section">
               {comments &&
                 comments.map((comment) => (
-                  <div className="display-comment">{comment.comment}</div>
+                  <div className="display-comment">
+                    <div className="comment-text">{comment.comment}</div>
+                    <div className="comment-createdAt">{convertDate(comment.createdAt)}</div>
+                  </div>
                 ))}
             </div>
 
