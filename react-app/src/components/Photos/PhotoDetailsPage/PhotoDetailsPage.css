@@ -102,6 +102,10 @@
   align-items: center;
   min-height: 110px;
 }
+.photo-blurb-profile-pic-container {
+  display: inline;
+  height: 100%;
+}
 .photo-blurb-profile-pic {
   width: 60px;
   height: 60px;
@@ -138,23 +142,61 @@
 .comment-text {
   color: #006DAC;
   margin: 2px 0px;
+  font-weight: 900;
+}
+.comment-bottom-line-container {
+  display: flex;
+  justify-content: space-between;
 }
 .comment-createdAt {
   color: #212124;
+  margin: 2px 0px;
+
 }
+.fa-trash {
+  color: #cbcdce;
+  cursor: pointer;
+}
+.fa-trash:hover {
+  color: #8e9396;
+}
+.add-comment-section {
+  margin-left: 80px;
+  display: flex;
+  justify-content: left;
+}
+
 
 
 /* BOTTOM RIGHT */
 .bottom-half-right {
   grid-column: 2 / 3;
-  background-color: teal;
+  /* background-color: teal; */
   max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  background-color: darkorange;
 }
 
 .stats-container {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  background-color: mediumpurple;
+  min-height: 104px;
 }
+.comments-stats {
+  margin: 13px 30px 0px 0px;
+}
+.comment-count {
+  font-size: 20px;
+  color: #212124
+}
+.comment-label {
+  font-size: 14px;
+  color: #898989;
+}
+
+
 
 .tag-container {
   display: inline-block;
