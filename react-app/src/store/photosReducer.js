@@ -73,11 +73,39 @@ export const actionDeleteSingleComment = (commentId) => ({
 
 /***************************** THUNKS (API) ******************************/
 // photos
-export const thunkCreateSinglePhoto = (createPhotoData) => async (dispatch) => {
-  const response = await fetch(`/api/photos`, {
+
+export const thunkCreateSinglePhoto = (name, about, url, takenOn, privateVar, tags, albumId) => async (dispatch) => {
+  if(!albumId){
+    const response = await fetch(`/api/photos/`, {
+      method: "post",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name,
+        about,
+        url,
+        takenOn,
+        private: privateVar,
+        tags,
+      }),
+    });
+    if (response.ok) {
+      const newPhoto = await response.json();
+      dispatch(actionCreateSinglePhoto(newPhoto));
+      return newPhoto;
+    }
+  }
+  const response = await fetch(`/api/photos/`, {
     method: "post",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(createPhotoData),
+    body: JSON.stringify({
+      name,
+      about,
+      url,
+      takenOn,
+      private: privateVar,
+      tags,
+      albumId
+    }),
   });
   if (response.ok) {
     const newPhoto = await response.json();
@@ -87,7 +115,6 @@ export const thunkCreateSinglePhoto = (createPhotoData) => async (dispatch) => {
 };
 
 export const thunkReadAllPhotos = () => async (dispatch) => {
-  console.log("hit thunkReadAllPhotos");
   const response = await fetch(`/api/photos/`);
   if (response.ok) {
     const allPhotos = await response.json();
@@ -97,7 +124,6 @@ export const thunkReadAllPhotos = () => async (dispatch) => {
 };
 
 export const thunkReadAllPhotosByUser = () => async (dispatch) => {
-  console.log("hit thunk");
   const response = await fetch(`/api/photos/current`);
   console.log("response:", response);
   if (response.ok) {
@@ -117,11 +143,19 @@ export const thunkReadSinglePhotoDetails = (photoId) => async (dispatch) => {
 };
 
 export const thunkUpdateSinglePhoto =
-  (photoId, updatePhotoData) => async (dispatch) => {
+  (photoId, name, about, url, takenOn, privateVar, tags, albumId) => async (dispatch) => {
     const response = await fetch(`/api/photos/${photoId}`, {
       method: "put",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(updatePhotoData),
+      body: JSON.stringify({
+        name,
+        about,
+        url,
+        takenOn,
+        private: privateVar,
+        tags,
+        albumId
+      }),
     });
     if (response.ok) {
       const updatePhoto = await response.json();
@@ -206,8 +240,8 @@ const initialState = {
 
 /******************************* REDUCER *********************************/
 const photosReducer = (state = initialState, action) => {
+
   let newState = { ...state };
-  console.log("action:", action);
 
   switch (action.type) {
     // photos

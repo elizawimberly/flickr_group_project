@@ -20,6 +20,7 @@ const NavBarMain = () => {
   const sessionUser = useSelector(state => state.session.user);
 
   /************ key into pertinent values ************/
+  let landingNoSession = false;
   let userId
   if (sessionUser) userId = sessionUser.id
 
@@ -39,7 +40,7 @@ const NavBarMain = () => {
 
         <div className='nav-bar-right-B'>
           <div>
-            <NavLink to='/upload' exact={true}>
+            <NavLink to='/photos/upload' exact={true}>
               <i class="fa-solid fa-cloud" id="navbar-upload-photo-button"></i>
             </NavLink>
           </div>
@@ -74,7 +75,7 @@ const NavBarMain = () => {
     <div className='page-wrapper-container'>
 
       {/* <div className={session ? "navigation-bar" : ""}></div> */}
-      <nav className='navigation-bar' id="navbar-main">
+      <nav className={'navigation-bar'} id={landingNoSession && landingNoSession ? "landing-no-session-navbar-main": "navbar-main"}>
 
         <div class="nav-bar-left">
             <NavLink to='/' exact={true} activeClassName='active'>
