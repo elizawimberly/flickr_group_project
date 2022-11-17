@@ -50,7 +50,7 @@ function PhotoUpdateForm() {
             if(about === null || about === undefined) setAbout(photo.about)
             if(url === null || url === undefined) setUrl(photo.url)
             if(tags === null || tags === undefined) setTags(tag_names.join(' '))
-            if(albumId === null || albumId === undefined) setAlbumId(photo.AlbumId)
+            if(albumId === null || albumId === undefined) setAlbumId(photo.albumId)
             let takenDate = new Date(photo.takenOn)
             let takenYear = takenDate.getFullYear()
             let takenMonth = takenDate.getMonth()
