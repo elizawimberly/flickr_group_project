@@ -42,6 +42,7 @@ function PhotoCreateForm() {
     const date = `${year}-${month}-${day}`
 
     useEffect(()=>{
+        console.log(typeof takenOn)
         dispatch(thunkReadAllAlbums())
     },[dispatch])
 
@@ -54,7 +55,7 @@ function PhotoCreateForm() {
         if(errors.length >= 1) 
             setValidationErrors(errors);
         else
-            dispatch(thunkCreateSinglePhoto(name, about, url, private_var, tags, albumId))
+            dispatch(thunkCreateSinglePhoto(name, about, url, takenOn, private_var, tags, albumId))
             .catch(async (res) => {
                 const data = await res.json();
                 if(data && data.errors) errors.push(data.errors)
@@ -183,9 +184,6 @@ function PhotoCreateForm() {
                         )}  
                         </label>
                         
-
-                        <button type='submit'>Add Photo</button>
-
                         </div>
                     </form>
 

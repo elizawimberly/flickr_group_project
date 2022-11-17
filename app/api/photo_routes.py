@@ -4,6 +4,7 @@ from app.models import Photo, Comment, Tag, tags_to_photos, db
 from app.forms import PhotoForm
 from app.forms import CommentForm
 from app.forms import TagForm
+from app.api.auth_routes import validation_errors_to_error_messages
 
 photo_routes = Blueprint('photos', __name__)
 
@@ -28,68 +29,91 @@ def add_photo():
     """
     Create new photo and return it in a dictionary
     """
+    print('---------------HITTING THE ROUTER ON THE BACK----------------')
 
     form = PhotoForm()
     form['csrf_token'].data = request.cookies['csrf_token']
+    print(form.data)
     if form.validate_on_submit():
+        print('----------hitting validate_on_submit--------')
         data = form.data
+        print('data', data)
         tag_list = []
         tag_list_tags = data['tags'].split()
         if data['tags']:
+            print('----Hit if ONe-------')
             for tag in tag_list_tags:
-                if Tag.query(tag == tag).first():
-                    old_tag = Tag.query(tag = tag).first()
+                print(tag)
+                old_tag = Tag.query.filter(Tag.tag == tag).first() 
+                if old_tag:
                     tag_list.append(old_tag)
                 else:
-                    tag_list.append(tag)
+                    new_tag = Tag(
+                        tag = tag
+                    )
+                    db.session.add(new_tag)
+                    db.session.commit()
+                    newer_tag = Tag.query.filter(Tag.tag == tag).first()
+                    tag_list.append(newer_tag) 
 
         if data['tags'] and not data['albumId']:
+            print('-------hit two-------')
             new_photo = Photo(
                 user_id = current_user.id,
                 url = data['url'],
                 name = data['name'],
                 about = data['about'],
-                taken_on = data['taken_on'],
+                taken_on = data['takenOn'],
                 private = data['private'],
                 tags = tag_list
                 )
             db.session.add(new_photo)
+            db.session.commit()
+            return jsonify(new_photo.to_dict())
         if data['albumId'] and not data['tags']:
+             print('-------HIT THREE-------')
              new_photo = Photo(
                 user_id = current_user.id,
+                album_id = data['albumId'],
                 url = data['url'],
                 name = data['name'],
                 about = data['about'],
-                taken_on = data['taken_on'],
+                taken_on = data['takenOn'],
                 private = data['private'],
-                album_id = data['albumId']
                 )
              db.session.add(new_photo)
+             db.session.commit()
+             return jsonify(new_photo.to_dict())
         if data['albumId'] and data['tags']:
-             new_photo = Photo(
+            print('------HIT FOUR--------')
+            new_photo = Photo(
                 user_id = current_user.id,
+                album_id = data['albumId'],
                 url = data['url'],
                 name = data['name'],
                 about = data['about'],
-                taken_on = data['taken_on'],
+                taken_on = data['takenOn'],
                 private = data['private'],
                 tags = tag_list,
-                album_id = data['albumId']
                 )
-             db.session.add(new_photo)
+            db.session.add(new_photo)
+            db.session.commit()
+            return jsonify(new_photo.to_dict())
         else:
+            print('-------HIT ELSE------')
             new_photo = Photo(
                 user_id = current_user.id,
                 url = data['url'],
                 name = data['name'],
                 about = data['about'],
-                taken_on = data['taken_on'],
+                taken_on = data['takenOn'],
                 private = data['private']
                 )
             db.session.add(new_photo)
-        db.session.commit()
-        return jsonify(new_photo.to_dict())
-    return jsonify('photo not added')
+            db.session.commit()
+            return jsonify(new_photo.to_dict())
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
 
 
 @photo_routes.route('/<int:id>')
