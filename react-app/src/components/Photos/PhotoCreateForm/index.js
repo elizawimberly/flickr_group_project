@@ -1,18 +1,18 @@
 /******************************** IMPORTS ********************************/
 // libraries
-import React, {useEffect, useState} from "react";
-import { Redirect, useHistory } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { Redirect, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 // local files
 import Account from "../../Account";
 import NavBarUser from "../../NavigationBars/NavBarUser";
 import { thunkCreateSinglePhoto } from "../../../store/photosReducer";
-import './PhotoCreateForm.css'
-import { thunkReadAllAlbums } from '../../../store/albumsReducer'
-
+import "./PhotoCreateForm.css";
+import { thunkReadAllAlbums } from "../../../store/albumsReducer";
 
 /******************************* COMPONENT *******************************/
 function PhotoCreateForm() {
+
 
     /****************** access store *******************/
     const sessionUser = useSelector(state => state.session.user);
@@ -223,15 +223,45 @@ function PhotoCreateForm() {
                                         <img onError={onError} alt='' src={url}/>
                                     </div>
                                     )}
-                            </div>
 
+                            </div>
+                          </div>
+                        );
+                      })}
                     </div>
-                </form>
+                  </div>
+                )}
+
+                {userAlbums.length <= 0 && (
+                  <>
+                    <div>Current User has no albums</div>
+                  </>
+                )}
+              </label>
+
+              <div className="errors-container">
+                {validationErrors &&
+                  validationErrors.map((error, ind) => (
+                    <div className="form-errors" key={ind}>
+                      {error}
+                    </div>
+                  ))}
+              </div>
             </div>
-        </div>
-    )
+
+            <div className="photo-form-top-right-sub-container">
+              {url && (
+                <div className="view-uploaded-image">
+                  <img alt="" src={url} />
+                </div>
+              )}
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
 }
 
-
 /******************************** EXPORTS ********************************/
-export default PhotoCreateForm
+export default PhotoCreateForm;
