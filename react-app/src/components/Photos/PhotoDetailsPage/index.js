@@ -1,11 +1,11 @@
 /******************************** IMPORTS ********************************/
 // libraries
-import React from "react";
+import React, { useState } from "react";
 import { useEffect } from "react";
 import { NavLink, useHistory, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 // local files
-import { thunkDeleteSinglePhoto, thunkReadSinglePhotoDetails } from "../../../store/photosReducer";
+import { thunkDeleteSingleComment, thunkDeleteSinglePhoto, thunkReadSinglePhotoDetails } from "../../../store/photosReducer";
 import "./PhotoDetailsPage.css";
 import CommentCreateFormModal from '../../Comments/CommentCreateFormModal'
 import TagCreateFormModal from "../../TagCreateFormModal";
@@ -25,10 +25,10 @@ function PhotoDetailsPage() {
   const user = sessionState.user
   // photo
   const photo = photosState.singlePhotoDetails;
+  console.log("photo", photo)
   // comments
   const photoComments = photo.Comments;
   const comments = Object.values(photoComments);
-  console.log("comments", comments)
   // tags
   const photoTags = photo.Tags;
   const tags = Object.values(photoTags);
@@ -41,6 +41,9 @@ function PhotoDetailsPage() {
   useEffect(() => {
     dispatch(thunkReadSinglePhotoDetails(photoId));
   }, [dispatch]);
+
+  /****************** manage state *******************/
+  const [isShown, setIsShown] = useState(false);
 
   /************* conditional components **************/
   let photostreamButton = (
@@ -76,6 +79,11 @@ function PhotoDetailsPage() {
   function deletePhoto() {
     dispatch(thunkDeleteSinglePhoto(photoId));
     history.push('/photostream')
+  }
+
+  function deleteComment(commentId) {
+    dispatch(thunkDeleteSingleComment(commentId),
+    [dispatch])
   }
 
   /**************** render component *****************/
@@ -137,43 +145,52 @@ function PhotoDetailsPage() {
             <div className="comments-section">
               {comments &&
                 comments.map((comment) => (
-                  <div className="display-comment">
+                  <div className="display-comment"
+                  // onMouseEnter={() => setIsShown(true)}
+                  // onMouseLeave={() => setIsShown(false)}
+                  >
                     <div className="comment-text">{comment.comment}</div>
-                    <div className="comment-createdAt">{convertDate(comment.createdAt)}</div>
+                    <div className="comment-bottom-line-container">
+                      <div className="comment-createdAt">{convertDate(comment.createdAt)}</div>
+                      <i class="fa-solid fa-trash" onClick={deleteComment(comment.id)}></i>
+                      {/* {isShown && */}
+                      {/* } */}
+                    </div>
                   </div>
                 ))}
             </div>
 
-            <div>
+            <div className="add-comment-section">
               <CommentCreateFormModal />
             </div>
-
           </div>
 
           <div className="bottom-half-right">
-            <div className="stats-container">
-              <div className="photo-stats">
-                <div className="comment-stats">
-                  <div>{comments?.length}</div>
-                  <div>comments</div>
+
+              <div className="stats-container">
+                <div className="comments-stats">
+                  <div className="comment-count">{comments?.length}</div>
+                  <div className="comment-label">comments</div>
                 </div>
-                <div>
-                  <div>Taken on {photo?.takenOn}</div>
+                <div className="photo-stats">
+                  <div>{photo && `Uploaded on ${convertDate(photo.takenOn)}`}</div>
                 </div>
               </div>
 
-              <div className="tags-stats">
+              <div className="tags-container">
                 <div>Tags</div>
                 <TagCreateFormModal />
-                <div className="tag-container">
+
+                <div className="tags-display">
                   {tags &&
                     tags.map((tag) => (
                       <div className="display-tag">{tag.tag}</div>
                     ))}
                 </div>
               </div>
-            </div>
+
           </div>
+
         </div>
       </div>
     </div>

@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { Modal } from '../../../context/Modal';
 import CommentCreateForm from './CommentCreateForm';
+import "./CommentCreateForm.css"
 
 function TagCreateFormModal() {
   const [showModal, setShowModal] = useState(false);
 
   return (
     <>
-      <button onClick={() => setShowModal(true)}>Add a Comment</button>
+      <button className='modal-button' onClick={() => setShowModal(true)}>Comment</button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <CommentCreateForm onClose={() => setShowModal(false)}/>
