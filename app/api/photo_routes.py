@@ -13,7 +13,8 @@ def photos():
     """
     Query for all photos and returns them in a list of user dictionaries
     """
-    photos = Photo.query.all()
+    # photos = Photo.query.all()
+    photos = Photo.query.order_by(Photo.created_at.desc()).all()
 
     # normalized
     # return { 'Photos': { photo['id'] : photo.to_dict() for photo in photos} }

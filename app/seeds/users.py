@@ -20,8 +20,8 @@ def seed_users():
     username = 'Demo',
     password='password',
     email = 'demo@aa.io',
-    first_name = "DemoUser",
-    last_name = "last_name",
+    first_name = "Demo",
+    last_name = "User",
     about = "Quis aliquip consectetur amet dolore veniam qui cupidatat consectetur ut voluptate."
     )
     user2 = User(
