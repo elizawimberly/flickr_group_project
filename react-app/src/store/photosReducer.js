@@ -75,17 +75,6 @@ export const actionDeleteSingleComment = (commentId) => ({
 // photos
 
 export const thunkCreateSinglePhoto = (name, about, url, takenOn, privateVar, tags, albumId) => async (dispatch) => {
-<<<<<<< HEAD
-  console.log('typeof for takeON', typeof takenOn)
-  console.log('privateVar', privateVar)
-  console.log('typeof for private', typeof privateVar)
-  console.log('about typeof', typeof about)
-  console.log('typeof for url', typeof url)
-  console.log('typeof tags', typeof tags)
-  console.log('typeof albumId', typeof albumId)
-
-=======
->>>>>>> create-photo-update-form
   const response = await fetch(`/api/photos/`, {
     method: "post",
     headers: { "Content-Type": "application/json" },

@@ -13,7 +13,6 @@ import { thunkReadAllAlbums } from '../../../store/albumsReducer'
 
 /******************************* COMPONENT *******************************/
 function PhotoCreateForm() {
-    const history = useHistory()
 
     /****************** access store *******************/
     const sessionUser = useSelector(state => state.session.user);
@@ -49,8 +48,6 @@ function PhotoCreateForm() {
 
     /***************** handle events *******************/
     const history = useHistory()
-
-
 
     const handleSubmit = () => {
         let errors = [];
