@@ -38,9 +38,9 @@ export const actionDeleteSingleAlbum = (albumId) => ({
 
 /***************************** THUNKS (API) ******************************/
 
-export const thunkCreateSingleAlbum =
-  (name, about, photos = []) =>
-  async (dispatch) => {
+
+export const thunkCreateSingleAlbum = (name, about, photos = []) => async (dispatch) => {
+
     const response = await fetch(`/api/albums/`, {
       method: "POST",
       headers: {

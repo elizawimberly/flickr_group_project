@@ -4,7 +4,6 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 // local files
-import LogoutButton from './SessionButtons/LogoutButton';
 import './NavBarMain.css';
 import flareLogo from '../../../assets/flare-branding/logo/flare-logo-2.png';
 import ToggleAccountMenu from './SessionButtons/ToggleAccountMenu';

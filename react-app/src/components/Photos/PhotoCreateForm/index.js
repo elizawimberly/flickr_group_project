@@ -12,169 +12,218 @@ import { thunkReadAllAlbums } from "../../../store/albumsReducer";
 
 /******************************* COMPONENT *******************************/
 function PhotoCreateForm() {
-  const history = useHistory();
 
-  /****************** access store *******************/
-  const sessionUser = useSelector((state) => state.session.user);
-  const userAlbums = useSelector((state) =>
-    Object.values(state.albums.allAlbums)
-  );
 
-  /************ key into pertinent values ************/
-  const longDate = new Date();
-  const year = longDate.getFullYear();
-  let month = longDate.getMonth();
-  let day = longDate.getDate();
-  if (month < 10) month = `0${month}`;
-  if (day < 10) day = `0${day}`;
-  const date = `${year}-${month}-${day}`;
+    /****************** access store *******************/
+    const sessionUser = useSelector(state => state.session.user);
+    const userAlbums = useSelector(state => Object.values(state.albums.allAlbums))
 
-  /****************** manage state *******************/
-  const [albums, setAlbums] = useState("");
-  const [name, setName] = useState("");
-  const [about, setAbout] = useState("");
-  const [url, setUrl] = useState("");
-  const [private_var, setPrivate_var] = useState(false);
-  const [tags, setTags] = useState("");
-  const [validationErrors, setValidationErrors] = useState([]);
-  const [takenOn, setTakenOn] = useState("");
-  const [albumId, setAlbumId] = useState("");
+    /************ key into pertinent values ************/
+    const longDate = new Date();
+    const year = longDate.getFullYear()
+    let month = longDate.getMonth() + 1
+    let day = longDate.getDate() + 1
+    if(month < 10) month = `0${month}`
+    if(day < 10) day = `0${Number(day)}`
+    const date = `${year}-${month}-${day}`
 
-  /************ reducer/API communication ************/
-  const dispatch = useDispatch();
+    /****************** manage state *******************/
+    const [name, setName] = useState("");
+    const [about, setAbout] = useState("");
+    const [url, setUrl] = useState("");
+    const [checkUrl, setCheckUrl] = useState("");
+    const [private_var, setPrivate_var] = useState(false);
+    const [tags, setTags] = useState("");
+    const [validationErrors, setValidationErrors] = useState([]);
+    const [takenOn, setTakenOn] = useState("")
+    const [albumId, setAlbumId] = useState("")
+    const [submitted, setSubmitted] = useState(false)
+    
+ 
+    /************ reducer/API communication ************/
+    const dispatch = useDispatch();
 
-  useEffect(() => {
-    console.log(typeof takenOn);
-    dispatch(thunkReadAllAlbums());
-  }, [dispatch]);
+    useEffect(()=>{
+        dispatch(thunkReadAllAlbums())
+    },[dispatch])
 
-  /***************** handle events *******************/
+    useEffect(()=>{
+        let errors = []
+        if(!name) errors.push('Name needs to be between 2 and 50 characters.')
+        if(!about) errors.push('About needs to be between 10 and 500 characters.')
+        if(!url || checkUrl === 'https://learn.getgrav.org/user/pages/11.troubleshooting/01.page-not-found/error-404.png') errors.push('You must enter a valid url')
+        setValidationErrors(errors)
+    },[submitted, name, about, url])
 
-  const handleSubmit = () => {
-    let errors = [];
-    if (!name) errors.push("Name needs to be between 2 and 50 characters.");
-    if (!about) errors.push("About needs to be between 10 and 500 characters.");
-    if (!url) errors.push("You must enter a valid url");
+    /***************** handle events *******************/
+    const history = useHistory()
 
-    if (errors.length >= 1) setValidationErrors(errors);
-    else
-      dispatch(
-        thunkCreateSinglePhoto(
-          name,
-          about,
-          url,
-          takenOn,
-          private_var,
-          tags,
-          albumId
-        )
-      ).catch(async (res) => {
-        const data = await res.json();
-        if (data && data.errors) errors.push(data.errors);
-        setValidationErrors(errors);
-      });
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        let errors = [];
+        setSubmitted(true)
+        if(!name) errors.push('Name needs to be between 2 and 50 characters.')
+        if(!about) errors.push('About needs to be between 10 and 500 characters.')
+        if(!url || checkUrl === 'https://learn.getgrav.org/user/pages/11.troubleshooting/01.page-not-found/error-404.png') errors.push('You must enter a valid url')
 
-    if (errors.length <= 0) {
-      setName("");
-      setAbout("");
-      setUrl("");
-      setTags("");
-      history.push("/");
+        if(errors.length >= 1)
+            setValidationErrors(errors);
+        if(errors.length <= 1 && validationErrors <= 1){
+            dispatch(thunkCreateSinglePhoto(name, about, url, takenOn, private_var, tags, albumId))
+
+            .catch(async (res) => {
+                const data = await res.json();
+                if(data && data.errors) errors.push(data.errors)
+                setValidationErrors(errors)
+            })
+        }
+            
+        if(errors.length <= 0) {
+            setName('')
+            setAbout('')
+            setUrl('')
+            setTags('')
+            history.push('/')
+        }
     }
-  };
+    console.log(validationErrors)
 
-  /**************** render component *****************/
-  if (!sessionUser) return <Redirect to="/" />;
+    const onError = (e) => {
+        setCheckUrl('https://learn.getgrav.org/user/pages/11.troubleshooting/01.page-not-found/error-404.png')
+        e.target.src = 'https://learn.getgrav.org/user/pages/11.troubleshooting/01.page-not-found/error-404.png'
+    }
 
-  return (
-    <div className="page-wrapper-container">
-      <div className="PhotoCreateForm-component">
-        <form className="photo-form-container" onSubmit={handleSubmit}>
-          <div className="mock-upload-navbar">
-            <button
-              className="photo-submit-button"
-              type="submit"
-              disabled={!!validationErrors.length}
-            >
-              Upload 1 Photo
-            </button>
-          </div>
+    /**************** render component *****************/
+    if (!sessionUser) return <Redirect to="/" />;
 
-          <div className="photo-form-top-sub-container">
-            <div className="photo-form-top-left-sub-container">
-              <label>
-                <input
-                  className="inputFieldTypeText"
-                  id="input-photo-name"
-                  type="text"
-                  name="name"
-                  placeholder="Add a title"
-                  onChange={(e) => setName(e.target.value)}
-                  value={name}
-                />
+    return (
+        <div className='page-wrapper-container'>
+            <div className="PhotoCreateForm-component">
 
-                <input
-                  className="inputFieldTypeText"
-                  type="text"
-                  name="about"
-                  placeholder="Add a description"
-                  onChange={(e) => setAbout(e.target.value)}
-                  value={about}
-                />
-              </label>
+                    <form
 
-              <label>
-                <input
-                  className="inputFieldTypeText"
-                  type="text"
-                  name="url"
-                  placeholder="Add a photo url"
-                  onChange={(e) => setUrl(e.target.value)}
-                  value={url}
-                />
-              </label>
+                        className="photo-form-container"
 
-              <label>
-                <input
-                  type="date"
-                  className="inputFieldTypeText"
-                  id="takenOn"
-                  name="takenOn"
-                  onChange={(e) => setTakenOn(e.target.value)}
-                  value={takenOn}
-                  max={date}
-                />
-              </label>
+                        onSubmit={handleSubmit}
+                        >
 
-              <label>
-                <input
-                  className="inputFieldTypeText"
-                  type="text"
-                  name="tags"
-                  placeholder="Add tags"
-                  onChange={(e) => setTags(e.target.value)}
-                  value={tags}
-                />
-              </label>
+                        <div className="mock-upload-navbar">
 
-              <label>
-                {userAlbums.length >= 1 && (
-                  <div className="album-dropdown">
-                    <span className="album-dropdown-span">Add to albums</span>
-                    <div className="dropdown-content">
-                      {userAlbums.map((album) => {
-                        return (
-                          <div
-                            id={album.id}
-                            className={
-                              albumId === album.id
-                                ? "album-selected"
-                                : "album-not-selected"
-                            }
-                            onClick={() => setAlbumId(album.id)}
-                          >
-                            <div>
-                              {album.name} photos {album.Photos.length}
+                            <button
+                                className="photo-submit-button"
+                                type="submit"
+                                >
+                                Upload 1 Photo
+                            </button>
+                        </div>
+
+
+                        <div className="photo-form-top-sub-container">
+
+                            <div className="photo-form-top-left-sub-container">
+
+                                <label>
+                                    <input
+                                    className="inputFieldTypeText"
+                                    id="input-photo-name"
+                                    type="text"
+                                    name="name"
+                                    placeholder="Add a title"
+                                    onChange={(e) => setName(e.target.value)}
+                                    value={name}
+                                    />
+
+                                    <input
+                                    className="inputFieldTypeText"
+                                    type="text"
+                                    name="about"
+                                    placeholder="Add a description"
+                                    onChange={(e) => setAbout(e.target.value)}
+                                    value={about}
+                                    />
+                                </label>
+
+
+                                <label>
+                                    <input
+                                    className="inputFieldTypeText"
+                                    type="text"
+                                    name="url"
+                                    placeholder="Add a photo url"
+                                    onChange={(e) => {
+                                        setCheckUrl(e.target.value)
+                                        setUrl(e.target.value)
+                                    }}
+                                    value={url}
+                                    />
+                                </label>
+
+                                <label>
+                                    <input
+                                    type="date"
+                                    className="inputFieldTypeText"
+                                    id="takenOn"
+                                    name="takenOn"
+                                    onChange={(e) => setTakenOn(e.target.value)}
+                                    value={takenOn}
+                                    max={date}/>
+                                </label>
+
+
+                                <label>
+                                    <input
+                                    className="inputFieldTypeText"
+                                    type="text"
+                                    name="tags"
+                                    placeholder="Add tags"
+                                    onChange={(e) => setTags(e.target.value)}
+                                    value={tags}
+                                    />
+                                </label>
+
+                                <label>
+                                    {userAlbums.length >= 1 && (
+                                        <div className='album-dropdown'>
+                                            <span className='album-dropdown-span'>Add to albums</span>
+                                            <div className='dropdown-content'>
+                                                {userAlbums.map(album => {
+                                                    return (
+                                                        <div
+                                                        id={album.id}
+                                                        className={albumId === album.id ? 'album-selected' : 'album-not-selected'}
+                                                        onClick={()=> setAlbumId(album.id)}
+                                                        >
+                                                            <div>{album.name} photos {album.Photos.length}</div>
+                                                        </div>
+                                                    )
+                                                })}
+                                            </div>
+                                        </div>
+                                    )}
+
+                                    { userAlbums.length <= 0 && (
+                                        <>
+                                            <div>Current User has no albums</div>
+                                        </>
+                                    )}
+                                </label>
+
+                                <div className='errors-container'>
+                                    {submitted && validationErrors && validationErrors.map((error, ind) => (
+                                        <div className='form-errors' key={ind}>{error}</div>
+                                        ))}
+                                </div>
+
+                            </div>
+
+
+                            <div className="photo-form-top-right-sub-container">
+                                    {url && (
+                                        <div className="view-uploaded-image">
+                                        <img onError={onError} alt='' src={url}/>
+                                    </div>
+                                    )}
+
                             </div>
                           </div>
                         );

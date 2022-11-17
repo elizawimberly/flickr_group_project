@@ -1,10 +1,11 @@
 .PhotoDetailsPage-component {
-  display: inline-block;
-  flex-direction: row;
+  /* display: inline-block; */
+  display: flex;
+  flex-direction: column;
   justify-content: center;
-  /* align-items: ; */
   padding-top: 50px;
   /* background-color: aqua; */
+  /* max-width: 1536px; */
 }
 
 
@@ -79,6 +80,9 @@
   grid-template-rows: repeat(1, 1fr);
   grid-template-columns: repeat(2, 1fr);
   /* background-color: blue; */
+  align-self: center;
+  max-width: 1000px;
+  margin-top: 25px;
 }
 
 
@@ -86,6 +90,80 @@
 .bottom-half-left {
   grid-column: 1 / 2;
   /* background-color: magenta; */
+  display: flex;
+  flex-direction: column;
+  max-width: 500px;
+  margin-right: 60px;
+}
+
+.photo-blurb {
+  /* background-color: yellow; */
+  display: flex;
+  align-items: center;
+  min-height: 110px;
+}
+.photo-blurb-profile-pic-container {
+  display: inline;
+  height: 100%;
+}
+.photo-blurb-profile-pic {
+  width: 60px;
+  height: 60px;
+  border-radius: 90px;
+  margin-right: 20px;
+}
+.photo-blurb-photographer {
+  font-size: 20px;
+  color: #212124;
+  margin-bottom: 5px;
+}
+.photo-blurb-name {
+  font-size: 16px;
+  color: #212124;
+  margin-bottom: 10px;
+}
+.photo-blurb-about {
+  font-size: 14px;
+  color: #898989;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #cfd6d9;
+}
+
+.comments-section {
+  display: flex;
+  flex-direction: column;
+  margin-left: 80px;
+  font-size: 14px;
+}
+.display-comment {
+  margin-top: 5px;
+  padding: 5px 0px;
+}
+.comment-text {
+  color: #006DAC;
+  margin: 2px 0px;
+  font-weight: 900;
+}
+.comment-bottom-line-container {
+  display: flex;
+  justify-content: space-between;
+}
+.comment-createdAt {
+  color: #212124;
+  margin: 2px 0px;
+
+}
+.fa-trash {
+  color: #cbcdce;
+  cursor: pointer;
+}
+.fa-trash:hover {
+  color: #8e9396;
+}
+.add-comment-section {
+  margin-left: 80px;
+  display: flex;
+  justify-content: left;
 }
 
 
@@ -93,13 +171,32 @@
 /* BOTTOM RIGHT */
 .bottom-half-right {
   grid-column: 2 / 3;
-  background-color: teal;
+  /* background-color: teal; */
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  background-color: darkorange;
 }
 
 .stats-container {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  background-color: mediumpurple;
+  min-height: 104px;
 }
+.comments-stats {
+  margin: 13px 30px 0px 0px;
+}
+.comment-count {
+  font-size: 20px;
+  color: #212124
+}
+.comment-label {
+  font-size: 14px;
+  color: #898989;
+}
+
+
 
 .tag-container {
   display: inline-block;

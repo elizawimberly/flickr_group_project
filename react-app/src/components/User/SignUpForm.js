@@ -16,9 +16,11 @@ const SignUpForm = () => {
 
   /****************** manage state *******************/
   const user = useSelector(state => state.session.user);
+  const [username, setUsername] = useState('');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
+  const [about, setAbout] = useState('');
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
   const [errors, setErrors] = useState([]);
@@ -30,11 +32,15 @@ const SignUpForm = () => {
     if (password !== repeatPassword) {
       setErrors(["Those passwords didn't match. Please try again."])
     } else {
-      const data = await dispatch(signUp(firstName, lastName, email, password));
+      const data = await dispatch(signUp(username, firstName, lastName, email, password));
       if (data) {
         setErrors(data)
       }
     }
+  };
+
+  const updateUsername = (e) => {
+    setUsername(e.target.value);
   };
 
   const updateFirstName = (e) => {
@@ -55,6 +61,10 @@ const SignUpForm = () => {
 
   const updateRepeatPassword = (e) => {
     setRepeatPassword(e.target.value);
+  };
+
+  const updateAbout = (e) => {
+    setAbout(e.target.value);
   };
 
   /**************** render component *****************/
@@ -83,6 +93,19 @@ const SignUpForm = () => {
         </div>
 
         <form onSubmit={onSignUp}>
+
+        <div>
+            <label></label>
+            <input
+              type='text'
+              name='firstName'
+              placeholder='First name'
+              onChange={updateUsername}
+              value={firstName}
+              required={true}
+              className="login-signup-form-input-field"
+            ></input>
+          </div>
 
           <div>
             <label></label>
@@ -119,6 +142,21 @@ const SignUpForm = () => {
               onChange={updateEmail}
               value={email}
               required={true}
+              className="login-signup-form-input-field"
+            ></input>
+          </div>
+
+          <div>
+            <label>Write something about yourself</label>
+            <input
+              type='text'
+              name='firstName'
+              placeholder='First name'
+              onChange={updateAbout}
+              value={firstName}
+              required={true}
+              min={2}
+              max={500}
               className="login-signup-form-input-field"
             ></input>
           </div>

@@ -1,12 +1,12 @@
 /******************************** IMPORTS ********************************/
 // libraries
 import React, { useState, useEffect } from "react";
-import { NavLink, useHistory } from "react-router-dom";
+import { NavLink, useHistory, Redirect } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 // local files
 import './SessionButtons.css'
+import { logout } from '../../../../store/sessionReducer';
 import profilePic from "../../../../assets/buddyicon.png"
-import LogoutButton from "./LogoutButton";
 import { generateInternationalGreeting } from "../../../../component-resources";
 
 
@@ -40,6 +40,10 @@ function ToggleAccountMenu({ user }) {
         setShowMenu(true);
     };
 
+    const onLogout = async (e) => {
+        await dispatch(logout()).then(Redirect('/'));
+      };
+
     /**************** render component *****************/
     return (
         <>
@@ -58,8 +62,8 @@ function ToggleAccountMenu({ user }) {
                     </div>
                 </div>
 
-                <div id="logout-button">
-                    <LogoutButton />
+                <div id="logout-button" onClick={onLogout} >
+                    <p>Logout</p>
                 </div>
 
             </div>

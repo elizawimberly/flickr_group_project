@@ -75,14 +75,25 @@ export const actionDeleteSingleComment = (commentId) => ({
 // photos
 
 export const thunkCreateSinglePhoto = (name, about, url, takenOn, privateVar, tags, albumId) => async (dispatch) => {
-  console.log('typeof for takeON', typeof takenOn)
-  console.log('privateVar', privateVar)
-  console.log('typeof for private', typeof privateVar)
-  console.log('about typeof', typeof about)
-  console.log('typeof for url', typeof url)
-  console.log('typeof tags', typeof tags)
-  console.log('typeof albumId', typeof albumId)
-
+  if(!albumId){
+    const response = await fetch(`/api/photos/`, {
+      method: "post",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name,
+        about,
+        url,
+        takenOn,
+        private: privateVar,
+        tags,
+      }),
+    });
+    if (response.ok) {
+      const newPhoto = await response.json();
+      dispatch(actionCreateSinglePhoto(newPhoto));
+      return newPhoto;
+    }
+  }
   const response = await fetch(`/api/photos/`, {
     method: "post",
     headers: { "Content-Type": "application/json" },
@@ -90,12 +101,10 @@ export const thunkCreateSinglePhoto = (name, about, url, takenOn, privateVar, ta
       name,
       about,
       url,
-
       takenOn,
       private: privateVar,
       tags,
       albumId
-
     }),
   });
   if (response.ok) {
@@ -134,11 +143,19 @@ export const thunkReadSinglePhotoDetails = (photoId) => async (dispatch) => {
 };
 
 export const thunkUpdateSinglePhoto =
-  (photoId, updatePhotoData) => async (dispatch) => {
+  (photoId, name, about, url, takenOn, privateVar, tags, albumId) => async (dispatch) => {
     const response = await fetch(`/api/photos/${photoId}`, {
       method: "put",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(updatePhotoData),
+      body: JSON.stringify({
+        name,
+        about,
+        url,
+        takenOn,
+        private: privateVar,
+        tags,
+        albumId
+      }),
     });
     if (response.ok) {
       const updatePhoto = await response.json();
@@ -161,14 +178,14 @@ export const thunkDeleteSinglePhoto = (photoId) => async (dispatch) => {
 export const thunkCreateSingleTag =
   (photoId, createTagData) => async (dispatch) => {
     const response = await fetch(`/api/photos/${photoId}/tags`, {
-      method: "post",
+      method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(createTagData),
+      body: JSON.stringify({tags: createTagData}),
     });
     if (response.ok) {
-      const newTag = await response.json();
-      dispatch(actionCreateSingleTag(newTag.Tags));
-      return newTag;
+      const newTags = await response.json();
+      dispatch(actionCreateSingleTag(newTags.Tags));
+      return newTags;
     }
   };
 
@@ -188,11 +205,11 @@ export const thunkCreateSingleComment =
     const response = await fetch(`/api/photos/${photoId}/comments`, {
       method: "post",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(createCommentData),
+      body: JSON.stringify({comment: createCommentData}),
     });
     if (response.ok) {
       const newComment = await response.json();
-      dispatch(actionCreateSinglePhoto(newComment));
+      dispatch(actionCreateSingleComment(newComment));
       return newComment;
     }
   };
@@ -357,9 +374,9 @@ const photosReducer = (state = initialState, action) => {
       );
       newState.singlePhotoDetails.Tags = createSingleTag_NewCopyTagsObj;
       // add new tag
-      newState.singlePhotoDetails.Tags[action.payload.id] = {
-        ...action.payload,
-      };
+      action.payload.forEach(tag => {
+        newState.singlePhotoDetails.Tags[tag.id] = tag
+      });
       return newState;
 
     case PHOTOS_DELETE_SINGLE_TAG:
@@ -401,6 +418,7 @@ const photosReducer = (state = initialState, action) => {
       newState.singlePhotoDetails.Comments =
         createSingleComment_NewCopyCommentsObj;
       // add new comment
+      console.log('payload ---------------------', action.payload)
       newState.singlePhotoDetails.Comments[action.payload.id] = {
         ...action.payload,
       };

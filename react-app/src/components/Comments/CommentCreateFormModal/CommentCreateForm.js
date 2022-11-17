@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import {thunkCreateSingleTag} from '../../store/photosReducer'
+import {thunkCreateSingleComment} from '../../../store/photosReducer'
 
-function TagCreateForm({onClose}) {
+function CommentCreateForm({onClose}) {
 
     const dispatch = useDispatch();
 
@@ -10,36 +10,34 @@ function TagCreateForm({onClose}) {
 
     const photo = photosState.singlePhotoDetails;
 
-    const [tags, setTags] = useState("");
+    const [comment, setComment] = useState('')
 
-    const createTag = async (e) => {
+    const createComment = async (e) => {
         e.preventDefault()
-        await dispatch(thunkCreateSingleTag(photo.id, tags));
+        await dispatch(thunkCreateSingleComment(photo.id, comment))
         onClose()
     }
 
-
     return (
         <div className='page-wrapper-container'>
-            <p>Tag Create Form</p>
+            <h1>Add a Comment</h1>
 
-            <form onSubmit={createTag}>
+            <form onSubmit={createComment}>
                 <label>
                      <input
                      className="inputFieldTypeText"
                      type="text"
-                     name="tags"
-                     placeholder="Add tags"
-                     onChange={(e) => setTags(e.target.value)}
-                     value={tags}
+                     name="comment"
+                     placeholder="Add Comment"
+                     onChange={(e) => setComment(e.target.value)}
+                     value={comment}
                      />
                 </label>
                 <button type='submit'>Submit</button>
             </form>
-
         </div>
     )
 }
 
 
-export default TagCreateForm
+export default CommentCreateForm
