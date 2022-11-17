@@ -5,9 +5,10 @@ import { useEffect } from "react";
 import { NavLink, useHistory, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 // local files
-import { thunkDeleteSingleComment, thunkDeleteSinglePhoto, thunkReadSinglePhotoDetails } from "../../../store/photosReducer";
+import { thunkDeleteSinglePhoto, thunkReadSinglePhotoDetails } from "../../../store/photosReducer";
 import "./PhotoDetailsPage.css";
 import CommentCreateFormModal from '../../Comments/CommentCreateFormModal'
+import CommentDeleteModal from "../../Comments/CommentDeleteModal";
 import TagCreateFormModal from "../../TagCreateFormModal";
 import buddyIcon from "../../../assets/buddyicon.png"
 import { convertDate } from "../../../component-resources";
@@ -25,7 +26,6 @@ function PhotoDetailsPage() {
   const user = sessionState.user
   // photo
   const photo = photosState.singlePhotoDetails;
-  console.log("photo", photo)
   // comments
   const photoComments = photo.Comments;
   const comments = Object.values(photoComments);
@@ -79,11 +79,6 @@ function PhotoDetailsPage() {
   function deletePhoto() {
     dispatch(thunkDeleteSinglePhoto(photoId));
     history.push('/photostream')
-  }
-
-  function deleteComment(commentId) {
-    dispatch(thunkDeleteSingleComment(commentId),
-    [dispatch])
   }
 
   /**************** render component *****************/
@@ -152,7 +147,7 @@ function PhotoDetailsPage() {
                     <div className="comment-text">{comment.comment}</div>
                     <div className="comment-bottom-line-container">
                       <div className="comment-createdAt">{convertDate(comment.createdAt)}</div>
-                      <i class="fa-solid fa-trash" onClick={deleteComment(comment.id)}></i>
+                        <CommentDeleteModal comment={comment}/>
                       {/* {isShown && */}
                       {/* } */}
                     </div>
