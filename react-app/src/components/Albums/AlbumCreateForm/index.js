@@ -129,12 +129,13 @@ function AlbumCreateForm() {
                                                     }}
                                                     ></input>
 
-                                                    <div>
+                                                    <div
+                                                        id={photos.find(e => e === photo.id) ? 'photo-checked' : 'photo-not-checked'}
+                                                    >
                                                         <img
                                                             src={photo.url}
                                                             alt=''
                                                             className="photo-item-thumbnail"
-                                                            id={photos.find(e => e === photo.id) ? 'photo-checked' : 'photo-not-checked'}
                                                             key={photo.id}
                                                             // onClick={() => {
                                                                 //     let currentPhotos = [...photos]
