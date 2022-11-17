@@ -124,7 +124,8 @@ def photo(id):
     Query for a user by id and returns that user in a dictionary
     """
     photo = Photo.query.get(id)
-    return jsonify(photo.to_dict(current=True))
+    return jsonify(photo.to_dict(True))
+
 
 
 @photo_routes.route('/<int:id>', methods=["PUT"])
@@ -251,14 +252,16 @@ def add_tag(id):
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         data = form.data
-        new_tags = data['tags'].split('')
+        new_tags = data['tags'].split(' ')
+        tags_to_send = []
         for tag in new_tags:
             if tag not in tags_list:
-                db.session.add(Tag(tag=tag))
-            new = Tag.query(tag=tag).first()
+                db.session.add(Tag(tag = tag))
+            new = Tag.query.filter(Tag.tag == tag).first()
+            tags_to_send.append(new)
             photo.tags.append(new)
         db.session.commit()
-        return jsonify(photo.to_dict())
+        return jsonify({'Tags': [tag.to_dict() for tag in tags_to_send]})
     return jsonify('Tags not added')
 
 

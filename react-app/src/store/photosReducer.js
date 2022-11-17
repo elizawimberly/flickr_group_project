@@ -178,14 +178,14 @@ export const thunkDeleteSinglePhoto = (photoId) => async (dispatch) => {
 export const thunkCreateSingleTag =
   (photoId, createTagData) => async (dispatch) => {
     const response = await fetch(`/api/photos/${photoId}/tags`, {
-      method: "post",
+      method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(createTagData),
+      body: JSON.stringify({tags: createTagData}),
     });
     if (response.ok) {
-      const newTag = await response.json();
-      dispatch(actionCreateSingleTag(newTag.Tags));
-      return newTag;
+      const newTags = await response.json();
+      dispatch(actionCreateSingleTag(newTags.Tags));
+      return newTags;
     }
   };
 
@@ -205,11 +205,11 @@ export const thunkCreateSingleComment =
     const response = await fetch(`/api/photos/${photoId}/comments`, {
       method: "post",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(createCommentData),
+      body: JSON.stringify({comment: createCommentData}),
     });
     if (response.ok) {
       const newComment = await response.json();
-      dispatch(actionCreateSinglePhoto(newComment));
+      dispatch(actionCreateSingleComment(newComment));
       return newComment;
     }
   };
@@ -374,9 +374,9 @@ const photosReducer = (state = initialState, action) => {
       );
       newState.singlePhotoDetails.Tags = createSingleTag_NewCopyTagsObj;
       // add new tag
-      newState.singlePhotoDetails.Tags[action.payload.id] = {
-        ...action.payload,
-      };
+      action.payload.forEach(tag => {
+        newState.singlePhotoDetails.Tags[tag.id] = tag
+      });
       return newState;
 
     case PHOTOS_DELETE_SINGLE_TAG:
@@ -418,6 +418,7 @@ const photosReducer = (state = initialState, action) => {
       newState.singlePhotoDetails.Comments =
         createSingleComment_NewCopyCommentsObj;
       // add new comment
+      console.log('payload ---------------------', action.payload)
       newState.singlePhotoDetails.Comments[action.payload.id] = {
         ...action.payload,
       };
