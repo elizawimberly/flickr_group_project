@@ -40,7 +40,7 @@ const NavBarMain = () => {
 
         <div className='nav-bar-right-B'>
           <div>
-            <NavLink to='/upload' exact={true}>
+            <NavLink to='/photos/upload' exact={true}>
               <i class="fa-solid fa-cloud" id="navbar-upload-photo-button"></i>
             </NavLink>
           </div>

@@ -117,6 +117,10 @@ function App() {
           <User />
         </ProtectedRoute> */}
 
+        <Route>
+          Page Not Found
+        </Route>
+
 
       </Switch>
 

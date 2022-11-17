@@ -19,6 +19,8 @@ function PhotoDetailsPage() {
   const photosState = useSelector((state) => state.photos);
 
   /************ key into pertinent values ************/
+  // user
+  const user = sessionState.user
   // photo
   const photo = photosState.singlePhotoDetails;
   // comments
@@ -38,6 +40,33 @@ function PhotoDetailsPage() {
   }, [dispatch]);
 
   /************* conditional components **************/
+  let photostreamButton = (
+    <></>
+  )
+  let updatePhotoButtons = (
+    <></>
+  )
+  if (user) {
+    photostreamButton = (
+      <NavLink to="/photostream" id="back-to-photostream">
+        <i class="fa-solid fa-arrow-left-long"></i> Photostream
+      </NavLink>
+    )
+    updatePhotoButtons = (
+      <>
+        <div>
+          <NavLink to={`/photos/${photoId}/edit`} id="photo-page-edit-button">
+            <i class="fa-solid fa-pen"></i>
+          </NavLink>
+        </div>
+
+        <div id="photo-page-delete-button">
+          <i class="fa-solid fa-trash" onClick={deletePhoto}></i>
+        </div>
+      </>
+    )
+  }
+
   // render tag components if current user === photo.userId
 
   /***************** handle events *******************/
@@ -64,9 +93,7 @@ function PhotoDetailsPage() {
 
           <div className="top-half-section-A">
             <div>
-              <NavLink to="/photostream" id="back-to-photostream">
-              <i class="fa-solid fa-arrow-left-long"></i> Back to photostream
-              </NavLink>
+              { photostreamButton }
             </div>
           </div>
 
@@ -85,15 +112,7 @@ function PhotoDetailsPage() {
           </div>
 
           <div className="top-half-section-C">
-            <div>
-              <NavLink to={`/photos/${photoId}/edit`} id="photo-page-edit-button">
-                <i class="fa-solid fa-pen"></i>
-              </NavLink>
-            </div>
-
-            <div id="photo-page-delete-button">
-              <i class="fa-solid fa-trash" onClick={deletePhoto}></i>
-            </div>
+            { updatePhotoButtons }
           </div>
 
         </div>

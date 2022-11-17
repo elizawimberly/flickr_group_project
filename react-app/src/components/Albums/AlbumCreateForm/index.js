@@ -18,7 +18,7 @@ function AlbumCreateForm() {
     const userPhotos = useSelector(state => Object.values(state.photos.userPhotos))
 
     /****************** manage state *******************/
-    const [name, setName] = useState('new album')
+    const [name, setName] = useState('')
     const [about, setAbout] = useState('')
     const [submitted, setSubmitted] = useState(false)
     const [validationErrors, setValidationErrors] = useState([])
@@ -129,23 +129,25 @@ function AlbumCreateForm() {
                                                     }}
                                                     ></input>
 
-                                                <img
-                                                    src={photo.url}
-                                                    alt=''
-                                                    className="photo-item-thumbnail"
-                                                    id={photos.find(e => e === photo.id) ? 'photo-checked' : 'photo-not-checked'}
-                                                    key={photo.id}
-                                                    // onClick={() => {
-                                                        //     let currentPhotos = [...photos]
-                                                        //     if (currentPhotos.find(e => e === photo.id)) {
-                                                            //         let i = currentPhotos.findIndex(e => e === photo.id)
-                                                            //         currentPhotos.splice(i, 1)
-                                                            //     } else {
+                                                    <div>
+                                                        <img
+                                                            src={photo.url}
+                                                            alt=''
+                                                            className="photo-item-thumbnail"
+                                                            id={photos.find(e => e === photo.id) ? 'photo-checked' : 'photo-not-checked'}
+                                                            key={photo.id}
+                                                            // onClick={() => {
+                                                                //     let currentPhotos = [...photos]
+                                                                //     if (currentPhotos.find(e => e === photo.id)) {
+                                                                //         let i = currentPhotos.findIndex(e => e === photo.id)
+                                                                //         currentPhotos.splice(i, 1)
+                                                                //     } else {
                                                                 //         currentPhotos.push(photo.id)
                                                                 //     }
                                                                 //     setPhotos(currentPhotos)
-                                                                // }}
-                                                                ></img>
+                                                            // }}
+                                                        ></img>
+                                                    </div>
 
                                                 <div className="photo-item-description">
                                                     <p className='photo-item-name'>{photo.name}</p>
@@ -157,14 +159,14 @@ function AlbumCreateForm() {
 
                         </div>
 
-                        { validationErrors && submitted && (
-                            <ul className='create-event-errors'>
-                                {validationErrors.map((error, idx) => (
-                                    <li key={idx}>{error}</li>
-                                    ))}
-                            </ul>
-                        )}
-                    </div>
+                            { validationErrors && submitted && (
+                                <ul className='create-event-errors'>
+                                    {validationErrors.map((error, idx) => (
+                                        <li key={idx}>{error}</li>
+                                        ))}
+                                </ul>
+                            )}
+                        </div>
                 </div>
 
                 {/* <div className="album-form-bottom-sub-container">
