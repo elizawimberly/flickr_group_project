@@ -173,15 +173,15 @@ function PhotoDetailsPage() {
               </div>
 
               <div className="tags-container">
-                <div>Tags</div>
-                <TagCreateFormModal />
+                <div className="tags-container-title">Tags</div>
 
-                <div className="tags-display">
-                  {tags &&
-                    tags.map((tag) => (
-                      <div className="display-tag">{tag.tag}</div>
-                    ))}
+                <div className="display-tag-container">
+                  {tags && tags.map((tag) => (
+                        <div className="display-tag">{tag.tag}</div>
+                      ))}
                 </div>
+
+                <TagCreateFormModal />
               </div>
 
           </div>
