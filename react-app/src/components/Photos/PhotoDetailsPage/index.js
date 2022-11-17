@@ -173,7 +173,7 @@ function PhotoDetailsPage() {
                   <div className="comment-label">comments</div>
                 </div>
                 <div className="photo-stats">
-                  <div>{photo && `Uploaded on ${convertDate(photo.takenOn)}`}</div>
+                  <div>Uploaded on {photo.takenOn && convertDate(photo.takenOn)}</div>
                 </div>
               </div>
 
