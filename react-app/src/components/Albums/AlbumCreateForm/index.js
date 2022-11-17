@@ -77,8 +77,8 @@ function AlbumCreateForm() {
                     <div className='album-photo-wrapper'>
                         {userPhotos.map(photo => {
                             if(!photo.albumId){
-                           return ( <div className='album-photo-div'>
-                                <img src={photo.url} alt='' id={photo.id} className='not-checked' key={photo.id} onClick={() => {
+                           return ( <div id={photo.id} className='album-photo-container'>
+                           <input className='Checkbox' type='checkbox' onChange={()=> {
                                 let currentPhotos = [...photos]
                                 if(currentPhotos.find(e => e === photo.id)) {
                                     let i = currentPhotos.findIndex(e => e === photo.id)
@@ -87,12 +87,18 @@ function AlbumCreateForm() {
                                     currentPhotos.push(photo.id)
                                 }
                                 setPhotos(currentPhotos)
-                                if(document.getElementById(photo.id).className === 'checked')
-                                    document.getElementById(photo.id).className = 'not-checked'
-                                else
-                                    document.getElementById(photo.id).className = 'checked'
-                                }} />
-                           </div>
+                           }} checked={photos.find(e => e === photo.id)}/>
+                           <img src={photo.url} alt='' className={photos.find(e => e === photo.id) ? 'checked' : 'not-checked'} key={photo.id} onClick={() => {
+                           let currentPhotos = [...photos]
+                           if(currentPhotos.find(e => e === photo.id)) {
+                               let i = currentPhotos.findIndex(e => e === photo.id)
+                               currentPhotos.splice(i, 1)
+                           } else {
+                               currentPhotos.push(photo.id)
+                           }
+                           setPhotos(currentPhotos)
+                           }} />
+                      </div>
                             )
                             }}
                         )}
