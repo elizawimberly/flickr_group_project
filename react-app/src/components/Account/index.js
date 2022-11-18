@@ -50,7 +50,7 @@ function Account() {
                         </div>
                         <div className="account-profile-names-container">
                             {/* <h1 id="banner-user-full-name">{sessionUser.firstName} {sessionUser.lastName}</h1> */}
-                            <h1 id="banner-user-full-name">{sessionUser.first_name} {sessionUser.last_name}</h1>
+                            <h1 id="banner-user-full-name">{sessionUser.firstName} {sessionUser.lastName}</h1>
                             <p id="banner-user-username">{sessionUser.username}</p>
                         </div>
                     </div>
