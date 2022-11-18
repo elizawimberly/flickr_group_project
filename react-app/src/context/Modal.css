@@ -21,6 +21,12 @@
 #modal-content {
   position: absolute;
   background-color:white;
+  border-radius: 8px;
+
+  min-width: 500px;
+  max-width: 100%;
+  min-height: 300px;
+  max-height: 100%;
 }
 
 .modal-button {
@@ -32,5 +38,63 @@
   color: white;
   font-weight: 900;
   /* margin-top: 30px; */
+  cursor: pointer;
+}
+
+
+/*
+following properties are imported by
+tags: create + delete
+comments: create + delete
+*/
+.modal-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  text-align: center;
+}
+
+.modal-title {
+  font-size: 20px;
+}
+
+.modal-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.modal-display-content{
+  margin-bottom: 20px;
+}
+
+.modal-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.modal-textarea-input-field {
+  outline:none;
+  min-width: 380px;
+  max-width: 380px;
+  min-height: 150px;
+  max-height: 150px;
+  margin-bottom: 20px;
+}
+
+.modal-button {
+  height: 24px;
+  width: 120px;
+
+  border: none;
+  border-radius: 0.25rem;
+  padding-right: 10px;
+
+  background-color: #0362db;
+  color: #fff;
+  font-weight: 900;
   cursor: pointer;
 }
