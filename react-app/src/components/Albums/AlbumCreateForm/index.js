@@ -38,6 +38,7 @@ function AlbumCreateForm() {
         e.preventDefault()
 
         let errors = [];
+        let newAlbum
 
         setSubmitted(true)
 
@@ -47,7 +48,7 @@ function AlbumCreateForm() {
         if (errors.length >= 1)
             setValidationErrors(errors);
         else
-            dispatch(thunkCreateSingleAlbum(name, about, photos.toString()))
+            newAlbum = dispatch(thunkCreateSingleAlbum(name, about, photos.toString()))
             .catch(async (res) => {
                 const data = await res.json();
                 if(data && data.errors) setValidationErrors(data.errors)
@@ -56,7 +57,7 @@ function AlbumCreateForm() {
         if (errors.length <= 0) {
             setName('')
             setAbout('')
-            history.push('/')
+            history.push(`/albums/${newAlbum.id}`)
         }
     }
 
