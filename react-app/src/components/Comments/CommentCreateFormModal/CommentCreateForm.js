@@ -30,6 +30,9 @@ function CommentCreateForm({onClose}) {
                      name="comment"
                      placeholder="Add Comment"
                      onChange={(e) => setComment(e.target.value)}
+                     required={true}
+                     minLength={2}
+                     maxLength={50}
                      value={comment}
                      />
                 </label>
