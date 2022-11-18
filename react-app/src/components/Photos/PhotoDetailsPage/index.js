@@ -93,7 +93,9 @@ function PhotoDetailsPage() {
           }}
         >
           <div className="top-half-section-A">
-            <div>{photostreamButton}</div>
+            {user?.id === photo?.userId && (
+                    <div>{photostreamButton}</div>
+            )}
           </div>
 
           <div className="top-half-section-B">
@@ -113,8 +115,9 @@ function PhotoDetailsPage() {
               <i class="fa-solid fa-chevron-right"></i>
             </div> */}
           </div>
-
-          <div className="top-half-section-C">{updatePhotoButtons}</div>
+            {user?.id === photo?.userId && (
+              <div className="top-half-section-C">{updatePhotoButtons}</div>
+            )}
         </div>
 
         <div className="bottom-half">
