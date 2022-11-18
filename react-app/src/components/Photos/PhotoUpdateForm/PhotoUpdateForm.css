@@ -51,7 +51,7 @@
 }
 
 .inputFieldTypeText {
-  min-height: 25px;
+  min-height: 50px;
   width: 250px;
 
   font-size: 14px;
@@ -64,7 +64,12 @@
 
   color: #fff;
   padding-left: 15px;
+
+  /* inline-size: 150px;
+  overflow-wrap: break-word; */
+  overflow: hidden;
 }
+
 #input-photo-name {
   font-size: 18px;
 }
