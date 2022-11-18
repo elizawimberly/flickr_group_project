@@ -20,6 +20,7 @@ import img16 from '../../assets/carousel-images/landing-carousel-16.jpeg'
 import img17 from '../../assets/carousel-images/landing-carousel-17.jpeg'
 import { useState } from "react";
 import './Landing.css'
+import FooterMain from "../Footer/FooterMain";
 // import { carousel } from '../../component-resources'
 
 
@@ -30,13 +31,13 @@ function LandingNoSession() {
     let [count, setCount] = useState(0)
     console.log('HIT ME BABY ONE MORE TIME', img)
     console.log('BUSSIN', count)
-    
-    
-    useEffect(() => { 
-        const interval = setInterval(() => carousel(), 5000); 
-        return () => clearInterval(interval); 
-    }, [img, count]); 
-    
+
+
+    useEffect(() => {
+        const interval = setInterval(() => carousel(), 5000);
+        return () => clearInterval(interval);
+    }, [img, count]);
+
     function carousel() {
         console.log('HITTING THIS SHIT')
         const images = [
@@ -56,7 +57,7 @@ function LandingNoSession() {
             img14,
             img15,
             img16,
-            img17           
+            img17
         ]
         setImg(images[count])
         setCount(count + 1)
@@ -64,34 +65,34 @@ function LandingNoSession() {
             setCount(0)
         }
         }
-    
+
     return (
-        <div className='page-wrapper-container'>
-            {img && (
-                <div>
-                    <div className="background-image-container">
-                <img className="background-image" src={img} alt=''></img>
+        <>
+            <div className='page-wrapper-container'>
+                {img && (
+                    <div>
+                        <div className="background-image-container">
+                    <img className="background-image" src={img} alt=''></img>
+                </div>
+
+
+                <div className="landing-no-session-component">
+                    <div className="landing-no-session-text-box-container">
+                        <h1>Find your inspiration.</h1>
+                        <h2>Join the Flare community, home to tens of billions of photos and 2 million groups.</h2>
+
+                        <NavLink to="/explore">
+                        <button id="landing-explore-button" type="submit">Explore</button>
+                        </NavLink>
+                    </div>
+                </div>
+                    </div>
+                )}
             </div>
-
-
-            <div className="landing-no-session-component">
-                <div className="landing-no-session-text-box-container">
-                    <h1>Find your inspiration.</h1>
-                    <h2>Join the Flare community, home to tens of billions of photos and 2 million groups.</h2>
-
-                    <NavLink to="/explore">
-                    <button id="landing-explore-button" type="submit">Explore</button>
-                    </NavLink>
-                </div>
-            </div> 
-                </div>
-            )}
-           
-
-        </div>
+            <FooterMain />
+        </>
     )
 }
 
 
 export default LandingNoSession
-
