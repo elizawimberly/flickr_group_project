@@ -51,6 +51,7 @@ class Photo(db.Model):
             return {
                 'id': self.id,
                 'userId': self.user_id,
+                'User': self.user.to_dict(),
                 'albumId': self.album_id,
                 'url': self.url,
                 'name': self.name,
@@ -63,6 +64,7 @@ class Photo(db.Model):
             return {
                 'id': self.id,
                 'userId': self.user_id,
+                'User': self.user.to_dict(),
                 'albumId': self.album_id,
                 'url': self.url,
                 'name': self.name,

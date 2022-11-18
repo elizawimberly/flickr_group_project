@@ -131,8 +131,8 @@ function PhotoDetailsPage() {
                 ></img>
               </div>
               <div className="photo-blurb-about-container">
-                <div className="photo-blurb-photographer">Demo User</div>
-                {/* <div className="photo-blurb-photographer">{user.firstName} {user.lastName}</div> */}
+                {/* <div className="photo-blurb-photographer">{photo.User.username}</div> */}
+                <div className="photo-blurb-photographer">{user.firstName} {user.lastName}</div>
                 <div className="photo-blurb-name">{photo && photo.name}</div>
                 <div className="photo-blurb-about">{photo && photo.about}</div>
               </div>
@@ -172,7 +172,7 @@ function PhotoDetailsPage() {
               </div>
               <div className="photo-stats">
                 <div>
-                  Uploaded on {photo.takenOn && convertDate(photo.takenOn)}
+                  Uploaded on {photo.createdAt && convertDate(photo.createdAt)}
                 </div>
               </div>
             </div>

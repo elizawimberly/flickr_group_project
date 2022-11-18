@@ -37,6 +37,7 @@ function CommentCreateForm({onClose}) {
                             placeholder="Add a comment"
                             onChange={(e) => setComment(e.target.value)}
                             required={true}
+                            minLength={2}
                             maxLength={500}
                             value={comment}
                             ></textarea>

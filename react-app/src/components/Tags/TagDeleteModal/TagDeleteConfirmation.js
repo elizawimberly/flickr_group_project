@@ -18,7 +18,7 @@ function TagDeleteConfirmation({onClose, tag}) {
     <div className='page-wrapper-container'>
       <div className='modal-container'>
 
-            <p className='modal-title'>Are you sure you want to delete this comment?</p>
+            <p className='modal-title'>Are you sure you want to delete this tag?</p>
 
             <div className='modal-body'>
 
