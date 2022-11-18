@@ -68,18 +68,21 @@ function PhotoUpdateForm() {
       if (albumId === null || albumId === undefined) setAlbumId(photo.albumId);
       let takenDate = new Date(photo.takenOn);
       let takenYear = takenDate.getFullYear();
-      let takenMonth = takenDate.getMonth();
+      let takenMonth = takenDate.getMonth() + 1;
       let takenDay = takenDate.getDate();
+      console.log(takenDate)
       if (takenMonth < 10) takenMonth = `0${takenMonth}`;
       if (takenDay < 10) takenDay = `0${takenDay}`;
       if (takenOn === null || takenOn === undefined)
         setTakenOn(`${takenYear}-${takenMonth}-${takenDay}`);
     }
+    console.log(takenOn)
   }, [dispatch, photo.name, name, about, url, albumId, photoId, takenOn, album, albumName]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     let errors = [];
+    console.log('TAKENON DATE', takenOn)
     if (!name) errors.push("Name needs to be between 2 and 50 characters.");
     if (!about) errors.push("About needs to be between 10 and 500 characters.");
     if (!url) errors.push("You must enter a valid url");

@@ -133,36 +133,7 @@ def edit_photo(id):
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         data = form.data
-        tag_list = []
-        tag_list_tags = data['tags'].split()
-        if data['tags']:
-            for tag in tag_list_tags:
-                old_tag = Tag.query.filter(Tag.tag == tag).first()
-                if old_tag:
-                    tag_list.append(old_tag)
-                else:
-                    new_tag = Tag(
-                        tag = tag
-                    )
-                    db.session.add(new_tag)
-                    db.session.commit()
-                    newer_tag = Tag.query.filter(Tag.tag == tag).first()
-                    tag_list.append(newer_tag)
-
-
-
-        if data['tags'] and not data['albumId']:
-            photo.user_id = current_user.id
-            photo.url = data['url']
-            photo.name = data['name']
-            photo.about = data['about']
-            photo.taken_on = data['takenOn']
-            photo.private = data['private']
-            photo.tags = tag_list
-
-            db.session.commit()
-            return jsonify(photo.to_dict())
-        if data['albumId'] and not data['tags']:
+        if data['albumId']:
             photo.user_id = current_user.id
             photo.album_id = data['albumId']
             photo.url = data['url']
@@ -171,17 +142,6 @@ def edit_photo(id):
             photo.taken_on = data['takenOn']
             photo.private = data['private']
 
-            db.session.commit()
-            return jsonify(photo.to_dict())
-        if data['albumId'] and data['tags']:
-            photo.user_id = current_user.id
-            photo.album_id = data['albumId']
-            photo.url = data['url']
-            photo.name = data['name']
-            photo.about = data['about']
-            photo.taken_on = data['takenOn']
-            photo.private = data['private']
-            photo.tags = tag_list
             db.session.commit()
             return jsonify(photo.to_dict())
         else:
