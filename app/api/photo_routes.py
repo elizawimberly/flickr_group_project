@@ -133,10 +133,6 @@ def edit_photo(id):
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         data = form.data
-<<<<<<< HEAD
-
-        if data['albumId']:
-=======
         tag_list = []
         tag_list_tags = data['tags'].split()
         if data['tags']:
@@ -167,7 +163,6 @@ def edit_photo(id):
             db.session.commit()
             return jsonify(photo.to_dict())
         if data['albumId'] and not data['tags']:
->>>>>>> refs/remotes/origin/dev1
             photo.user_id = current_user.id
             photo.album_id = data['albumId']
             photo.url = data['url']
@@ -178,8 +173,6 @@ def edit_photo(id):
 
             db.session.commit()
             return jsonify(photo.to_dict())
-<<<<<<< HEAD
-=======
         if data['albumId'] and data['tags']:
             photo.user_id = current_user.id
             photo.album_id = data['albumId']
@@ -191,7 +184,6 @@ def edit_photo(id):
             photo.tags = tag_list
             db.session.commit()
             return jsonify(photo.to_dict())
->>>>>>> refs/remotes/origin/dev1
         else:
             photo.user_id = current_user.id
             photo.url = data['url']
