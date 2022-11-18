@@ -131,11 +131,43 @@ def edit_photo(id):
     photo = Photo.query.get(id)
     form = PhotoForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    print(form.data)
     if form.validate_on_submit():
         data = form.data
+<<<<<<< HEAD
 
         if data['albumId']:
+=======
+        tag_list = []
+        tag_list_tags = data['tags'].split()
+        if data['tags']:
+            for tag in tag_list_tags:
+                old_tag = Tag.query.filter(Tag.tag == tag).first()
+                if old_tag:
+                    tag_list.append(old_tag)
+                else:
+                    new_tag = Tag(
+                        tag = tag
+                    )
+                    db.session.add(new_tag)
+                    db.session.commit()
+                    newer_tag = Tag.query.filter(Tag.tag == tag).first()
+                    tag_list.append(newer_tag)
+
+
+
+        if data['tags'] and not data['albumId']:
+            photo.user_id = current_user.id
+            photo.url = data['url']
+            photo.name = data['name']
+            photo.about = data['about']
+            photo.taken_on = data['takenOn']
+            photo.private = data['private']
+            photo.tags = tag_list
+
+            db.session.commit()
+            return jsonify(photo.to_dict())
+        if data['albumId'] and not data['tags']:
+>>>>>>> refs/remotes/origin/dev1
             photo.user_id = current_user.id
             photo.album_id = data['albumId']
             photo.url = data['url']
@@ -146,6 +178,20 @@ def edit_photo(id):
 
             db.session.commit()
             return jsonify(photo.to_dict())
+<<<<<<< HEAD
+=======
+        if data['albumId'] and data['tags']:
+            photo.user_id = current_user.id
+            photo.album_id = data['albumId']
+            photo.url = data['url']
+            photo.name = data['name']
+            photo.about = data['about']
+            photo.taken_on = data['takenOn']
+            photo.private = data['private']
+            photo.tags = tag_list
+            db.session.commit()
+            return jsonify(photo.to_dict())
+>>>>>>> refs/remotes/origin/dev1
         else:
             photo.user_id = current_user.id
             photo.url = data['url']

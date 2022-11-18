@@ -3,7 +3,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { Link, useParams, useHistory } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 // local files
 import {
   thunkUpdateSingleAlbum,
@@ -40,7 +40,7 @@ function AlbumUpdateForm() {
 
   useEffect(() => {
     dispatch(thunkReadSingleAlbumDetails(albumId));
-  }, [dispatch]);
+  }, [dispatch, albumId]);
 
   useEffect(() => {
     dispatch(thunkReadAllPhotosByUser());
@@ -51,7 +51,7 @@ function AlbumUpdateForm() {
       setPhotos(photoList);
       setLoaded(true);
     }
-  }, [dispatch, album, albumId, name, about, loaded]);
+  }, [dispatch, album, albumId, name, about, loaded, albumPhotos]);
 
   /***************** handle events *******************/
   const history = useHistory();
@@ -184,6 +184,7 @@ function AlbumUpdateForm() {
                           </div>
                         );
                       }
+                    else return <></>
                     })}
                 </div>
 

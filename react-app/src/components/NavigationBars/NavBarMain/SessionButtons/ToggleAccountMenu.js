@@ -1,7 +1,7 @@
 /******************************** IMPORTS ********************************/
 // libraries
 import React, { useState, useEffect } from "react";
-import { NavLink, useHistory, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 // local files
 import './SessionButtons.css'
@@ -47,7 +47,7 @@ function ToggleAccountMenu({ user }) {
     /**************** render component *****************/
     return (
         <>
-        <img src={profilePic} className="navBar-profile-pic" onClick={openMenu}></img>
+        <img src={profilePic} alt='profile' className="navBar-profile-pic" onClick={openMenu}></img>
 
         {showMenu && (
             <div className="dropdown-menu" id="account-dropdown-menu">

@@ -125,7 +125,6 @@ export const thunkReadAllPhotos = () => async (dispatch) => {
 
 export const thunkReadAllPhotosByUser = () => async (dispatch) => {
   const response = await fetch(`/api/photos/current`);
-  console.log("response:", response);
   if (response.ok) {
     const userPhotos = await response.json();
     dispatch(actionReadAllPhotosByUser(userPhotos.Photos));

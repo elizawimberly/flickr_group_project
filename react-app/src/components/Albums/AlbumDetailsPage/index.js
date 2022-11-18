@@ -31,7 +31,7 @@ function AlbumDetailsPage() {
 
     useEffect(()=> {
         dispatch(thunkReadSingleAlbumDetails(albumId))
-    },[dispatch])
+    },[dispatch, albumId])
 
     /****************** manage state *******************/
     let [photoCardSize, setPhotoCardSize] = useState('albumDetails-photo-card-small')

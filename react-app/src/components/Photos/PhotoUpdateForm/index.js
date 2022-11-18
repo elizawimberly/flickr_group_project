@@ -2,7 +2,6 @@
 
 import React from "react";
 import {
-  thunkReadAllPhotos,
   thunkReadSinglePhotoDetails,
   thunkUpdateSinglePhoto,
 } from "../../../store/photosReducer";
@@ -37,7 +36,6 @@ function PhotoUpdateForm() {
   const [takenOn, setTakenOn] = useState(null);
   const [albumId, setAlbumId] = useState(null);
   const [loaded, setLoaded] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
   const [dropDown, setDropDown] = useState('album-dropdown-hide')
   const [albumName, setAlbumName] = useState(null)
 
@@ -81,7 +79,6 @@ function PhotoUpdateForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setSubmitted(true)
     let errors = [];
     if (!name) errors.push("Name needs to be between 2 and 50 characters.");
     if (!about) errors.push("About needs to be between 10 and 500 characters.");

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import background from '../../assets/background-landing-no-session.jpg'
 import img1 from '../../assets/carousel-images/landing-carousel-1.jpg'
@@ -29,17 +29,9 @@ function LandingNoSession() {
     // let landingNoSession = true;
     let [img, setImg] = useState(background)
     let [count, setCount] = useState(0)
-    console.log('HIT ME BABY ONE MORE TIME', img)
-    console.log('BUSSIN', count)
 
 
-    useEffect(() => {
-        const interval = setInterval(() => carousel(), 5000);
-        return () => clearInterval(interval);
-    }, [img, count]);
-
-    function carousel() {
-        console.log('HITTING THIS SHIT')
+    const carousel = useCallback(() => {
         const images = [
             img1,
             img2,
@@ -64,7 +56,13 @@ function LandingNoSession() {
         if(count + 1 === images.length ) {
             setCount(0)
         }
-        }
+        },[count])
+
+    useEffect(() => {
+        const interval = setInterval(() => carousel(), 5000);
+        return () => clearInterval(interval);
+    }, [img, count, carousel]);
+
 
     return (
         <>
