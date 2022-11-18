@@ -400,7 +400,7 @@ const photosReducer = (state = initialState, action) => {
       );
       newState.singlePhotoDetails.Tags = deleteSingleTag_NewCopyTagsObj;
       // remove tag
-      delete newState.singlePhotoDetails.Tags[action.payload.id];
+      delete newState.singlePhotoDetails.Tags[action.payload];
       return newState;
 
     // comments

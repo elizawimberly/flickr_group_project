@@ -9,6 +9,7 @@ import { thunkDeleteSingleComment, thunkDeleteSinglePhoto, thunkReadSinglePhotoD
 import "./PhotoDetailsPage.css";
 import CommentCreateFormModal from '../../Comments/CommentCreateFormModal'
 import TagCreateFormModal from "../../Tags/TagCreateFormModal";
+import TagDeleteModal from "../../Tags/TagDeleteFormModal";
 import buddyIcon from "../../../assets/buddyicon.png"
 import { convertDate } from "../../../component-resources";
 
@@ -184,7 +185,11 @@ function PhotoDetailsPage() {
                 <div className="tags-display">
                   {tags &&
                     tags.map((tag) => (
-                      <div className="display-tag">{tag.tag}</div>
+                      <div className="display-tag">
+                        {tag.tag}
+                        <TagDeleteModal tag={tag}/>
+                        </div>
+
                     ))}
                 </div>
               </div>
