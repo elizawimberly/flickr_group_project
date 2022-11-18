@@ -154,6 +154,9 @@
 .view-uploaded-image > img {
   object-fit: contain;
   max-width: 1000px;
+  /* ******* */
+  max-width: 500px;
+  max-height: 600px;
 }
 
 .album-dropdown {
