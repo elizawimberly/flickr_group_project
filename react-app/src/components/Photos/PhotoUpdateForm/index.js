@@ -1,3 +1,4 @@
+/******************************** IMPORTS ********************************/
 import React from "react";
 import {
   thunkReadAllPhotos,
@@ -10,6 +11,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { thunkReadAllAlbums } from "../../../store/albumsReducer";
 import "./PhotoUpdateForm.css";
 
+
+/******************************* COMPONENT *******************************/
 function PhotoUpdateForm() {
   const sessionUser = useSelector((state) => state.session.user);
   const userAlbums = useSelector((state) =>
@@ -101,12 +104,11 @@ function PhotoUpdateForm() {
   };
 
   return (
-    <div className="page-wrapper-container">
       <div className="page-wrapper-container">
         {photo.name && loaded && (
           <div className="PhotoCreateForm-component">
             <div className="photo-form-container">
-              <form className="create-spot-form" onSubmit={handleSubmit}>
+            <form className="photo-form-container" onSubmit={handleSubmit}>
                 <div className="mock-upload-navbar">
                   <button
                     className="photo-submit-button"
@@ -118,11 +120,12 @@ function PhotoUpdateForm() {
                 </div>
                 <div className="photo-form-top-sub-container">
                   <div className="photo-form-top-left-sub-container">
-                    <div>Editing 1 photo:</div>
+                    <div>Editing {photo && photo.name}</div>
 
                     <label>
                       <input
                         className="inputFieldTypeText"
+                        id="input-photo-name"
                         type="text"
                         name="name"
                         placeholder="Add a title"
@@ -156,6 +159,7 @@ function PhotoUpdateForm() {
                     <label>
                       <input
                         type="date"
+                        className="inputFieldTypeText"
                         id="takenOn"
                         name="takenOn"
                         onChange={(e) => setTakenOn(e.target.value)}
@@ -179,7 +183,7 @@ function PhotoUpdateForm() {
                       {userAlbums.length >= 1 && (
                         <div className="album-dropdown">
                           <span className="album-dropdown-span">
-                            Select a Album to add your photo to.
+                          Add to albums
                           </span>
                           <div className="dropdown-content">
                             {userAlbums.map((album) => {
@@ -209,7 +213,14 @@ function PhotoUpdateForm() {
                         </>
                       )}
                     </label>
-                  </div>
+
+                    <div className="errors-container">
+                      {validationErrors && validationErrors.map((error, ind) => (
+                      <div className="form-errors" key={ind}>{error}</div>))}
+                    </div>
+
+
+                </div>
                 </div>
               </form>
 
@@ -223,7 +234,6 @@ function PhotoUpdateForm() {
             </div>
           </div>
         )}
-      </div>
     </div>
   );
 }

@@ -1,15 +1,16 @@
 .AlbumDetailsPage-component {
+    width: 100%;
     max-width: 1536px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     align-self: center;
-    padding: 80px 100px 0px 100px;
+    padding: 30px;
 }
 
 .banner-photo-container{
-    width: 1536px;
+    width: 100%;
     height: 300px;
     display: flex;
     flex-direction: column;

@@ -225,8 +225,6 @@
   padding: 3px 5px;
   background: #CFD6D9;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
   color: #232326;
   border-radius: 4px;
   min-width: fit-content;
