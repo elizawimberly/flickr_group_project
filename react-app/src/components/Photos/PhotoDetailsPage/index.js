@@ -172,6 +172,10 @@ function PhotoDetailsPage() {
                     </div>
                   </div>
                 ))}
+                <br/>
+                <div>{!user && (
+                  <div>You must be logged in to leave a comment.</div>
+                )}</div>
             </div>
 
             <div className="add-comment-section">
