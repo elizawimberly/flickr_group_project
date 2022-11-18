@@ -18,7 +18,6 @@ function Photostream() {
   /****************** access store *******************/
   const sessionState = useSelector((state) => state.session)
   const photosState = useSelector((state) => state.photos);
-  console.log("photosState", photosState)
 
   /************ key into pertinent values ************/
   const sessionUser = sessionState.user
@@ -54,7 +53,7 @@ function Photostream() {
             </NavLink>
           </div>
         </div>
-        <img src={watermark} className="watermark"></img>
+        <img src={watermark} alt='watermark' className="watermark"></img>
       </div>
     )
 
@@ -64,7 +63,7 @@ function Photostream() {
       {allPhotosArr &&
         allPhotosArr.map((photo) => (
           <Link to={`/photos/${photo.id}`} key={`${photo.id}`}>
-            <img src={photo.url} className={photostreamCardSize}></img>
+            <img src={photo.url} alt={photo.name} className={photostreamCardSize}></img>
           </Link>
         ))}
       </>
