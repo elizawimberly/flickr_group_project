@@ -3,7 +3,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, Redirect } from "react-router-dom";
 // local files
 import Account from "../../Account";
 import NavBarUser from "../../NavigationBars/NavBarUser";
@@ -15,10 +15,12 @@ import watermark from "../../../assets/no-albums-watermark.jpeg"
 function Photostream() {
 
   /****************** access store *******************/
+  const sessionState = useSelector((state) => state.session)
   const photosState = useSelector((state) => state.photos);
   console.log("photosState", photosState)
 
   /************ key into pertinent values ************/
+  const sessionUser = sessionState.user
   const allPhotos = photosState.userPhotos;
   const allPhotosArr = Object.values(allPhotos);
   // Uncomment to demo conditional render:
@@ -69,6 +71,8 @@ function Photostream() {
   }
 
   /**************** render component *****************/
+  if (!sessionUser) return <Redirect to="/" />;
+
   return (
     <div className="page-wrapper-container">
 

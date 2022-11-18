@@ -55,6 +55,8 @@ function AlbumDetailsPage() {
     }
 
     /**************** render component *****************/
+    if (!sessionState.user) return <Redirect to="/" />;
+
     return (
         <div className='page-wrapper-container'>
             <div className="AlbumDetailsPage-component">
