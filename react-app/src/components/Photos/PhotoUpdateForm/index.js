@@ -177,6 +177,7 @@ function PhotoUpdateForm() {
 
                   <label>
                     <input
+                      className="inputFieldTypeText"
                       type="date"
                       id="takenOn"
                       name="takenOn"
