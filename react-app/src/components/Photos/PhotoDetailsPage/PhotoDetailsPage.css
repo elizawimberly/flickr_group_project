@@ -2,10 +2,11 @@
   /* display: inline-block; */
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  /* justify-content: center; */
   /* background-color: aqua; */
   /* max-width: 1536px; */
   margin-bottom: 30px;
+  /* height: 100vh; */
 }
 
 
@@ -14,13 +15,13 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: 1fr;
-  padding-top: 30px;
   /* width: 100%; */
   /* min-height: 500px; */
 }
 .top-half-section-A {
   width: 100vw;
   grid-row: 1 / 2;
+  margin-top: 20px;
   /* background-color: red; */
   text-indent: 10px;
 }
