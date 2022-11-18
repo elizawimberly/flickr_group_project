@@ -12,7 +12,8 @@ import {
 import "./PhotoDetailsPage.css";
 import CommentCreateFormModal from "../../Comments/CommentCreateFormModal";
 import CommentDeleteModal from "../../Comments/CommentDeleteModal";
-import TagCreateFormModal from "../../TagCreateFormModal";
+import TagCreateFormModal from "../../Tags/TagCreateFormModal";
+import TagDeleteModal from "../../Tags/TagDeleteModal";
 import buddyIcon from "../../../assets/buddyicon.png";
 import { convertDate } from "../../../component-resources";
 
