@@ -1,12 +1,12 @@
-.landing-navigation-bar {
+/* .landing-navigation-bar {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-
     width: 100%;
+    max-width: 1536px;
     height: 64px;
-}
+} */
 .navigation-bar {
     display: flex;
     flex-direction: row;
