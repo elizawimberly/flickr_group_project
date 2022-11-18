@@ -16,6 +16,7 @@ import TagCreateFormModal from "../../Tags/TagCreateFormModal";
 import TagDeleteModal from "../../Tags/TagDeleteModal";
 import buddyIcon from "../../../assets/buddyicon.png";
 import { convertDate } from "../../../component-resources";
+import FooterAccount from "../../Footer/FooterAccount";
 
 /******************************* COMPONENT *******************************/
 function PhotoDetailsPage() {
@@ -81,6 +82,7 @@ function PhotoDetailsPage() {
 
   /**************** render component *****************/
   return (
+    <>
     <div className="page-wrapper-container">
       <div className="PhotoDetailsPage-component">
         <div
@@ -195,6 +197,8 @@ function PhotoDetailsPage() {
         </div>
       </div>
     </div>
+    <FooterAccount />
+    </>
   );
 }
 

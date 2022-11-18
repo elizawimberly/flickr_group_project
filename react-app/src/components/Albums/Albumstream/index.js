@@ -11,6 +11,7 @@ import { thunkReadAllAlbums } from "../../../store/albumsReducer";
 import "./Albumstream.css";
 import { albumPlaceholderImage } from "../../../component-resources";
 import watermark from "../../../assets/no-albums-watermark.jpeg";
+import FooterAccount from "../../Footer/FooterAccount";
 
 
 /******************************* COMPONENT *******************************/
@@ -117,12 +118,15 @@ function Albumstream() {
   if (!sessionUser) return <Redirect to="/" />;
 
   return (
+    <>
     <div className="page-wrapper-container">
       <Account />
       <NavBarUser />
 
       <div className="albumstream-component">{albumstreamFeed}</div>
     </div>
+    <FooterAccount />
+    </>
   );
 }
 

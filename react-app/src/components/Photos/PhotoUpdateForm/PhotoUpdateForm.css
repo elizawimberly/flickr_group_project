@@ -1,9 +1,5 @@
 /* inherits styling from AlbumCreateForm.css */
 
-.PhotoCreateForm-component {
-  margin-top: 50px;
-}
-
 .mock-upload-navbar {
   display: flex;
   justify-content: right;
@@ -92,4 +88,3 @@
   max-width: 500px;
   max-height: 600px;
 }
-

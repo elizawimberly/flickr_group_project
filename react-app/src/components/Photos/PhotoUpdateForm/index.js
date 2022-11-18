@@ -11,6 +11,7 @@ import { Redirect, useHistory, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { thunkReadAllAlbums, thunkReadSingleAlbumDetails } from "../../../store/albumsReducer";
 import "./PhotoUpdateForm.css";
+import FooterAccount from "../../Footer/FooterAccount";
 
 function PhotoUpdateForm() {
   const sessionUser = useSelector((state) => state.session.user);
@@ -128,9 +129,10 @@ function PhotoUpdateForm() {
   };
 
   return (
+    <>
     <div className="page-wrapper-container">
       {photo.name && loaded && (
-        <div className="PhotoCreateForm-component">
+        <div id="PhotoCreateForm-component">
           <div className="photo-form-container">
             <form className="photo-form-container" onSubmit={handleSubmit}>
               <div className="mock-upload-navbar">
@@ -252,6 +254,8 @@ function PhotoUpdateForm() {
         </div>
       )}
     </div>
+    <FooterAccount />
+    </>
   );
 }
 

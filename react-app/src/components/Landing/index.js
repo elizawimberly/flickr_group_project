@@ -8,6 +8,7 @@ import LandingNoSession from "./LandingNoSession";
 import LandingSession from "./LandingSession";
 import './Landing.css'
 import Explore from "../Photos/Explore"
+import FooterMain from "../Footer/FooterMain";
 
 
 /******************************* COMPONENT *******************************/
@@ -22,6 +23,7 @@ function Landing() {
 
     /**************** render component *****************/
     return (
+      <>
         <div className='page-wrapper-container'>
 
           {/* <div className="landing-component"> */}
@@ -29,6 +31,8 @@ function Landing() {
           {/* </div> */}
 
         </div>
+        <FooterMain />
+      </>
     )
 }
 
