@@ -158,7 +158,7 @@ function PhotoDetailsPage() {
             </div>
 
             <div className="add-comment-section">
-              <CommentCreateFormModal />
+              {user ? <CommentCreateFormModal /> : <></>}
             </div>
           </div>
 
