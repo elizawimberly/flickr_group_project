@@ -3,7 +3,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { Link, NavLink, useHistory } from "react-router-dom";
+import { Link, NavLink, useHistory, Redirect } from "react-router-dom";
 // local files
 import Account from "../../Account";
 import NavBarUser from "../../NavigationBars/NavBarUser";
@@ -17,9 +17,11 @@ import watermark from "../../../assets/no-albums-watermark.jpeg";
 function Albumstream() {
 
   /****************** access store *******************/
+  const sessionState = useSelector((state) => state.session)
   const albumsState = useSelector((state) => state.albums);
 
   /************ key into pertinent values ************/
+  const sessionUser = sessionState.user
   const allAlbums = albumsState.allAlbums;
   const allAlbumsArr = Object.values(allAlbums);
   // Uncomment to demo conditional render:
@@ -112,6 +114,8 @@ function Albumstream() {
   }
 
   /**************** render component *****************/
+  if (!sessionUser) return <Redirect to="/" />;
+
   return (
     <div className="page-wrapper-container">
       <Account />

@@ -103,6 +103,9 @@ function PhotoUpdateForm() {
     }
   };
 
+    /**************** render component *****************/
+    if (!sessionUser) return <Redirect to="/" />;
+
   return (
       <div className="page-wrapper-container">
         {photo.name && loaded && (
