@@ -7,7 +7,7 @@ function TagCreateFormModal() {
 
   return (
     <>
-      <button onClick={() => setShowModal(true)}>Add a Tag</button>
+      <button onClick={() => setShowModal(true)}  className="modal-button">Add a Tag</button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <TagCreateForm onClose={() => setShowModal(false)}/>

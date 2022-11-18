@@ -55,6 +55,8 @@ function AlbumDetailsPage() {
     }
 
     /**************** render component *****************/
+    if (!sessionState.user) return <Redirect to="/" />;
+
     return (
         <div className='page-wrapper-container'>
             <div className="AlbumDetailsPage-component">
@@ -85,7 +87,7 @@ function AlbumDetailsPage() {
                 <div id="banner-album-photo-count">{allPhotosArr && allPhotosArr.length} photo{allPhotosArr.length === 1 ? "" : "s"}</div>
                 <div id="banner-modify-album-buttons-container">
                     <i class="fa-solid fa-pen" onClick={editAlbum}></i>
-                    <i class="fa-solid fa-trash" onClick={deleteAlbum}></i>
+                    <i class="fa-solid fa-trash" onClick={deleteAlbum} style={{color:"white"}}></i>
                 </div>
             </div>
 

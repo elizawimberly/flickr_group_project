@@ -36,8 +36,8 @@ function PhotoCreateForm() {
   const [takenOn, setTakenOn] = useState("");
   const [albumId, setAlbumId] = useState("");
   const [submitted, setSubmitted] = useState(false);
-  const [dropDown, setDropDown] = useState('album-dropdown-hide')
-  const [albumName, setAlbumName] = useState('')
+  const [dropDown, setDropDown] = useState("album-dropdown-hide");
+  const [albumName, setAlbumName] = useState("");
   /************ reducer/API communication ************/
   const dispatch = useDispatch();
   useEffect(() => {
@@ -95,7 +95,7 @@ function PhotoCreateForm() {
       history.push("/");
     }
   };
-  console.log(validationErrors);
+
   const onError = (e) => {
     setCheckUrl(
       "https://learn.getgrav.org/user/pages/11.troubleshooting/01.page-not-found/error-404.png"
@@ -125,6 +125,9 @@ function PhotoCreateForm() {
                   placeholder="Add a title"
                   onChange={(e) => setName(e.target.value)}
                   value={name}
+                  required={true}
+                  minLength={2}
+                  maxLength={50}
                 />
                 <input
                   className="inputFieldTypeText"
@@ -133,6 +136,9 @@ function PhotoCreateForm() {
                   placeholder="Add a description"
                   onChange={(e) => setAbout(e.target.value)}
                   value={about}
+                  required={true}
+                  minLength={2}
+                  maxLength={250}
                 />
               </label>
               <label>
@@ -146,9 +152,13 @@ function PhotoCreateForm() {
                     setUrl(e.target.value);
                   }}
                   value={url}
+                  required={true}
+                  minLength={2}
+                  maxLength={250}
                 />
               </label>
-              <label>
+              <label className="taken-on-label">
+                <p>Taken On</p>
                 <input
                   type="date"
                   className="inputFieldTypeText"
@@ -157,6 +167,9 @@ function PhotoCreateForm() {
                   onChange={(e) => setTakenOn(e.target.value)}
                   value={takenOn}
                   max={date}
+                  required={true}
+                  minLength={2}
+                  maxLength={50}
                 />
               </label>
               <label>
@@ -167,16 +180,37 @@ function PhotoCreateForm() {
                   placeholder="Add tags"
                   onChange={(e) => setTags(e.target.value)}
                   value={tags}
+                  required={true}
+                  minLength={2}
+                  maxLength={50}
                 />
               </label>
-              <label className='dropdown-label'>
+              <label className="dropdown-label">
                 {userAlbums.length >= 1 && (
-                  <div className={dropDown} onClick={()=>{
-                    if(dropDown === 'album-dropdown-hide') setDropDown('album-dropdown-show')
-                    else setDropDown('album-dropdown-hide')
-                  }}>
-                    <span className={albumName ? 'inputFieldTypeText3' : 'inputFieldTypeText2'}>{albumName ? albumName : 'Add a album'}</span>
-                    <div className={dropDown === 'album-dropdown-show' ? 'dropdown-content-show' : 'dropdown-content-hide'}>
+                  <div
+                    className={dropDown}
+                    onClick={() => {
+                      if (dropDown === "album-dropdown-hide")
+                        setDropDown("album-dropdown-show");
+                      else setDropDown("album-dropdown-hide");
+                    }}
+                  >
+                    <span
+                      className={
+                        albumName
+                          ? "inputFieldTypeText3"
+                          : "inputFieldTypeText2"
+                      }
+                    >
+                      {albumName ? albumName : "Add a album"}
+                    </span>
+                    <div
+                      className={
+                        dropDown === "album-dropdown-show"
+                          ? "dropdown-content-show"
+                          : "dropdown-content-hide"
+                      }
+                    >
                       {userAlbums.map((album) => {
                         return (
                           <div
@@ -187,11 +221,11 @@ function PhotoCreateForm() {
                                 : "album-not-selected"
                             }
                             onClick={() => {
-                              setAlbumId(album.id)
-                              setAlbumName(album.name)
+                              setAlbumId(album.id);
+                              setAlbumName(album.name);
                             }}
                           >
-                            <div className='dropdown-text'>
+                            <div className="dropdown-text">
                               {album.name} photos {album.Photos.length}
                             </div>
                           </div>
@@ -206,6 +240,7 @@ function PhotoCreateForm() {
                   </>
                 )}
               </label>
+
               <div className="errors-container">
                 {submitted &&
                   validationErrors &&
@@ -216,6 +251,7 @@ function PhotoCreateForm() {
                   ))}
               </div>
             </div>
+
             <div className="photo-form-top-right-sub-container">
               {url && (
                 <div className="view-uploaded-image">

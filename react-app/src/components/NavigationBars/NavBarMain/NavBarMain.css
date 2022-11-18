@@ -1,12 +1,12 @@
-.landing-navigation-bar {
+/* .landing-navigation-bar {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-
     width: 100%;
+    max-width: 1536px;
     height: 64px;
-}
+} */
 .navigation-bar {
     display: flex;
     flex-direction: row;
@@ -32,7 +32,8 @@
     position: fixed;
     top: 0;
     z-index: 1;
-    background-color: #202122;
+    /* background-color: #202122; */
+    background-color: rgba(32,33,34,.95);
 }
 
 #navbar-main > a {

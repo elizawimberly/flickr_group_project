@@ -1,4 +1,5 @@
-*/ */ .photostream-component {
+.photostream-component {
+  width: 100%;
   max-width: 1536px;
   /* background-color: red; */
   display: flex;
@@ -7,8 +8,9 @@
   align-items: center;
   align-self: center;
   /* remove this once navbar issue fixed */
-  padding: 10px 100px 0px 100px;
-  background-color: rgb(150, 150, 226);
+  padding: 30px 100px 0px 100px;
+  /* background-color: rgb(150, 150, 226); */
+  /* background-color: red; */
 }
 
 /* ⛔️ PROPERTIES SHARED WITH ALBUMSTREAM ⛔️ */
@@ -17,7 +19,7 @@
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: 1fr;
   max-width: 1536px;
-  /* width: 100%; */
+  width: 100%;
   margin-bottom: 8px;
   margin-left: 6px;
   margin-right: 6px;

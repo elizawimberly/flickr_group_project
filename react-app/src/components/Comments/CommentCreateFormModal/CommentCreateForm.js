@@ -20,21 +20,32 @@ function CommentCreateForm({onClose}) {
 
     return (
         <div className='page-wrapper-container'>
-            <h1>Add a Comment</h1>
+            <div className='modal-container'>
 
-            <form onSubmit={createComment}>
-                <label>
-                     <input
-                     className="inputFieldTypeText"
-                     type="text"
-                     name="comment"
-                     placeholder="Add Comment"
-                     onChange={(e) => setComment(e.target.value)}
-                     value={comment}
-                     />
-                </label>
-                <button type='submit'>Submit</button>
-            </form>
+                <p className='modal-title'>Add a comment</p>
+
+                <div className='modal-body'>
+
+                    <form
+                        className='modal-form'
+                        onSubmit={createComment}>
+                        <label>
+                            <textarea
+                            className="modal-textarea-input-field"
+                            type="text"
+                            name="comment"
+                            placeholder="Add a comment"
+                            onChange={(e) => setComment(e.target.value)}
+                            required={true}
+                            maxLength={500}
+                            value={comment}
+                            ></textarea>
+                        </label>
+                        <button className="modal-button" type='submit'>Submit</button>
+                    </form>
+
+                </div>
+            </div>
         </div>
     )
 }
