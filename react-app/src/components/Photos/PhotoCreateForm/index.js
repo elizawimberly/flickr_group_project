@@ -177,7 +177,7 @@ function PhotoCreateForm() {
                     if(dropDown === 'album-dropdown-hide') setDropDown('album-dropdown-show')
                     else setDropDown('album-dropdown-hide')
                   }}>
-                    <span className={albumName ? 'inputFieldTypeText3' : 'inputFieldTypeText2'}>{albumName ? albumName : 'Add a album'}</span>
+                    <span className={albumName ? 'inputFieldTypeText3' : 'inputFieldTypeText2'}>{albumName ? albumName : 'Add an album'}</span>
                     <div className={dropDown === 'album-dropdown-show' ? 'dropdown-content-show' : 'dropdown-content-hide'}>
                       {userAlbums.map((album) => {
                         return (

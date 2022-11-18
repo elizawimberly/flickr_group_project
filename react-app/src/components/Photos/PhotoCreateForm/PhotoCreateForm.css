@@ -1,7 +1,13 @@
 /* inherits styling from AlbumCreateForm.css */
 
 .PhotoCreateForm-component {
+  /* margin-top: 0px;
+  padding-top: 0px;
+  position:fixed;
+  top: 30px; */
+  height: 100vh;
 }
+
 
 .mock-upload-navbar {
     display: flex;
@@ -55,7 +61,7 @@
     min-height: 25px;
     width: 250px;
 
-    font-size: 14px;
+    font-size: 16px;
     margin-bottom: 10px;
     padding: 16px 0px 0px 16px;
     border: none;
@@ -65,6 +71,9 @@
 
     color: #fff;
     padding-left: 15px;
+}
+.inputFieldTypeText::placeholder{
+  font-size: 16px;
 }
 #input-photo-name{
     font-size: 18px;
@@ -111,20 +120,29 @@
   max-width: 260px;
   width: 270px;
   border-bottom: 1px solid #383838;
+  font-size: 16px;
+}
+.dropdown-label > * {
+  font-size: 16px;
 }
 
 .taken-on-label {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  justify-content: center;
+  /* align-items: center; */
   min-height: 46px;
   max-width: 260px;
   width: 270px;
   color: rgb(124, 124, 124);
+  font-size: 16px;
+  text-indent: 15px;
 }
 
 .taken-on-label > p {
-  margin-left: 15px;
+  margin: 15px 0px 0px 0px;
   color: rgb(124, 124, 124);
+  font-size: 16px;
 }
 
 
