@@ -32,7 +32,8 @@
     position: fixed;
     top: 0;
     z-index: 1;
-    background-color: #202122;
+    /* background-color: #202122; */
+    background-color: rgba(32,33,34,.95);
 }
 
 #navbar-main > a {

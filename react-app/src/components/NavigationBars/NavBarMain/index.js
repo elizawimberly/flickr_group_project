@@ -74,7 +74,8 @@ const NavBarMain = () => {
     <div className='page-wrapper-container'>
 
       {/* <div className={session ? "navigation-bar" : ""}></div> */}
-      <nav className={'navigation-bar'} id={landingNoSession && landingNoSession ? "landing-no-session-navbar-main": "navbar-main"}>
+      {/* <nav className={'navigation-bar'} id={landingNoSession && landingNoSession ? "landing-no-session-navbar-main": "navbar-main"}> */}
+      <nav className={'navigation-bar'} id="navbar-main">
 
         <div class="nav-bar-left">
             <NavLink to='/' exact={true} activeClassName='active'>

@@ -158,7 +158,7 @@ function PhotoDetailsPage() {
             </div>
 
             <div className="add-comment-section">
-              <CommentCreateFormModal />
+              { user ? <CommentCreateFormModal /> : <></> }
             </div>
           </div>
 
@@ -182,8 +182,7 @@ function PhotoDetailsPage() {
                         <div className="display-tag">{tag.tag}</div>
                       ))}
                 </div>
-
-                <TagCreateFormModal />
+                { user ? <TagCreateFormModal /> : <></> }
               </div>
 
           </div>

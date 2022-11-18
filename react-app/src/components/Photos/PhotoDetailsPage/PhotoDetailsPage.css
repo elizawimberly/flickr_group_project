@@ -3,9 +3,9 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding-top: 50px;
   /* background-color: aqua; */
   /* max-width: 1536px; */
+  margin-bottom: 30px;
 }
 
 
@@ -14,6 +14,7 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: 1fr;
+  padding-top: 30px;
   /* width: 100%; */
   /* min-height: 500px; */
 }
