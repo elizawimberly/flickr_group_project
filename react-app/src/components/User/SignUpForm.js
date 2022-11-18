@@ -105,21 +105,6 @@ const SignUpForm = () => {
               <label></label>
               <input
                 type="text"
-                name="username"
-                placeholder="User name"
-                onChange={updateUsername}
-                value={username}
-                required={true}
-                minLength={2}
-                maxLength={50}
-                className="login-signup-form-input-field"
-              ></input>
-            </div>
-
-            <div>
-              <label></label>
-              <input
-                type="text"
                 name="firstName"
                 placeholder="First name"
                 onChange={updateFirstName}
@@ -150,10 +135,25 @@ const SignUpForm = () => {
               <label></label>
               <input
                 type="text"
-                name="email"
-                placeholder="Email address"
-                onChange={updateEmail}
-                value={email}
+                name="about"
+                placeholder="About yourself"
+                onChange={updateAbout}
+                value={about}
+                required={true}
+                minLength={2}
+                maxLength={500}
+                className="login-signup-form-input-field"
+              ></input>
+            </div>
+
+            <div>
+              <label></label>
+              <input
+                type="text"
+                name="username"
+                placeholder="Username"
+                onChange={updateUsername}
+                value={username}
                 required={true}
                 minLength={2}
                 maxLength={50}
@@ -165,13 +165,13 @@ const SignUpForm = () => {
               <label></label>
               <input
                 type="text"
-                name="about"
-                placeholder="About yourself"
-                onChange={updateAbout}
-                value={about}
+                name="email"
+                placeholder="Email address"
+                onChange={updateEmail}
+                value={email}
                 required={true}
                 minLength={2}
-                maxLength={500}
+                maxLength={50}
                 className="login-signup-form-input-field"
               ></input>
             </div>

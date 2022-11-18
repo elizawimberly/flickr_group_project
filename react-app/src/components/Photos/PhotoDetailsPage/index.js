@@ -9,7 +9,8 @@ import { thunkDeleteSinglePhoto, thunkReadSinglePhotoDetails } from "../../../st
 import "./PhotoDetailsPage.css";
 import CommentCreateFormModal from '../../Comments/CommentCreateFormModal'
 import CommentDeleteModal from "../../Comments/CommentDeleteModal";
-import TagCreateFormModal from "../../TagCreateFormModal";
+import TagCreateFormModal from "../../Tags/TagCreateFormModal";
+import TagDeleteModal from "../../Tags/TagDeleteModal";
 import buddyIcon from "../../../assets/buddyicon.png"
 import { convertDate } from "../../../component-resources";
 
@@ -179,7 +180,10 @@ function PhotoDetailsPage() {
 
                 <div className="display-tag-container">
                   {tags && tags.map((tag) => (
-                        <div className="display-tag">{tag.tag}</div>
+                        <div className="display-tag">
+                          {tag.tag}
+                          <TagDeleteModal tag={tag}/>
+                          </div>
                       ))}
                 </div>
 

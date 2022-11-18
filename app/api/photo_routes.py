@@ -34,7 +34,7 @@ def add_photo():
 
     form = PhotoForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-   
+
     if form.validate_on_submit():
         data = form.data
 
@@ -43,7 +43,7 @@ def add_photo():
         if data['tags']:
             print('----Hit if ONe-------')
             for tag in tag_list_tags:
-                old_tag = Tag.query.filter(Tag.tag == tag).first() 
+                old_tag = Tag.query.filter(Tag.tag == tag).first()
                 if old_tag:
                     tag_list.append(old_tag)
                 else:
@@ -53,7 +53,7 @@ def add_photo():
                     db.session.add(new_tag)
                     db.session.commit()
                     newer_tag = Tag.query.filter(Tag.tag == tag).first()
-                    tag_list.append(newer_tag) 
+                    tag_list.append(newer_tag)
 
         if data['tags'] and not data['albumId']:
             print('-------hit two-------')
@@ -149,7 +149,7 @@ def edit_photo(id):
         tag_list_tags = data['tags'].split()
         if data['tags']:
             for tag in tag_list_tags:
-                old_tag = Tag.query.filter(Tag.tag == tag).first() 
+                old_tag = Tag.query.filter(Tag.tag == tag).first()
                 if old_tag:
                     tag_list.append(old_tag)
                 else:
@@ -159,7 +159,7 @@ def edit_photo(id):
                     db.session.add(new_tag)
                     db.session.commit()
                     newer_tag = Tag.query.filter(Tag.tag == tag).first()
-                    tag_list.append(newer_tag) 
+                    tag_list.append(newer_tag)
 
         print('----tag_list----',tag_list)
 
@@ -268,8 +268,10 @@ def add_tag(id):
 @photo_routes.route('/<int:photo_id>/tags/<int:tag_id>', methods=["DELETE"])
 @login_required
 def delete_tag(photo_id, tag_id):
-    tag = tags_to_photos.query(photo_id=photo_id, tag_id=tag_id).first()
-    db.session.delete(tag)
+    photo = Photo.query.get(photo_id)
+    tag = Tag.query.get(tag_id)
+    photo.tags.remove(tag)
+    db.session.commit()
     return jsonify('Tag deleted')
 
 
