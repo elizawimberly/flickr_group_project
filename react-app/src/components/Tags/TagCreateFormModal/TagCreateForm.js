@@ -14,15 +14,14 @@ function TagCreateForm({onClose}) {
 
     const createTag = async (e) => {
         e.preventDefault()
-        await dispatch(thunkCreateSingleTag(photo.id, tags));
-        onClose()
-    }
+        const data = await dispatch(thunkCreateSingleTag(photo.id, tags));
+    };
 
 
     return (
         <div className='page-wrapper-container'>
-            <p>Tag Create Form</p>
 
+            <p>Tag Create Form</p>
             <form onSubmit={createTag}>
                 <label>
                      <input
@@ -31,6 +30,9 @@ function TagCreateForm({onClose}) {
                      name="tags"
                      placeholder="Add tags"
                      onChange={(e) => setTags(e.target.value)}
+                     required={true}
+                     minLength={2}
+                     maxLength={50}
                      value={tags}
                      />
                 </label>
