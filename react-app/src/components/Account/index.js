@@ -2,7 +2,7 @@
 // libraries
 import React from "react";
 import { useDispatch, useSelector } from 'react-redux'
-import { useEffect, useState} from 'react';
+import { useEffect} from 'react';
 // local files
 import './Account.css'
 import coverphoto from '../../assets/coverphoto.jpg'
@@ -16,7 +16,6 @@ function Account() {
 
     /****************** access store *******************/
     const sessionUser = useSelector(state => state.session.user)
-    console.log("sessionUser",sessionUser)
 
     /************ key into pertinent values ************/
     const photos = useSelector(state => Object.values(state.photos.userPhotos))
@@ -46,7 +45,7 @@ function Account() {
 
                     <div className="account-info-left-container">
                         <div className="account-profile-pic-container">
-                            <img src={profilePic} className="account-profile-pic"></img>
+                            <img alt='' src={profilePic} className="account-profile-pic"></img>
                         </div>
                         <div className="account-profile-names-container">
                             {/* <h1 id="banner-user-full-name">{sessionUser.firstName} {sessionUser.lastName}</h1> */}

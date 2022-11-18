@@ -54,7 +54,7 @@ const LoginForm = () => {
     <div className='page-wrapper-container'>
 
       <div className="background-image-container">
-        <img className="background-image" src={background}></img>
+        <img className="background-image" alt='background' src={background}></img>
       </div>
       {/* <div className='login-form-component' style={{backgroundImage:`url(${background})`}}> */}
 
@@ -63,7 +63,7 @@ const LoginForm = () => {
         <div className='login-signup-form' id="login-form">
 
           <div>
-            <img src={flareLogo} className="login-signup-form-logo"></img>
+            <img src={flareLogo} alt='logo' className="login-signup-form-logo"></img>
           </div>
 
           <div>
