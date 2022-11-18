@@ -201,29 +201,23 @@
   margin: 13px 30px 0px 0px;
   font-size: 16px;
 }
-.tags-container {
-  padding-top: 23px;
-}
-.tags-container-title{
-  color: #006DAC;
-}
 
 .tags-container {
-  display: inline-block;
+  padding-top: 23px;
+  max-width: 500px;
+  display: grid;
   /* background-color: yellow; */
 }
 .tags-container-title {
   color: #006DAC;
   font-size: 16px;
+  padding-bottom: 7px;
 }
 .display-tag-container{
   display:flex;
-  flex-wrap:nowrap;
+  flex-wrap:wrap;
   margin: 5px 0px 20px;
   padding-bottom: 10px;
-}
-.tags-container-title {
-  padding-bottom: 7px;
 }
 .display-tag {
   margin: 0px 5px 5px 0px;
