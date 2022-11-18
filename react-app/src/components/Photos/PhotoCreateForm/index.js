@@ -149,7 +149,8 @@ function PhotoCreateForm() {
                   value={url}
                 />
               </label>
-              <label>
+              <label className="taken-on-label">
+                <p>Taken On</p>
                 <input
                   type="date"
                   className="inputFieldTypeText"
@@ -217,7 +218,7 @@ function PhotoCreateForm() {
                     </div>
                   ))}
               </div>
-              
+
             </div>
 
             <div className="photo-form-top-right-sub-container">
