@@ -16,6 +16,7 @@ function Photostream() {
 
   /****************** access store *******************/
   const photosState = useSelector((state) => state.photos);
+  console.log("photosState", photosState)
 
   /************ key into pertinent values ************/
   const allPhotos = photosState.userPhotos;
