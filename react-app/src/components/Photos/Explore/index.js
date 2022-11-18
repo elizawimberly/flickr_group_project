@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 // local files
 import "./Explore.css";
 import { thunkReadAllPhotos } from "../../../store/photosReducer";
+import FooterAccount from "../../Footer/FooterAccount";
 
 /******************************* COMPONENT *******************************/
 function Explore() {
@@ -29,6 +30,7 @@ function Explore() {
 
   /**************** render component *****************/
   return (
+    <>
     <div className="page-wrapper-container">
       <div className="explore-component">
 
@@ -52,6 +54,8 @@ function Explore() {
         </div>
       </div>
     </div>
+    <FooterAccount />
+    </>
   );
 }
 
