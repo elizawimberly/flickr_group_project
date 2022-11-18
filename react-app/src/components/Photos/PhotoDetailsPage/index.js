@@ -132,10 +132,7 @@ function PhotoDetailsPage() {
                 <img src={buddyIcon} alt="profile picture" className="photo-blurb-profile-pic"></img>
               </div>
               <div className="photo-blurb-about-container">
-<<<<<<< HEAD
-=======
                 <div className="photo-blurb-photographer">Demo User</div>
->>>>>>> refs/remotes/origin/dev1
                 {/* <div className="photo-blurb-photographer">{user.firstName} {user.lastName}</div> */}
                 <div className="photo-blurb-name">{photo && photo.name}</div>
                 <div className="photo-blurb-about">{photo && photo.about}</div>

@@ -72,71 +72,130 @@
     font-size: 18px;
 }
 
+.inputFieldTypeText2 {
+
+  min-height: 25px;
+  width: 250px;
+
+  font-size: 14px;
+  padding: 16px 0px 0px 16px;
+  border: none;
+
+  background: none;
+  outline: none;
+
+  color: rgb(124, 124, 124);
+  padding-left: 15px;
+  cursor: pointer;
+}
+
+.inputFieldTypeText3 {
+    min-height: 25px;
+    width: 250px;
+  
+    font-size: 14px;
+    padding: 15px 0px 0px 16px;
+    border: none;
+  
+    background: none;
+    outline: none;
+  
+    color: rgb(250, 250, 250);
+    padding-left: 15px;
+    cursor: pointer;
+
+}
+
+.dropdown-label {
+  display: flex;
+  flex-direction: row;
+  min-height: 46px;
+  max-width: 260px;
+  width: 270px;
+  border-bottom: 1px solid #383838;
+}
 
 
 
 
-.album-dropdown {
+.album-dropdown-hide {
     position: relative;
-    display: inline-block;
-    margin-left: 25%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 150px;
     height: 40px;
-    margin-bottom: 3.5%;
     z-index: 1;
+    cursor: pointer;
   }
 
-.dropdown-content {
+.dropdown-content-hide {
     display: none;
-    position: absolute;
-    background-color:  #f6f7f8;
-    max-width: 600px;
-    min-width: 300px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    padding: 25px;
-    z-index: 1;
-    border-radius: .25rem;
-    margin-top: 2%;
   }
 
-.album-dropdown:hover .dropdown-content {
+.dropdown-content-show {
+  display: block;
+  position: absolute;
+  background-color:  #3b3b3b;
+  max-width: 190px;
+  min-width: 190px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  padding: 25px;
+  padding-right: 25px;
+  z-index: 1;
+  border-radius: .25rem;
+  margin-top: 2%;
+}
+
+.album-dropdown-show {
     display: block;
+    margin-top: 7%;
     color:#00a2c7;
     z-index: 1;
+    cursor: pointer;
 }
 
 .album-not-selected {
-    color: black;
+    color: rgb(100, 100, 100);
     display: block;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     border-radius: .25rem;
-    background-color: white;
-    margin-top: 5px;
+    background-color: rgb(179, 174, 174);
     margin-bottom: 5px;
     gap: 1;
-    padding: 25px;
-    max-width: 600px;
-    min-width: 300px;
+    padding: 20px;
+    max-width: 150px;
+    min-width: 150px;
     line-height: 25px;
 }
 
 
 
 .album-selected {
-  color: darkblue;
-  background-color: white;
-  border: 1px solid darkblue;
+  color: rgb(245, 241, 241);
+  background-color: rgb(173, 169, 169);
+  border: 1px solid rgb(248, 243, 243);
   display: block;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   border-radius: .25rem;
-  margin-top: 5px;
   margin-bottom: 5px;
   gap: 1;
-  padding: 25px;
-  max-width: 600px;
-  min-width: 300px;
+  padding: 20px;
+  max-width: 150px;
+  min-width: 150px;
   line-height: 25px;
+}
+
+.dropdown-text {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 160px;
 }
 
 
@@ -152,11 +211,6 @@
     color: #ffff;
     border-radius: .25rem;
   }
-
-
-
-
-
 
 
 .photo-form-top-right-sub-container {
@@ -175,79 +229,3 @@
     max-width: 1000px;
 
 }
-
-.album-dropdown {
-    position: relative;
-    display: inline-block;
-    margin-left: 25%;
-    height: 40px;
-    margin-bottom: 3.5%;
-    z-index: 1;
-  }
-  
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color:  #f6f7f8;
-    max-width: 600px;
-    min-width: 300px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    padding: 25px;
-    z-index: 1;
-    border-radius: .25rem;
-    margin-top: 2%;
-  }
-  
-.album-dropdown:hover .dropdown-content {
-    display: block;
-    color:#00a2c7;
-    z-index: 1;
-}
-
-.album-not-selected {
-    color: black;
-    display: block;
-    flex-direction: column;
-    justify-content: center;
-    border-radius: .25rem;
-    background-color: white;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    gap: 1;
-    padding: 25px;
-    max-width: 600px;
-    min-width: 300px;
-    line-height: 25px;
-}
-
-
-.album-selected {
-  color: darkblue;
-  background-color: white;
-  border: 1px solid darkblue;
-  display: block;
-  flex-direction: column;
-  justify-content: center;
-  border-radius: .25rem;
-  margin-top: 5px;
-  margin-bottom: 5px;
-  gap: 1;
-  padding: 25px;
-  max-width: 600px;
-  min-width: 300px;
-  line-height: 25px;
-}
-
-
-.album:active {
-  border-color: #00a2c7;
-}
-
-.album-dropdown-span {
-    background-color:darkblue;
-    border: 1px solid darkblue;
-    color: #ffff;
-    border-radius: .25rem;
-  }
-  
-  
