@@ -53,7 +53,7 @@ function PhotoUpdateForm() {
   useEffect(() => {
     dispatch(thunkReadAllAlbums());
     if(albumId){
-     dispatch(thunkReadSingleAlbumDetails(albumId))  
+     dispatch(thunkReadSingleAlbumDetails(albumId))
     }
   }, [dispatch, albumId]);
 
@@ -113,7 +113,7 @@ function PhotoUpdateForm() {
       setAbout("");
       setUrl("");
       setTags("");
-      history.push("/");
+      history.push(`/photos/${photoId}`);
     }
   };
 
