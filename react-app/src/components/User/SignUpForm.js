@@ -25,15 +25,6 @@ const SignUpForm = () => {
   /***************** handle events *******************/
   const onSignUp = async (e) => {
     let validationErrors = [];
-    console.log(
-      username,
-      firstName,
-      lastName,
-      email,
-      password,
-      about,
-      repeatPassword
-    );
     e.preventDefault();
     if (password !== repeatPassword)
       validationErrors.push("Those passwords didn't match. Please try again.");
@@ -44,9 +35,10 @@ const SignUpForm = () => {
       const data = await dispatch(
         signUp(username, firstName, lastName, email, password, about)
       );
-      if (data && data.errors) {
-        validationErrors.push(data.errors);
-        setErrors(validationErrors);
+      if (data) {
+        let dbErrors = data.map(error => error.split(':')[1])
+        validationErrors.push(dbErrors);
+        setErrors([...validationErrors]);
       }
     }
   };
