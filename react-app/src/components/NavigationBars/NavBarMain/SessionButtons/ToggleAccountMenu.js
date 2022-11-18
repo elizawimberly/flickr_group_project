@@ -17,7 +17,7 @@ function ToggleAccountMenu({ user }) {
     const sessionState = useSelector(state => state.session)
 
     /************ key into pertinent values ************/
-    const userName = sessionState.user.first_name
+    const userName = sessionState.user.firstName
     let greeting = generateInternationalGreeting()
 
 
