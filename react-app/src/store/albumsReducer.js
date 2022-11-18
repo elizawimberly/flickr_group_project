@@ -96,7 +96,7 @@ export const thunkUpdateSingleAlbum =
   };
 
 export const thunkDeleteSingleAlbum = (albumId) => async (dispatch) => {
-  const response = await fetch(`/api/photos/${albumId}`, {
+  const response = await fetch(`/api/albums/${albumId}`, {
     method: "delete",
   });
   if (response.ok) {
