@@ -14,6 +14,8 @@ import "./PhotoUpdateForm.css";
 import FooterAccount from "../../Footer/FooterAccount";
 
 function PhotoUpdateForm() {
+
+  /****************** access store *******************/
   const sessionUser = useSelector((state) => state.session.user);
   const album = useSelector((state)=> state.albums.singleAlbumDetails)
   const userAlbums = useSelector((state) =>
@@ -127,6 +129,9 @@ function PhotoUpdateForm() {
     e.target.src =
       "https://learn.getgrav.org/user/pages/11.troubleshooting/01.page-not-found/error-404.png";
   };
+
+  /**************** render component *****************/
+  if (!sessionUser) return <Redirect to="/" />;
 
   return (
     <>
