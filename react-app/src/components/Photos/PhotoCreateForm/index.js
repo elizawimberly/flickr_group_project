@@ -208,6 +208,7 @@ function PhotoCreateForm() {
                   ))}
               </div>
             </div>
+
             <div className="photo-form-top-right-sub-container">
               {url && (
                 <div className="view-uploaded-image">

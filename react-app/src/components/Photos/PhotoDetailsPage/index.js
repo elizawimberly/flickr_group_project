@@ -5,26 +5,27 @@ import { useEffect } from "react";
 import { NavLink, useHistory, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 // local files
-import { thunkDeleteSinglePhoto, thunkReadSinglePhotoDetails } from "../../../store/photosReducer";
+import {
+  thunkDeleteSinglePhoto,
+  thunkReadSinglePhotoDetails,
+} from "../../../store/photosReducer";
 import "./PhotoDetailsPage.css";
-import CommentCreateFormModal from '../../Comments/CommentCreateFormModal'
+import CommentCreateFormModal from "../../Comments/CommentCreateFormModal";
 import CommentDeleteModal from "../../Comments/CommentDeleteModal";
 import TagCreateFormModal from "../../TagCreateFormModal";
-import buddyIcon from "../../../assets/buddyicon.png"
+import buddyIcon from "../../../assets/buddyicon.png";
 import { convertDate } from "../../../component-resources";
-
 
 /******************************* COMPONENT *******************************/
 function PhotoDetailsPage() {
-
   /****************** access store *******************/
   const sessionState = useSelector((state) => state.session);
   const photosState = useSelector((state) => state.photos);
-  console.log("photosState", photosState)
+  console.log("photosState", photosState);
 
   /************ key into pertinent values ************/
   // user
-  const user = sessionState.user
+  const user = sessionState.user;
   // photo
   const photo = photosState.singlePhotoDetails;
   // comments
@@ -47,18 +48,14 @@ function PhotoDetailsPage() {
   const [isShown, setIsShown] = useState(false);
 
   /************* conditional components **************/
-  let photostreamButton = (
-    <></>
-  )
-  let updatePhotoButtons = (
-    <></>
-  )
+  let photostreamButton = <></>;
+  let updatePhotoButtons = <></>;
   if (user) {
     photostreamButton = (
       <NavLink to="/photostream" id="back-to-photostream">
         <i class="fa-solid fa-arrow-left-long"></i> Photostream
       </NavLink>
-    )
+    );
     updatePhotoButtons = (
       <>
         <div>
@@ -71,35 +68,32 @@ function PhotoDetailsPage() {
           <i class="fa-solid fa-trash" onClick={deletePhoto}></i>
         </div>
       </>
-    )
+    );
   }
 
   /***************** handle events *******************/
-  const history = useHistory()
+  const history = useHistory();
 
   function deletePhoto() {
     dispatch(thunkDeleteSinglePhoto(photoId));
-    history.push('/photostream')
+    history.push("/photostream");
   }
 
   /**************** render component *****************/
   return (
     <div className="page-wrapper-container">
       <div className="PhotoDetailsPage-component">
-
-        <div className="top-half"
-                    style={{
-                      backgroundColor: "#212124",
-                      backgroundRepeat:"no-repeat",
-                      backgroundPosition: "center",
-                      backgroundSize: "cover",
-                      }}
-                  >
-
+        <div
+          className="top-half"
+          style={{
+            backgroundColor: "#212124",
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: "center",
+            backgroundSize: "cover",
+          }}
+        >
           <div className="top-half-section-A">
-            <div>
-              { photostreamButton }
-            </div>
+            <div>{photostreamButton}</div>
           </div>
 
           <div className="top-half-section-B">
@@ -108,7 +102,11 @@ function PhotoDetailsPage() {
             </div> */}
 
             <div>
-              <img src={photo.url} atl={photo.name} className="view-photo"></img>
+              <img
+                src={photo.url}
+                atl={photo.name}
+                className="view-photo"
+              ></img>
             </div>
 
             {/* <div>
@@ -116,26 +114,21 @@ function PhotoDetailsPage() {
             </div> */}
           </div>
 
-          <div className="top-half-section-C">
-            { updatePhotoButtons }
-          </div>
-
+          <div className="top-half-section-C">{updatePhotoButtons}</div>
         </div>
-
-
 
         <div className="bottom-half">
           <div className="bottom-half-left">
-
             <div className="photo-blurb">
               <div className="photo-blurb-profile-pic-container">
-                <img src={buddyIcon} alt="profile picture" className="photo-blurb-profile-pic"></img>
+                <img
+                  src={buddyIcon}
+                  alt="profile picture"
+                  className="photo-blurb-profile-pic"
+                ></img>
               </div>
               <div className="photo-blurb-about-container">
-<<<<<<< HEAD
-=======
                 <div className="photo-blurb-photographer">Demo User</div>
->>>>>>> refs/remotes/origin/dev1
                 {/* <div className="photo-blurb-photographer">{user.firstName} {user.lastName}</div> */}
                 <div className="photo-blurb-name">{photo && photo.name}</div>
                 <div className="photo-blurb-about">{photo && photo.about}</div>
@@ -145,14 +138,17 @@ function PhotoDetailsPage() {
             <div className="comments-section">
               {comments &&
                 comments.map((comment) => (
-                  <div className="display-comment"
-                  // onMouseEnter={() => setIsShown(true)}
-                  // onMouseLeave={() => setIsShown(false)}
+                  <div
+                    className="display-comment"
+                    // onMouseEnter={() => setIsShown(true)}
+                    // onMouseLeave={() => setIsShown(false)}
                   >
                     <div className="comment-text">{comment.comment}</div>
                     <div className="comment-bottom-line-container">
-                      <div className="comment-createdAt">{convertDate(comment.createdAt)}</div>
-                        <CommentDeleteModal comment={comment}/>
+                      <div className="comment-createdAt">
+                        {convertDate(comment.createdAt)}
+                      </div>
+                      <CommentDeleteModal comment={comment} />
                       {/* {isShown && */}
                       {/* } */}
                     </div>
@@ -166,31 +162,31 @@ function PhotoDetailsPage() {
           </div>
 
           <div className="bottom-half-right">
-
-              <div className="stats-container">
-                <div className="comments-stats">
-                  <div className="comment-count">{comments?.length}</div>
-                  <div className="comment-label">comments</div>
-                </div>
-                <div className="photo-stats">
-                  <div>Uploaded on {photo.takenOn && convertDate(photo.takenOn)}</div>
+            <div className="stats-container">
+              <div className="comments-stats">
+                <div className="comment-count">{comments?.length}</div>
+                <div className="comment-label">comments</div>
+              </div>
+              <div className="photo-stats">
+                <div>
+                  Uploaded on {photo.takenOn && convertDate(photo.takenOn)}
                 </div>
               </div>
+            </div>
 
-              <div className="tags-container">
-                <div className="tags-container-title">Tags</div>
+            <div className="tags-container">
+              <div className="tags-container-title">Tags</div>
 
-                <div className="display-tag-container">
-                  {tags && tags.map((tag) => (
-                        <div className="display-tag">{tag.tag}</div>
-                      ))}
-                </div>
-
-                <TagCreateFormModal />
+              <div className="display-tag-container">
+                {tags &&
+                  tags.map((tag) => (
+                    <div className="display-tag">{tag.tag}</div>
+                  ))}
               </div>
 
+              <TagCreateFormModal />
+            </div>
           </div>
-
         </div>
       </div>
     </div>
