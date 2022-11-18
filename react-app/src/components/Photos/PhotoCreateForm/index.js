@@ -10,6 +10,7 @@ import { thunkCreateSinglePhoto } from "../../../store/photosReducer";
 import "./PhotoCreateForm.css";
 import { thunkReadAllAlbums } from "../../../store/albumsReducer";
 
+
 /******************************* COMPONENT *******************************/
 function PhotoCreateForm() {
   /****************** access store *******************/
@@ -206,6 +207,7 @@ function PhotoCreateForm() {
                   </>
                 )}
               </label>
+
               <div className="errors-container">
                 {submitted &&
                   validationErrors &&
@@ -215,6 +217,7 @@ function PhotoCreateForm() {
                     </div>
                   ))}
               </div>
+              
             </div>
 
             <div className="photo-form-top-right-sub-container">
