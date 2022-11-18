@@ -20,6 +20,7 @@ function PhotoDetailsPage() {
   /****************** access store *******************/
   const sessionState = useSelector((state) => state.session);
   const photosState = useSelector((state) => state.photos);
+  console.log("photosState", photosState)
 
   /************ key into pertinent values ************/
   // user
@@ -131,7 +132,8 @@ function PhotoDetailsPage() {
                 <img src={buddyIcon} alt="profile picture" className="photo-blurb-profile-pic"></img>
               </div>
               <div className="photo-blurb-about-container">
-                <div className="photo-blurb-photographer">{user.first_name} {user.last_name}</div>
+                <div className="photo-blurb-photographer">Demo User</div>
+                {/* <div className="photo-blurb-photographer">{user.firstName} {user.lastName}</div> */}
                 <div className="photo-blurb-name">{photo && photo.name}</div>
                 <div className="photo-blurb-about">{photo && photo.about}</div>
               </div>

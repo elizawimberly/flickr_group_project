@@ -7,12 +7,15 @@ date_str = str(datetime.now())
 
 tags_to_photos = db.Table(
     'tags_to_photos',
-    db.Column('tag_id', db.Integer, db.ForeignKey(add_prefix_for_prod('tags.id')), primary_key=True),
-    db.Column('photo_id', db.Integer, db.ForeignKey(add_prefix_for_prod('photos.id')), primary_key=True)
-  )
+    db.Column('tag_id', db.Integer, db.ForeignKey(
+        add_prefix_for_prod('tags.id')), primary_key=True),
+    db.Column('photo_id', db.Integer, db.ForeignKey(
+        add_prefix_for_prod('photos.id')), primary_key=True)
+)
 
 if environment == "production":
     tags_to_photos.schema = SCHEMA
+
 
 class Photo(db.Model):
     __tablename__ = "photos"
@@ -21,8 +24,10 @@ class Photo(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
-    album_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('albums.id')), nullable=True)
+    user_id = db.Column(db.Integer, db.ForeignKey(
+        add_prefix_for_prod('users.id')), nullable=False)
+    album_id = db.Column(db.Integer, db.ForeignKey(
+        add_prefix_for_prod('albums.id')), nullable=True)
     url = db.Column(db.String(500), nullable=False)
     name = db.Column(db.String(100), nullable=False)
     about = db.Column(db.String(500), nullable=False)
@@ -34,12 +39,12 @@ class Photo(db.Model):
 
     album = db.relationship('Album', back_populates='photos')
 
-    comments = db.relationship('Comment', back_populates= 'photo')
+    comments = db.relationship('Comment', back_populates='photo')
 
     tags = db.relationship('Tag',
-    secondary = tags_to_photos,
-    back_populates='photos'
-    )
+                           secondary=tags_to_photos,
+                           back_populates='photos'
+                           )
 
     def to_dict(self, current=False):
         if current == False:
