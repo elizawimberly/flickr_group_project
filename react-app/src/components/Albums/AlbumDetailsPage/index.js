@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { thunkReadSingleAlbumDetails, thunkDeleteSingleAlbum } from "../../../store/albumsReducer";
 import './AlbumDetailsPage.css';
 import { albumPlaceholderImage } from "../../../component-resources";
+import Footer from "../../Footer/FooterAccount";
 
 /******************************* COMPONENT *******************************/
 function AlbumDetailsPage() {
@@ -58,6 +59,7 @@ function AlbumDetailsPage() {
     if (!sessionState.user) return <Redirect to="/" />;
 
     return (
+        <>
         <div className='page-wrapper-container'>
             <div className="AlbumDetailsPage-component">
 
@@ -104,6 +106,8 @@ function AlbumDetailsPage() {
             </div>
 
         </div>
+        <Footer />
+        </>
     )
 }
 

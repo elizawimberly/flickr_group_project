@@ -7,6 +7,7 @@ import { useHistory } from "react-router-dom";
 // local files
 import { thunkCreateSingleAlbum } from "../../../store/albumsReducer";
 import { thunkReadAllPhotosByUser } from '../../../store/photosReducer'
+import FooterAccount from "../../Footer/FooterAccount";
 import './AlbumCreateForm.css'
 
 
@@ -67,7 +68,7 @@ function AlbumCreateForm() {
     }
 
     return (
-
+        <>
         <div className='page-wrapper-container'>
             <div id="AlbumCreateForm-component">
                 <div id="AlbumCreateForm-title">Create a New Album</div>
@@ -180,6 +181,8 @@ function AlbumCreateForm() {
             </form>
         </div>
     </div>
+    <FooterAccount />
+    </>
     )
 }
 

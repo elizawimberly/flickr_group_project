@@ -10,6 +10,7 @@ import NavBarUser from "../../NavigationBars/NavBarUser";
 import { thunkReadAllPhotosByUser } from "../../../store/photosReducer";
 import "./Photostream.css";
 import watermark from "../../../assets/no-albums-watermark.jpeg"
+import FooterAccount from "../../Footer/FooterAccount";
 
 /******************************* COMPONENT *******************************/
 function Photostream() {
@@ -74,6 +75,7 @@ function Photostream() {
   if (!sessionUser) return <Redirect to="/" />;
 
   return (
+    <>
     <div className="page-wrapper-container">
 
       <Account />
@@ -97,6 +99,8 @@ function Photostream() {
       </div>
 
     </div>
+    <FooterAccount />
+    </>
   );
 }
 

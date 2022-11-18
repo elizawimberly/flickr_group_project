@@ -9,6 +9,7 @@ import NavBarUser from "../../NavigationBars/NavBarUser";
 import { thunkCreateSinglePhoto } from "../../../store/photosReducer";
 import "./PhotoCreateForm.css";
 import { thunkReadAllAlbums } from "../../../store/albumsReducer";
+import FooterAccount from "../../Footer/FooterAccount";
 
 /******************************* COMPONENT *******************************/
 function PhotoCreateForm() {
@@ -102,8 +103,9 @@ function PhotoCreateForm() {
   /**************** render component *****************/
   if (!sessionUser) return <Redirect to="/" />;
   return (
+    <>
     <div className="page-wrapper-container">
-      <div className="PhotoCreateForm-component">
+      <div id="PhotoCreateForm-component">
         <form className="photo-form-container" onSubmit={handleSubmit}>
           <div className="mock-upload-navbar">
             <button className="photo-submit-button" type="submit">
@@ -259,6 +261,8 @@ function PhotoCreateForm() {
         </form>
       </div>
     </div>
+    <FooterAccount />
+    </>
   );
 }
 

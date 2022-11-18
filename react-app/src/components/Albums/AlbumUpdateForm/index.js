@@ -11,6 +11,7 @@ import {
 } from "../../../store/albumsReducer";
 import { thunkReadAllPhotosByUser } from "../../../store/photosReducer";
 import "./AlbumUpdateForm.css";
+import FooterAccount from "../../Footer/FooterAccount";
 
 /******************************* COMPONENT *******************************/
 function AlbumUpdateForm() {
@@ -87,6 +88,7 @@ function AlbumUpdateForm() {
   }
 
   return (
+    <>
     <div className="page-wrapper-container">
       <div id="AlbumCreateForm-component">
         <div id="AlbumCreateForm-title">Editing {album.name}</div>
@@ -104,7 +106,7 @@ function AlbumUpdateForm() {
                   maxLength={50}
                   className="album-form-name"
                   required={true}
-                ></input>
+                  ></input>
 
                 <textarea
                   type="textarea"
@@ -115,7 +117,7 @@ function AlbumUpdateForm() {
                   maxLength={500}
                   className="album-form-description"
                   required
-                ></textarea>
+                  ></textarea>
 
                 <button type="submit" id="photo-form-submit-button">
                   Looks good
@@ -142,14 +144,14 @@ function AlbumUpdateForm() {
                                 if (currentPhotos.find((e) => e === photo.id)) {
                                   let i = currentPhotos.findIndex(
                                     (e) => e === photo.id
-                                  );
-                                  currentPhotos.splice(i, 1);
-                                } else {
-                                  currentPhotos.push(photo.id);
-                                }
-                                setPhotos(currentPhotos);
-                              }}
-                            ></input>
+                                    );
+                                    currentPhotos.splice(i, 1);
+                                  } else {
+                                    currentPhotos.push(photo.id);
+                                  }
+                                  setPhotos(currentPhotos);
+                                }}
+                                ></input>
 
                             <div>
                               <img
@@ -158,21 +160,21 @@ function AlbumUpdateForm() {
                                 className="photo-item-thumbnail"
                                 id={
                                   photos.find((e) => e === photo.id)
-                                    ? "photo-checked"
-                                    : "photo-not-checked"
+                                  ? "photo-checked"
+                                  : "photo-not-checked"
                                 }
                                 key={photo.id}
                                 // onClick={() => {
-                                //     let currentPhotos = [...photos]
-                                //     if (currentPhotos.find(e => e === photo.id)) {
-                                //         let i = currentPhotos.findIndex(e => e === photo.id)
-                                //         currentPhotos.splice(i, 1)
-                                //     } else {
-                                //         currentPhotos.push(photo.id)
-                                //     }
-                                //     setPhotos(currentPhotos)
-                                // }}
-                              ></img>
+                                  //     let currentPhotos = [...photos]
+                                  //     if (currentPhotos.find(e => e === photo.id)) {
+                                    //         let i = currentPhotos.findIndex(e => e === photo.id)
+                                    //         currentPhotos.splice(i, 1)
+                                    //     } else {
+                                      //         currentPhotos.push(photo.id)
+                                      //     }
+                                      //     setPhotos(currentPhotos)
+                                      // }}
+                                      ></img>
                             </div>
 
                             <div className="photo-item-description">
@@ -189,7 +191,7 @@ function AlbumUpdateForm() {
                   <ul className="create-event-errors">
                     {validationErrors.map((error, idx) => (
                       <li key={idx}>{error}</li>
-                    ))}
+                      ))}
                   </ul>
                 )}
               </div>
@@ -197,13 +199,15 @@ function AlbumUpdateForm() {
 
             {/* <div className="album-form-bottom-sub-container">
                     <div className="album-form-submit-container">
-                        <button type='submit' id="photo-form-submit-button">Create album</button>
+                    <button type='submit' id="photo-form-submit-button">Create album</button>
                     </div>
-                </div> */}
+                  </div> */}
           </form>
         )}
       </div>
     </div>
+    <FooterAccount />
+    </>
   );
 }
 
