@@ -180,7 +180,10 @@ function PhotoDetailsPage() {
               <div className="display-tag-container">
                 {tags &&
                   tags.map((tag) => (
-                    <div className="display-tag">{tag.tag}</div>
+                    <div className="display-tag">
+                      {tag.tag}
+                      <TagDeleteModal tag={tag} />
+                    </div>
                   ))}
               </div>
 
