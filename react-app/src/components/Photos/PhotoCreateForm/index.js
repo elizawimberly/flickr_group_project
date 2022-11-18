@@ -36,6 +36,8 @@ function PhotoCreateForm() {
   const [takenOn, setTakenOn] = useState("");
   const [albumId, setAlbumId] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [dropDown, setDropDown] = useState('album-dropdown-hide')
+  const [albumName, setAlbumName] = useState('')
   /************ reducer/API communication ************/
   const dispatch = useDispatch();
   useEffect(() => {
@@ -167,11 +169,14 @@ function PhotoCreateForm() {
                   value={tags}
                 />
               </label>
-              <label>
+              <label className='dropdown-label'>
                 {userAlbums.length >= 1 && (
-                  <div className="album-dropdown">
-                    <span className="album-dropdown-span">Add to albums</span>
-                    <div className="dropdown-content">
+                  <div className={dropDown} onClick={()=>{
+                    if(dropDown === 'album-dropdown-hide') setDropDown('album-dropdown-show')
+                    else setDropDown('album-dropdown-hide')
+                  }}>
+                    <span className={albumName ? 'inputFieldTypeText3' : 'inputFieldTypeText2'}>{albumName ? albumName : 'Add a album'}</span>
+                    <div className={dropDown === 'album-dropdown-show' ? 'dropdown-content-show' : 'dropdown-content-hide'}>
                       {userAlbums.map((album) => {
                         return (
                           <div
@@ -181,9 +186,12 @@ function PhotoCreateForm() {
                                 ? "album-selected"
                                 : "album-not-selected"
                             }
-                            onClick={() => setAlbumId(album.id)}
+                            onClick={() => {
+                              setAlbumId(album.id)
+                              setAlbumName(album.name)
+                            }}
                           >
-                            <div>
+                            <div className='dropdown-text'>
                               {album.name} photos {album.Photos.length}
                             </div>
                           </div>
