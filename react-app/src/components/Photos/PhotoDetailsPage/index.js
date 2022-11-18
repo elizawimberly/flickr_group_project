@@ -22,7 +22,6 @@ function PhotoDetailsPage() {
   /****************** access store *******************/
   const sessionState = useSelector((state) => state.session);
   const photosState = useSelector((state) => state.photos);
-  console.log("photosState", photosState);
 
   /************ key into pertinent values ************/
   // user
@@ -149,7 +148,7 @@ function PhotoDetailsPage() {
                       <div className="comment-createdAt">
                         {convertDate(comment.createdAt)}
                       </div>
-                      <CommentDeleteModal comment={comment} />
+                      {user?.id == comment.User.id || user?.id == photo.userId ? <CommentDeleteModal comment={comment} /> : <></>}
                       {/* {isShown && */}
                       {/* } */}
                     </div>
@@ -183,12 +182,11 @@ function PhotoDetailsPage() {
                   tags.map((tag) => (
                     <div className="display-tag">
                       {tag.tag}
-                      <TagDeleteModal tag={tag} />
+                      {user?.id == photo.userId ? <TagDeleteModal tag={tag} /> : <></>}
                     </div>
                   ))}
               </div>
-
-              <TagCreateFormModal />
+              {user?.id == photo.userId ? <TagCreateFormModal /> : <></>}
             </div>
           </div>
         </div>
