@@ -47,8 +47,18 @@ function PhotoDetailsPage() {
 
   /****************** manage state *******************/
   const [isShown, setIsShown] = useState(false);
+  const [firstName, setFirstName] = useState("")
+  const [lastName, setLastName] = useState("")
 
   /************* conditional components **************/
+  useEffect(()=> {
+    if(photo.User) {
+      setFirstName(photo.User.firstName)
+      setLastName(photo.User.lastName)
+    }
+  },[photo.User])
+
+
   let photostreamButton = <></>;
   let updatePhotoButtons = <></>;
   if (user) {
@@ -71,6 +81,7 @@ function PhotoDetailsPage() {
       </>
     );
   }
+  console.log(photo)
 
   /***************** handle events *******************/
   const history = useHistory();
@@ -134,9 +145,11 @@ function PhotoDetailsPage() {
               </div>
               <div className="photo-blurb-about-container">
                 {/* <div className="photo-blurb-photographer">{photo.User.username}</div> */}
-                <div className="photo-blurb-photographer">{user.firstName} {user.lastName}</div>
-                <div className="photo-blurb-name">{photo && photo.name}</div>
-                <div className="photo-blurb-about">{photo && photo.about}</div>
+                {firstName && lastName && (
+                  <div className="photo-blurb-photographer">{firstName} {lastName}</div>
+                )}
+                <div className="photo-blurb-name">{photo && photo?.name}</div>
+                <div className="photo-blurb-about">{photo && photo?.about}</div>
               </div>
             </div>
 
