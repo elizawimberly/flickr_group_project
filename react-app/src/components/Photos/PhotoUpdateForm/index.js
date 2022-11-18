@@ -69,8 +69,7 @@ function PhotoUpdateForm() {
       let takenDate = new Date(photo.takenOn);
       let takenYear = takenDate.getFullYear();
       let takenMonth = takenDate.getMonth() + 1;
-      let takenDay = takenDate.getDate();
-      console.log(takenDate)
+      let takenDay = takenDate.getDate() + 1;
       if (takenMonth < 10) takenMonth = `0${takenMonth}`;
       if (takenDay < 10) takenDay = `0${takenDay}`;
       if (takenOn === null || takenOn === undefined)

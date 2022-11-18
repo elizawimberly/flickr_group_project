@@ -133,6 +133,7 @@ def edit_photo(id):
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         data = form.data
+        print('------BACKEND TAKENON------', data['takenOn'])
         if data['albumId']:
             photo.user_id = current_user.id
             photo.album_id = data['albumId']
