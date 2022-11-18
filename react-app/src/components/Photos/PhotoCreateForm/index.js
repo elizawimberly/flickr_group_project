@@ -57,16 +57,17 @@ function PhotoCreateForm() {
   }, [submitted, name, about, url]);
   /***************** handle events *******************/
   const history = useHistory();
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     let errors = [];
+    let newPhoto
     setSubmitted(true);
     if (!name) errors.push("Name needs to be between 2 and 50 characters.");
     if (!about) errors.push("About needs to be between 10 and 500 characters.");
     if ( !url || checkUrl === "https://learn.getgrav.org/user/pages/11.troubleshooting/01.page-not-found/error-404.png") errors.push("You must enter a valid url");
     if (errors.length >= 1) setValidationErrors(errors);
     if (errors.length <= 1 && validationErrors <= 1) {
-      dispatch(
+      newPhoto = await dispatch(
         thunkCreateSinglePhoto(
           name,
           about,
@@ -87,7 +88,7 @@ function PhotoCreateForm() {
       setAbout("");
       setUrl("");
       setTags("");
-      history.push("/");
+      history.push(`/photos/${newPhoto.id}`);
     }
   };
 
@@ -239,8 +240,8 @@ function PhotoCreateForm() {
               <div className="errors-container">
                 {submitted &&
                   validationErrors &&
-                  validationErrors.map((error, ind) => (
-                    <div className="form-errors" key={ind}>
+                  validationErrors.map((error, i = 0) => (
+                    <div className="form-errors" key={i}>
                       {error}
                     </div>
                   ))}
