@@ -9,11 +9,12 @@ import {
 import { useEffect, useState } from "react";
 import { Redirect, useHistory, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { thunkReadAllAlbums } from "../../../store/albumsReducer";
+import { thunkReadAllAlbums, thunkReadSingleAlbumDetails } from "../../../store/albumsReducer";
 import "./PhotoUpdateForm.css";
 
 function PhotoUpdateForm() {
   const sessionUser = useSelector((state) => state.session.user);
+  const album = useSelector((state)=> state.albums.singleAlbumDetails)
   const userAlbums = useSelector((state) =>
     Object.values(state.albums.allAlbums)
   );
@@ -27,12 +28,16 @@ function PhotoUpdateForm() {
   const [name, setName] = useState(null);
   const [about, setAbout] = useState(null);
   const [url, setUrl] = useState(null);
+  const [checkUrl, setCheckUrl] = useState("");
   const [private_var, setPrivate_var] = useState(false);
   const [tags, setTags] = useState(null);
   const [validationErrors, setValidationErrors] = useState([]);
   const [takenOn, setTakenOn] = useState(null);
   const [albumId, setAlbumId] = useState(null);
   const [loaded, setLoaded] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const [dropDown, setDropDown] = useState('album-dropdown-hide')
+  const [albumName, setAlbumName] = useState(null)
 
   const longDate = new Date();
   const year = longDate.getFullYear();
@@ -42,13 +47,22 @@ function PhotoUpdateForm() {
   if (day < 10) day = `0${Number(day + 1)}`;
   const date = `${year}-${month}-${day}`;
 
+  console.log(album)
+  console.log('This is album ', albumName)
+
   useEffect(() => {
     dispatch(thunkReadAllAlbums());
-  }, [dispatch]);
+    if(albumId){
+     dispatch(thunkReadSingleAlbumDetails(albumId))  
+    }
+  }, [dispatch, albumId]);
 
   useEffect(() => {
     setLoaded(true);
     dispatch(thunkReadSinglePhotoDetails(photoId));
+    if(album){
+      if (albumName === null || albumName === undefined) setAlbumName(album.name)
+    }
     if (photo.name) {
       let tag_array = Object.values(photo.Tags);
       let tag_names = tag_array.map((tag) => tag.tag);
@@ -66,10 +80,11 @@ function PhotoUpdateForm() {
       if (takenOn === null || takenOn === undefined)
         setTakenOn(`${takenYear}-${takenMonth}-${takenDay}`);
     }
-  }, [dispatch, photo.name, name, about, url, tags, albumId, photoId, takenOn]);
+  }, [dispatch, photo.name, name, about, url, tags, albumId, photoId, takenOn, album, albumName]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setSubmitted(true)
     let errors = [];
     if (!name) errors.push("Name needs to be between 2 and 50 characters.");
     if (!about) errors.push("About needs to be between 10 and 500 characters.");
@@ -100,6 +115,14 @@ function PhotoUpdateForm() {
       setTags("");
       history.push("/");
     }
+  };
+
+  const onError = (e) => {
+    setCheckUrl(
+      "https://learn.getgrav.org/user/pages/11.troubleshooting/01.page-not-found/error-404.png"
+    );
+    e.target.src =
+      "https://learn.getgrav.org/user/pages/11.troubleshooting/01.page-not-found/error-404.png";
   };
 
   return (
@@ -154,6 +177,7 @@ function PhotoUpdateForm() {
 
                   <label>
                     <input
+                      className="inputFieldTypeText"
                       type="date"
                       id="takenOn"
                       name="takenOn"
@@ -174,13 +198,14 @@ function PhotoUpdateForm() {
                     />
                   </label>
 
-                  <label>
+                  <label className='dropdown-label'>
                     {userAlbums.length >= 1 && (
-                      <div className="album-dropdown">
-                        <span className="album-dropdown-span">
-                          Select a Album to add your photo to.
-                        </span>
-                        <div className="dropdown-content">
+                      <div className={dropDown} onClick={()=>{
+                        if(dropDown === 'album-dropdown-hide') setDropDown('album-dropdown-show')
+                        else setDropDown('album-dropdown-hide')
+                      }}>
+                  <span className={albumName ? 'inputFieldTypeText3' : 'inputFieldTypeText2'}>{albumName ? albumName : 'Add a album'}</span>
+                  <div className={dropDown === 'album-dropdown-show' ? 'dropdown-content-show' : 'dropdown-content-hide'}>
                           {userAlbums.map((album) => {
                             return (
                               <div
@@ -190,9 +215,12 @@ function PhotoUpdateForm() {
                                     ? "album-selected"
                                     : "album-not-selected"
                                 }
-                                onClick={() => setAlbumId(album.id)}
+                                onClick={() => {
+                                  setAlbumId(album.id)
+                                  setAlbumName(album.name)
+                                }}
                               >
-                                <div>
+                                <div className='dropdown-text'>
                                   {album.name} photos {album.Photos.length}
                                 </div>
                               </div>
@@ -212,7 +240,7 @@ function PhotoUpdateForm() {
                 <div className="photo-form-top-right-sub-container">
                   {url && (
                     <div className="view-uploaded-image">
-                      <img alt="" src={url} />
+                      <img onError={onError} alt="" src={url} />
                     </div>
                   )}
                 </div>
