@@ -19,13 +19,55 @@
 
 ## 📸 Features
 
+### Splash Page and User
+
+When first landing on Flare at the home page the user sees a carousel of images with the option to click on an Explore button in the middle of the page or the other options to login or sign up accessed by clicking on icons on the top right navigation bar.
+
+![images](./assets/screenshots/splashpage.png)
+
+If the user selects sign up, they are directed to a sign up form. Alternately, if the user selects log in, the user can log in as a returning user or chose an option to log in as a demo user.
+
+![images](./assets/screenshots/signup.png)
+![images](./assets/screenshots/login.png)
+
+---
+
 ### Photos
+
+---
+
+If the user selects the explore option from the landing page, they are directed to a feed of all the photos in the Flare library. This allows us to feature the interactive photography element of the app.
+
+![images](./assets/screenshots/explore.png)
+
+When a logged in user wants to interact with their own uploaded photography collection, they can access their unique user photostream page by clicking the 'You' option at the top left of the navigation bar and selecting photostream from the drop down menu.
+
+![images](./assets/screenshots/photostream.png)
+
+When a user wants to upload their own photography, while logged in there is cloud icon displayed in the upper right navigation bar. When a user selects this cloud icon they are directed to a photo upload form where they enter basic information related to their photo along with the url or the image and will allow them to post a photo.
+
+![images](./assets/screenshots/upload_photo.png)
+
+Once a user submits their photo information successfully, they are redirected to a photo details page that will feature the photo they have upload.
+
+![images](./assets/screenshots/posted_photo.png)
+![images](./assets/screenshots/redirect_posted_photo.png)
+
+---
 
 ### Albums
 
+![images](./assets/screenshots/albumstream.png)
+![images](./assets/screenshots/create_album.png)
+
 ### Comments
 
+![images](./assets/screenshots/comments_tags.png)
+![images](./assets/screenshots/post_comment.png)
+
 ### Tags
+
+![images](./assets/screenshots/post_tag.png)
 
 ---
 
