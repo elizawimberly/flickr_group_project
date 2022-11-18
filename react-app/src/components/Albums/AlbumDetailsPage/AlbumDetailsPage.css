@@ -3,11 +3,12 @@
     max-width: 1536px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    /* justify-content: center; */
+    /* align-items: center; */
     align-self: center;
     padding: 30px;
     margin-bottom: 70px;
+    height: 100vh;
 }
 
 .banner-photo-container{
