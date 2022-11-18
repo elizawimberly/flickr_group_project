@@ -54,7 +54,7 @@ function AlbumUpdateForm() {
       if (about === null || about === undefined) setAbout(album.about);
       setLoaded(true);
     }
-  }, [dispatch, album, albumId, name, about, loaded, albumPhotos]);
+  }, [dispatch, album, albumId, name, about, loaded]);
 
   /***************** handle events *******************/
   const history = useHistory();

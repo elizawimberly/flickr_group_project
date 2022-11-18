@@ -24,7 +24,7 @@ function FooterMain() {
 
             <div className="footer-right">
                 <a href="https://github.com/elizawimberly/flickr_group_project" className="footerText" id="footer-logo-container">
-                    <img src={githubLogo} id="footer-logo"></img>
+                    <img src={githubLogo} alt='logo' id="footer-logo"></img>
                     {/* <i class="fa-brands fa-github" className="footerText"></i> */}
                     {/* <i class="fa-brands fa-square-github" className="footerText"></i> */}
                 </a>

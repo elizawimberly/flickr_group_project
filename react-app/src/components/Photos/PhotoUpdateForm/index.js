@@ -31,7 +31,7 @@ function PhotoUpdateForm() {
   const [about, setAbout] = useState(null);
   const [url, setUrl] = useState(null);
   const [checkUrl, setCheckUrl] = useState("");
-  const [private_var, setPrivate_var] = useState(false);
+  const [private_var] = useState(false);
   const [validationErrors, setValidationErrors] = useState([]);
   const [takenOn, setTakenOn] = useState(null);
   const [albumId, setAlbumId] = useState(null);
@@ -76,7 +76,7 @@ function PhotoUpdateForm() {
         setTakenOn(`${takenYear}-${takenMonth}-${takenDay}`);
     }
     console.log(takenOn)
-  }, [dispatch, photo.name, name, about, url, albumId, photoId, takenOn, album, albumName]);
+  }, [dispatch, photo.name, name, about, url, albumId, photoId, takenOn, album, albumName, photo.about, photo.albumId, photo.takenOn, photo.url]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
