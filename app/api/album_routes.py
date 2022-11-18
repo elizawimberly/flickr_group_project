@@ -89,12 +89,12 @@ def edit_album(id):
             for photo_id in photo_id_list:
                 photo = Photo.query.get(photo_id)
                 photo_list.append(photo)
-            album.name = data['name'],
-            album.about = data['about'],
+            album.name = data['name']
+            album.about = data['about']
             album.photos = photo_list
             db.session.commit()
         else:
-            album.name = data['name'],
+            album.name = data['name']
             album.about = data['about']
             db.session.commit()
         return jsonify(album.to_dict(True))
