@@ -21,22 +21,32 @@ function TagCreateForm({onClose}) {
 
     return (
         <div className='page-wrapper-container'>
-            <p>Tag Create Form</p>
+            <div className='modal-container'>
 
-            <form onSubmit={createTag}>
-                <label>
-                     <input
-                     className="inputFieldTypeText"
-                     type="text"
-                     name="tags"
-                     placeholder="Add tags"
-                     onChange={(e) => setTags(e.target.value)}
-                     value={tags}
-                     />
-                </label>
-                <button type='submit'>Submit</button>
-            </form>
+                <p className='modal-title'>Add tags</p>
 
+                <div className='modal-body'>
+
+                    <form
+                        className="modal-form"
+                        onSubmit={createTag}>
+                        <label>
+                            <textarea
+                            className="modal-textarea-input-field"
+                            type="text"
+                            name="tags"
+                            placeholder="Add tags"
+                            onChange={(e) => setTags(e.target.value)}
+                            required={true}
+                            maxLength={500}
+                            value={tags}
+                            ></textarea>
+                        </label>
+                        <button className="modal-button" type='submit'>Submit</button>
+                    </form>
+
+                </div>
+            </div>
         </div>
     )
 }
