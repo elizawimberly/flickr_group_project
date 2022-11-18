@@ -78,7 +78,7 @@ const NavBarMain = () => {
       <nav className={'navigation-bar'} id="navbar-main">
 
         <div class="nav-bar-left">
-            <NavLink to='/' exact={true} activeClassName='active'>
+            <NavLink to={sessionUser ? '/photostream' : '/' } exact={true} activeClassName='active'>
               <img src={flareLogo} className="navigation-bar-logo"></img>
             </NavLink>
         </div>
