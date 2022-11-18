@@ -65,36 +65,6 @@
   font-size: 18px;
 }
 
-.album-dropdown {
-  position: relative;
-  display: inline-block;
-  margin-left: 25%;
-  height: 40px;
-  margin-bottom: 3.5%;
-  z-index: 1;
-}
-
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f6f7f8;
-  max-width: 600px;
-  min-width: 300px;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  padding: 25px;
-  z-index: 1;
-  border-radius: 0.25rem;
-  margin-top: 2%;
-}
-
-.album-dropdown:hover .dropdown-content {
-  display: block;
-  color: #00a2c7;
-  z-index: 1;
-}
-
-
-
 
 .view-uploaded-image > img {
   object-fit: contain;
