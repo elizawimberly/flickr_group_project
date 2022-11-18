@@ -48,13 +48,16 @@ function AlbumUpdateForm() {
   }, [dispatch, albumId]);
 
   useEffect(() => {
-    dispatch(thunkReadAllPhotosByUser());
     if (album && albumPhotos) {
       if (name === null || name === undefined) setName(album.name);
       if (about === null || about === undefined) setAbout(album.about);
       setLoaded(true);
     }
-  }, [dispatch, album, albumId, name, about, loaded]);
+  }, [album, albumId, name, about, loaded, albumPhotos]);
+
+  useEffect(()=> {
+    dispatch(thunkReadAllPhotosByUser());
+  }, [dispatch])
 
   /***************** handle events *******************/
   const history = useHistory();
