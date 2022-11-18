@@ -37,7 +37,7 @@ const SignUpForm = () => {
     e.preventDefault();
     if (password !== repeatPassword)
       validationErrors.push("Those passwords didn't match. Please try again.");
-    if (!email.includes("@") || !email.includes(".com"))
+    if (!email.includes("@"))
       validationErrors.push("Please enter a valid email address");
     setErrors(validationErrors);
     if (validationErrors.length <= 0) {
