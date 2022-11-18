@@ -143,7 +143,7 @@ export const thunkReadSinglePhotoDetails = (photoId) => async (dispatch) => {
 };
 
 export const thunkUpdateSinglePhoto =
-  (photoId, name, about, url, takenOn, privateVar, tags, albumId) => async (dispatch) => {
+  (photoId, name, about, url, takenOn, privateVar, albumId) => async (dispatch) => {
     const response = await fetch(`/api/photos/${photoId}`, {
       method: "put",
       headers: { "Content-Type": "application/json" },
@@ -153,7 +153,6 @@ export const thunkUpdateSinglePhoto =
         url,
         takenOn,
         private: privateVar,
-        tags,
         albumId
       }),
     });
