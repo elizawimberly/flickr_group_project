@@ -38,6 +38,11 @@ function AlbumUpdateForm() {
   /************ reducer/API communication ************/
   const dispatch = useDispatch();
 
+  if(photos === null || photos === undefined) {
+    let photoList = albumPhotos.map((photo) => photo.id);
+    setPhotos(photoList);
+  }
+
   useEffect(() => {
     dispatch(thunkReadSingleAlbumDetails(albumId));
   }, [dispatch, albumId]);
@@ -47,8 +52,6 @@ function AlbumUpdateForm() {
     if (album && albumPhotos) {
       if (name === null || name === undefined) setName(album.name);
       if (about === null || about === undefined) setAbout(album.about);
-      let photoList = albumPhotos.map((photo) => photo.id);
-      setPhotos(photoList);
       setLoaded(true);
     }
   }, [dispatch, album, albumId, name, about, loaded, albumPhotos]);
