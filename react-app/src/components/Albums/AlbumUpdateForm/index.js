@@ -72,7 +72,7 @@ function AlbumUpdateForm() {
         if(errors.length <= 0) {
             setName('')
             setAbout('')
-            history.push('/')
+            history.push(`/albums/${albumId}`)
         }
     }
 
