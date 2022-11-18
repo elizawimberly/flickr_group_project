@@ -9,7 +9,8 @@ import { thunkDeleteSinglePhoto, thunkReadSinglePhotoDetails } from "../../../st
 import "./PhotoDetailsPage.css";
 import CommentCreateFormModal from '../../Comments/CommentCreateFormModal'
 import CommentDeleteModal from "../../Comments/CommentDeleteModal";
-import TagCreateFormModal from "../../TagCreateFormModal";
+import TagCreateFormModal from "../../Tags/TagCreateFormModal";
+import TagDeleteModal from "../../Tags/TagDeleteModal";
 import buddyIcon from "../../../assets/buddyicon.png"
 import { convertDate } from "../../../component-resources";
 
@@ -132,10 +133,7 @@ function PhotoDetailsPage() {
                 <img src={buddyIcon} alt="profile picture" className="photo-blurb-profile-pic"></img>
               </div>
               <div className="photo-blurb-about-container">
-<<<<<<< HEAD
-=======
                 <div className="photo-blurb-photographer">Demo User</div>
->>>>>>> refs/remotes/origin/dev1
                 {/* <div className="photo-blurb-photographer">{user.firstName} {user.lastName}</div> */}
                 <div className="photo-blurb-name">{photo && photo.name}</div>
                 <div className="photo-blurb-about">{photo && photo.about}</div>
@@ -182,7 +180,10 @@ function PhotoDetailsPage() {
 
                 <div className="display-tag-container">
                   {tags && tags.map((tag) => (
-                        <div className="display-tag">{tag.tag}</div>
+                        <div className="display-tag">
+                          {tag.tag}
+                          <TagDeleteModal tag={tag}/>
+                          </div>
                       ))}
                 </div>
 
