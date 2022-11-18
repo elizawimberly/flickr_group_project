@@ -25,8 +25,8 @@
 
   min-width: 425px;
   max-width: 100%;
-  min-height: 300px;
-  max-height: 100%;
+  min-height: fit-content;
+  /* max-height: 100%; */
 }
 
 .modal-button {
@@ -67,9 +67,12 @@ comments: create + delete
   justify-content: center;
   align-items: center;
   max-width: 380px;
+  height: 100%;
+  padding-bottom: 30px;
 }
 .modal-display-content{
   margin-bottom: 20px;
+  height: 100%;
 }
 
 .modal-form {
@@ -82,8 +85,8 @@ comments: create + delete
   outline:none;
   min-width: 380px;
   max-width: 380px;
-  min-height: 150px;
-  max-height: 150px;
+  min-height: 200px;
+  max-height: 200px;
   margin-bottom: 20px;
 }
 
