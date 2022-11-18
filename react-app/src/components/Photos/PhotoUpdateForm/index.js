@@ -2,7 +2,6 @@
 
 import React from "react";
 import {
-  thunkReadAllPhotos,
   thunkReadSinglePhotoDetails,
   thunkUpdateSinglePhoto,
 } from "../../../store/photosReducer";
@@ -33,12 +32,10 @@ function PhotoUpdateForm() {
   const [url, setUrl] = useState(null);
   const [checkUrl, setCheckUrl] = useState("");
   const [private_var, setPrivate_var] = useState(false);
-  const [tags, setTags] = useState(null);
   const [validationErrors, setValidationErrors] = useState([]);
   const [takenOn, setTakenOn] = useState(null);
   const [albumId, setAlbumId] = useState(null);
   const [loaded, setLoaded] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
   const [dropDown, setDropDown] = useState('album-dropdown-hide')
   const [albumName, setAlbumName] = useState(null)
 
@@ -50,8 +47,6 @@ function PhotoUpdateForm() {
   if (day < 10) day = `0${Number(day + 1)}`;
   const date = `${year}-${month}-${day}`;
 
-  console.log(album)
-  console.log('This is album ', albumName)
 
   useEffect(() => {
     dispatch(thunkReadAllAlbums());
@@ -67,28 +62,27 @@ function PhotoUpdateForm() {
       if (albumName === null || albumName === undefined) setAlbumName(album.name)
     }
     if (photo.name) {
-      let tag_array = Object.values(photo.Tags);
-      let tag_names = tag_array.map((tag) => tag.tag);
       if (name === null || name === undefined) setName(photo.name);
       if (about === null || about === undefined) setAbout(photo.about);
       if (url === null || url === undefined) setUrl(photo.url);
-      if (tags === null || tags === undefined) setTags(tag_names.join(" "));
       if (albumId === null || albumId === undefined) setAlbumId(photo.albumId);
       let takenDate = new Date(photo.takenOn);
       let takenYear = takenDate.getFullYear();
-      let takenMonth = takenDate.getMonth();
+      let takenMonth = takenDate.getMonth() + 1;
       let takenDay = takenDate.getDate();
+      console.log(takenDate)
       if (takenMonth < 10) takenMonth = `0${takenMonth}`;
       if (takenDay < 10) takenDay = `0${takenDay}`;
       if (takenOn === null || takenOn === undefined)
         setTakenOn(`${takenYear}-${takenMonth}-${takenDay}`);
     }
-  }, [dispatch, photo.name, name, about, url, tags, albumId, photoId, takenOn, album, albumName]);
+    console.log(takenOn)
+  }, [dispatch, photo.name, name, about, url, albumId, photoId, takenOn, album, albumName]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setSubmitted(true)
     let errors = [];
+    console.log('TAKENON DATE', takenOn)
     if (!name) errors.push("Name needs to be between 2 and 50 characters.");
     if (!about) errors.push("About needs to be between 10 and 500 characters.");
     if (!url) errors.push("You must enter a valid url");
@@ -103,7 +97,6 @@ function PhotoUpdateForm() {
           url,
           takenOn,
           private_var,
-          tags,
           albumId
         )
       ).catch(async (res) => {
@@ -117,7 +110,6 @@ function PhotoUpdateForm() {
       setName("");
       setAbout("");
       setUrl("");
-      setTags("");
       history.push(`/photos/${photoId}`);
     }
   };
@@ -193,17 +185,6 @@ function PhotoUpdateForm() {
                       onChange={(e) => setTakenOn(e.target.value)}
                       value={takenOn}
                       max={date}
-                    />
-                  </label>
-
-                  <label>
-                    <input
-                      className="inputFieldTypeText"
-                      type="text"
-                      name="tags"
-                      placeholder="Add tags"
-                      onChange={(e) => setTags(e.target.value)}
-                      value={tags}
                     />
                   </label>
 

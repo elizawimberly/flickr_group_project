@@ -3,7 +3,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { Link, NavLink, useHistory, Redirect } from "react-router-dom";
+import { NavLink, useHistory, Redirect } from "react-router-dom";
 // local files
 import Account from "../../Account";
 import NavBarUser from "../../NavigationBars/NavBarUser";
@@ -62,7 +62,7 @@ function Albumstream() {
             </NavLink>
           </div>
         </div>
-        <img src={watermark} className="watermark"></img>
+        <img src={watermark} alt='watermark' className="watermark"></img>
       </div>
     );
   } else {

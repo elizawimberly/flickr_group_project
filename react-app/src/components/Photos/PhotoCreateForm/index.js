@@ -4,8 +4,6 @@ import React, { useEffect, useState } from "react";
 import { Redirect, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 // local files
-import Account from "../../Account";
-import NavBarUser from "../../NavigationBars/NavBarUser";
 import { thunkCreateSinglePhoto } from "../../../store/photosReducer";
 import "./PhotoCreateForm.css";
 import { thunkReadAllAlbums } from "../../../store/albumsReducer";
@@ -31,7 +29,7 @@ function PhotoCreateForm() {
   const [about, setAbout] = useState("");
   const [url, setUrl] = useState("");
   const [checkUrl, setCheckUrl] = useState("");
-  const [private_var, setPrivate_var] = useState(false);
+  const [private_var] = useState(false);
   const [tags, setTags] = useState("");
   const [validationErrors, setValidationErrors] = useState([]);
   const [takenOn, setTakenOn] = useState("");
@@ -55,7 +53,7 @@ function PhotoCreateForm() {
     )
       errors.push("You must enter a valid url");
     setValidationErrors(errors);
-  }, [submitted, name, about, url]);
+  }, [submitted, name, about, url, checkUrl]);
   /***************** handle events *******************/
   const history = useHistory();
   const handleSubmit = async (e) => {

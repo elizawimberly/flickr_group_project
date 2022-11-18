@@ -43,10 +43,9 @@ function PhotoDetailsPage() {
 
   useEffect(() => {
     dispatch(thunkReadSinglePhotoDetails(photoId));
-  }, [dispatch]);
+  }, [dispatch, photoId]);
 
   /****************** manage state *******************/
-  const [isShown, setIsShown] = useState(false);
   const [firstName, setFirstName] = useState("")
   const [lastName, setLastName] = useState("")
 
@@ -64,7 +63,7 @@ function PhotoDetailsPage() {
   if (user) {
     photostreamButton = (
       <NavLink to="/photostream" id="back-to-photostream">
-        <i class="fa-solid fa-arrow-left-long"></i> Photostream
+        <i className="fa-solid fa-arrow-left-long"></i> Photostream
       </NavLink>
     );
     updatePhotoButtons = (
@@ -81,7 +80,6 @@ function PhotoDetailsPage() {
       </>
     );
   }
-  console.log(photo)
 
   /***************** handle events *******************/
   const history = useHistory();
@@ -119,7 +117,7 @@ function PhotoDetailsPage() {
             <div>
               <img
                 src={photo.url}
-                atl={photo.name}
+                alt={photo.name}
                 className="view-photo"
               ></img>
             </div>
@@ -139,7 +137,7 @@ function PhotoDetailsPage() {
               <div className="photo-blurb-profile-pic-container">
                 <img
                   src={buddyIcon}
-                  alt="profile picture"
+                  alt="profile"
                   className="photo-blurb-profile-pic"
                 ></img>
               </div>
@@ -168,7 +166,7 @@ function PhotoDetailsPage() {
                       <div className="comment-createdAt">
                         {convertDate(comment.createdAt)}
                       </div>
-                      {user?.id == comment.User.id || user?.id == photo.userId ? <CommentDeleteModal comment={comment} /> : <></>}
+                      {user?.id === comment.User.id || user?.id === photo.userId ? <CommentDeleteModal comment={comment} /> : <></>}
                       {/* {isShown && */}
                       {/* } */}
                     </div>
@@ -206,11 +204,11 @@ function PhotoDetailsPage() {
                   tags.map((tag) => (
                     <div className="display-tag">
                       {tag.tag}
-                      {user?.id == photo.userId ? <TagDeleteModal tag={tag} /> : <></>}
+                      {user?.id === photo.userId ? <TagDeleteModal tag={tag} /> : <></>}
                     </div>
                   ))}
               </div>
-              {user?.id == photo.userId ? <TagCreateFormModal /> : <></>}
+              {user?.id === photo.userId ? <TagCreateFormModal /> : <></>}
             </div>
           </div>
         </div>

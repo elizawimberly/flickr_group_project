@@ -30,7 +30,6 @@ def add_photo():
     """
     Create new photo and return it in a dictionary
     """
-    print('---------------HITTING THE ROUTER ON THE BACK----------------')
 
     form = PhotoForm()
     form['csrf_token'].data = request.cookies['csrf_token']
@@ -41,7 +40,6 @@ def add_photo():
         tag_list = []
         tag_list_tags = data['tags'].split()
         if data['tags']:
-            print('----Hit if ONe-------')
             for tag in tag_list_tags:
                 old_tag = Tag.query.filter(Tag.tag == tag).first()
                 if old_tag:
@@ -56,7 +54,6 @@ def add_photo():
                     tag_list.append(newer_tag)
 
         if data['tags'] and not data['albumId']:
-            print('-------hit two-------')
             new_photo = Photo(
                 user_id = current_user.id,
                 url = data['url'],
@@ -72,7 +69,6 @@ def add_photo():
             db.session.commit()
             return jsonify(new_photo.to_dict())
         if data['albumId'] and not data['tags']:
-             print('-------HIT THREE-------')
              new_photo = Photo(
                 user_id = current_user.id,
                 album_id = data['albumId'],
@@ -86,7 +82,6 @@ def add_photo():
              db.session.commit()
              return jsonify(new_photo.to_dict())
         if data['albumId'] and data['tags']:
-            print('------HIT FOUR--------')
             new_photo = Photo(
                 user_id = current_user.id,
                 album_id = data['albumId'],
@@ -101,7 +96,6 @@ def add_photo():
             db.session.commit()
             return jsonify(new_photo.to_dict())
         else:
-            print('-------HIT ELSE------')
             new_photo = Photo(
                 user_id = current_user.id,
                 url = data['url'],
@@ -137,48 +131,9 @@ def edit_photo(id):
     photo = Photo.query.get(id)
     form = PhotoForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    print(form.data)
     if form.validate_on_submit():
         data = form.data
-        print('---name---', form['name'])
-        print('---about---', form['about'])
-        print('----private----', form['private'])
-        print('---albumId----', form['albumId'])
-        print('----taken_on', form['takenOn'])
-        tag_list = []
-        tag_list_tags = data['tags'].split()
-        if data['tags']:
-            for tag in tag_list_tags:
-                old_tag = Tag.query.filter(Tag.tag == tag).first()
-                if old_tag:
-                    tag_list.append(old_tag)
-                else:
-                    new_tag = Tag(
-                        tag = tag
-                    )
-                    db.session.add(new_tag)
-                    db.session.commit()
-                    newer_tag = Tag.query.filter(Tag.tag == tag).first()
-                    tag_list.append(newer_tag)
-
-        print('----tag_list----',tag_list)
-
-        if data['tags'] and not data['albumId']:
-            print('-------hit two-------')
-            print('----tag_list----',tag_list)
-            photo.user_id = current_user.id
-            photo.url = data['url']
-            photo.name = data['name']
-            photo.about = data['about']
-            photo.taken_on = data['takenOn']
-            photo.private = data['private']
-            photo.tags = tag_list
-
-            db.session.commit()
-            return jsonify(photo.to_dict())
-        if data['albumId'] and not data['tags']:
-            print('-----hithree----')
-            print('----tag_list----',tag_list)
+        if data['albumId']:
             photo.user_id = current_user.id
             photo.album_id = data['albumId']
             photo.url = data['url']
@@ -187,23 +142,9 @@ def edit_photo(id):
             photo.taken_on = data['takenOn']
             photo.private = data['private']
 
-            db.session.commit()
-            return jsonify(photo.to_dict())
-        if data['albumId'] and data['tags']:
-            print('-----hit four-----')
-            print('----tag_list----',tag_list)
-            photo.user_id = current_user.id
-            photo.album_id = data['albumId']
-            photo.url = data['url']
-            photo.name = data['name']
-            photo.about = data['about']
-            photo.taken_on = data['takenOn']
-            photo.private = data['private']
-            photo.tags = tag_list
             db.session.commit()
             return jsonify(photo.to_dict())
         else:
-            print('----tag_list----',tag_list)
             photo.user_id = current_user.id
             photo.url = data['url']
             photo.name = data['name']
@@ -232,7 +173,6 @@ def delete_photo(id):
 @login_required
 def current():
     photos = current_user.photos
-    print("----------THIS IS CURENT USER-------------", current_user)
     # normalized
     # return { 'Photos': { photo['id'] : photo.to_dict(True) for photo in photos} }
 

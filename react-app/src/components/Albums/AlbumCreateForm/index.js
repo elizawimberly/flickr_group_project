@@ -157,7 +157,8 @@ function AlbumCreateForm() {
                                                     <p className="photo-item-about">{photo.about}</p>
                                                 </div>
                                             </div>
-                                    )}}
+                                    )}
+                                    else return <></>}
                                     )}
 
                         </div>

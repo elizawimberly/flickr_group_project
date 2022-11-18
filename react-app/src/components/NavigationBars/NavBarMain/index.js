@@ -13,13 +13,10 @@ import ToggleExploreMenu from './SessionButtons/ToggleExploreMenu';
 /******************************* COMPONENT *******************************/
 const NavBarMain = () => {
 
-  const session = true;
-
   /****************** access store *******************/
   const sessionUser = useSelector(state => state.session.user);
 
   /************ key into pertinent values ************/
-  let landingNoSession = false;
   let userId
   if (sessionUser) userId = sessionUser.id
 
@@ -79,7 +76,7 @@ const NavBarMain = () => {
 
         <div class="nav-bar-left">
             <NavLink to={'/'} exact={true} activeClassName='active'>
-              <img src={flareLogo} className="navigation-bar-logo"></img>
+              <img src={flareLogo} alt='logo' className="navigation-bar-logo"></img>
             </NavLink>
         </div>
 

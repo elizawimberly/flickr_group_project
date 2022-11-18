@@ -1,21 +1,13 @@
 /******************************** IMPORTS ********************************/
 // libraries
 import React, { useState, useEffect } from "react";
-import { NavLink, useHistory } from "react-router-dom";
-import { useDispatch, useSelector } from 'react-redux';
+import { NavLink } from "react-router-dom";
 // local files
 import './SessionButtons.css'
 
 
 /******************************* COMPONENT *******************************/
-function ToggleYouMenu({ user }) {
-
-    /****************** access store *******************/
-    const sessionState = useSelector(state => state.session)
-
-    /************ reducer/API communication ************/
-    const dispatch = useDispatch();
-
+function ToggleYouMenu() {
     /****************** manage state *******************/
     const [showMenu, setShowMenu] = useState(false);
 

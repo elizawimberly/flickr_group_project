@@ -48,7 +48,7 @@ function Explore() {
           {allPhotosArr &&
             allPhotosArr.map((photo) => (
               <Link to={`/photos/${photo.id}`} key={`${photo.id}`}>
-                <img src={photo.url} className={photoCardSize}></img>
+                <img src={photo.url} alt={photo.name} className={photoCardSize}></img>
               </Link>
             ))}
         </div>

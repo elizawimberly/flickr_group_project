@@ -79,13 +79,13 @@ const SignUpForm = () => {
   return (
     <div className="page-wrapper-container">
       <div className="background-image-container">
-        <img className="background-image" src={background}></img>
+        <img className="background-image" alt='background' src={background}></img>
       </div>
 
       <div className="LoginForm-and-SignUpForm-components">
         <div className="login-signup-form" id="signup-form">
           <div>
-            <img src={flareLogo} className="login-signup-form-logo"></img>
+            <img src={flareLogo} className="login-signup-form-logo" alt='logo'></img>
           </div>
 
           <div>
