@@ -16,11 +16,22 @@ function TagDeleteConfirmation({onClose, tag}) {
 
   return (
     <div className='page-wrapper-container'>
-      <h1>Are you sure you want to delete this comment?</h1>
-      <div className="display-comment">
-         <div className="comment-text">{tag.tag}</div>
-       </div>
-       <button onClick={deleteTag}>Delete Tag</button>
+      <div className='modal-container'>
+
+            <p className='modal-title'>Are you sure you want to delete this comment?</p>
+
+            <div className='modal-body'>
+
+              <div className="modal-display-content">
+                <div className="comment-text">{tag.tag}</div>
+              </div>
+
+              <div>
+                <button className="modal-button" onClick={deleteTag}>Delete Tag</button>
+              </div>
+
+            </div>
+        </div>
     </div>
   )
 }
