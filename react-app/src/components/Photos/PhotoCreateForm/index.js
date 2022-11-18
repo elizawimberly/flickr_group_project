@@ -63,12 +63,7 @@ function PhotoCreateForm() {
     setSubmitted(true);
     if (!name) errors.push("Name needs to be between 2 and 50 characters.");
     if (!about) errors.push("About needs to be between 10 and 500 characters.");
-    if (
-      !url ||
-      checkUrl ===
-        "https://learn.getgrav.org/user/pages/11.troubleshooting/01.page-not-found/error-404.png"
-    )
-      errors.push("You must enter a valid url");
+    if ( !url || checkUrl === "https://learn.getgrav.org/user/pages/11.troubleshooting/01.page-not-found/error-404.png") errors.push("You must enter a valid url");
     if (errors.length >= 1) setValidationErrors(errors);
     if (errors.length <= 1 && validationErrors <= 1) {
       dispatch(
