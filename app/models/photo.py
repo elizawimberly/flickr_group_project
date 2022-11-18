@@ -39,7 +39,10 @@ class Photo(db.Model):
 
     album = db.relationship('Album', back_populates='photos')
 
-    comments = db.relationship('Comment', back_populates='photo')
+    comments = db.relationship('Comment',
+                                back_populates='photo',
+                                cascade="all, delete-orphan"
+                                )
 
     tags = db.relationship('Tag',
                            secondary=tags_to_photos,
