@@ -19,7 +19,6 @@ function CommentCreateForm({onClose}) {
     }
 
     return (
-        <div className='page-wrapper-container'>
             <div className='modal-container'>
 
                 <p className='modal-title'>Add a comment</p>
@@ -47,7 +46,6 @@ function CommentCreateForm({onClose}) {
 
                 </div>
             </div>
-        </div>
     )
 }
 

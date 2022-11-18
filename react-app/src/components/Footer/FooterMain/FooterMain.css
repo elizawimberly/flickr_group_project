@@ -14,7 +14,7 @@
     /* border-top: 2px solid #f6f6f6; */
     padding: 8px 20px;
     /* size */
-    width: 100%;
+    width: 100vw;
     height: 45px;
 
     background-color: #000;
@@ -63,14 +63,15 @@
 #footer-logo-container {
     max-width: 40px;
     max-height: 40px;
-    object-fit: cover;
-    padding-right: 40px;
+    object-fit: contain;
+    /* padding-right: 40px; */
     display: flex;
     align-items: center;
 }
-.footer-logo{
-    /* max-width: 20; */
+#footer-logo{
+    max-width: 20px;
     max-height: 20px;
+    max-height: 40px;
 }
 
 .footerContainer > a:hover {

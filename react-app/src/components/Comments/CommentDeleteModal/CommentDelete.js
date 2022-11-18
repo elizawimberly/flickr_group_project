@@ -15,7 +15,6 @@ function CommentDeleteConfirmation({onClose, comment}) {
   }
 
   return (
-    <div className='page-wrapper-container'>
         <div className='modal-container'>
 
             <p className='modal-title'>Are you sure you want to delete this comment?</p>
@@ -32,7 +31,6 @@ function CommentDeleteConfirmation({onClose, comment}) {
 
           </div>
         </div>
-    </div>
   )
 }
 

@@ -15,7 +15,6 @@ function TagDeleteConfirmation({onClose, tag}) {
   }
 
   return (
-    <div className='page-wrapper-container'>
       <div className='modal-container'>
 
             <p className='modal-title'>Are you sure you want to delete this tag?</p>
@@ -32,7 +31,6 @@ function TagDeleteConfirmation({onClose, tag}) {
 
             </div>
         </div>
-    </div>
   )
 }
 

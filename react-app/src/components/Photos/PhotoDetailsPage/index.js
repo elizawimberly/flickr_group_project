@@ -70,13 +70,13 @@ function PhotoDetailsPage() {
     updatePhotoButtons = (
       <>
         <div>
-          <NavLink to={`/photos/${photoId}/edit`} id="photo-page-edit-button">
+          <NavLink to={`/photos/${photoId}/edit`} id="photo-page-fa-icon">
             <i class="fa-solid fa-pen"></i>
           </NavLink>
         </div>
 
-        <div id="photo-page-delete-button">
-          <i class="fa-solid fa-trash" onClick={deletePhoto}></i>
+        <div>
+          <i class="fa-solid fa-trash" id="photo-page-fa-icon" onClick={deletePhoto}></i>
         </div>
       </>
     );
@@ -95,7 +95,7 @@ function PhotoDetailsPage() {
   return (
     <>
     <div className="page-wrapper-container">
-      <div className="PhotoDetailsPage-component">
+      <div id="PhotoDetailsPage-component">
         <div
           className="top-half"
           style={{
@@ -161,7 +161,9 @@ function PhotoDetailsPage() {
                     // onMouseEnter={() => setIsShown(true)}
                     // onMouseLeave={() => setIsShown(false)}
                   >
-                    <div className="comment-text">{comment.comment}</div>
+                    <div className="comment-text-container">
+                      <div className="comment-text">{comment.comment}</div>
+                    </div>
                     <div className="comment-bottom-line-container">
                       <div className="comment-createdAt">
                         {convertDate(comment.createdAt)}
