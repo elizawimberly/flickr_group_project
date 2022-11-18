@@ -1,4 +1,5 @@
-/******************************** IMPORTS ********************************/
+// photoupdateform
+
 import React from "react";
 import {
   thunkReadAllPhotos,
@@ -11,8 +12,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { thunkReadAllAlbums } from "../../../store/albumsReducer";
 import "./PhotoUpdateForm.css";
 
-
-/******************************* COMPONENT *******************************/
 function PhotoUpdateForm() {
   const sessionUser = useSelector((state) => state.session.user);
   const userAlbums = useSelector((state) =>
@@ -103,140 +102,125 @@ function PhotoUpdateForm() {
     }
   };
 
-    /**************** render component *****************/
-    if (!sessionUser) return <Redirect to="/" />;
-
   return (
-      <div className="page-wrapper-container">
-        {photo.name && loaded && (
-          <div className="PhotoCreateForm-component">
-            <div className="photo-form-container">
+    <div className="page-wrapper-container">
+      {photo.name && loaded && (
+        <div className="PhotoCreateForm-component">
+          <div className="photo-form-container">
             <form className="photo-form-container" onSubmit={handleSubmit}>
-                <div className="mock-upload-navbar">
-                  <button
-                    className="photo-submit-button"
-                    type="submit"
-                    disabled={!!validationErrors.length}
-                  >
-                    Upload 1 Photo
-                  </button>
-                </div>
-                <div className="photo-form-top-sub-container">
-                  <div className="photo-form-top-left-sub-container">
-                    <div>Editing {photo && photo.name}</div>
-
-                    <label>
-                      <input
-                        className="inputFieldTypeText"
-                        id="input-photo-name"
-                        type="text"
-                        name="name"
-                        placeholder="Add a title"
-                        onChange={(e) => setName(e.target.value)}
-                        value={name}
-                      />
-                    </label>
-
-                    <label>
-                      <input
-                        className="inputFieldTypeText"
-                        type="text"
-                        name="about"
-                        placeholder="Add a description"
-                        onChange={(e) => setAbout(e.target.value)}
-                        value={about}
-                      />
-                    </label>
-
-                    <label>
-                      <input
-                        className="inputFieldTypeText"
-                        type="text"
-                        name="url"
-                        placeholder="Add a photo url"
-                        onChange={(e) => setUrl(e.target.value)}
-                        value={url}
-                      />
-                    </label>
-
-                    <label>
-                      <input
-                        type="date"
-                        className="inputFieldTypeText"
-                        id="takenOn"
-                        name="takenOn"
-                        onChange={(e) => setTakenOn(e.target.value)}
-                        value={takenOn}
-                        max={date}
-                      />
-                    </label>
-
-                    <label>
-                      <input
-                        className="inputFieldTypeText"
-                        type="text"
-                        name="tags"
-                        placeholder="Add tags"
-                        onChange={(e) => setTags(e.target.value)}
-                        value={tags}
-                      />
-                    </label>
-
-                    <label>
-                      {userAlbums.length >= 1 && (
-                        <div className="album-dropdown">
-                          <span className="album-dropdown-span">
-                          Add to albums
-                          </span>
-                          <div className="dropdown-content">
-                            {userAlbums.map((album) => {
-                              return (
-                                <div
-                                  id={album.id}
-                                  className={
-                                    albumId === album.id
-                                      ? "album-selected"
-                                      : "album-not-selected"
-                                  }
-                                  onClick={() => setAlbumId(album.id)}
-                                >
-                                  <div>
-                                    {album.name} photos {album.Photos.length}
-                                  </div>
-                                </div>
-                              );
-                            })}
-                          </div>
-                        </div>
-                      )}
-
-                      {userAlbums.length <= 0 && (
-                        <>
-                          <div>Current User has no albums</div>
-                        </>
-                      )}
-                    </label>
-
-                    <div className="errors-container">
-                      {validationErrors && validationErrors.map((error, ind) => (
-                      <div className="form-errors" key={ind}>{error}</div>))}
-                    </div>
-
-
-                </div>
-                </div>
-              </form>
-
-              <div className="photo-form-top-right-sub-container">
-                {url && (
-                  <div className="view-uploaded-image">
-                    <img alt="" src={url} />
-                  </div>
-                )}
+              <div className="mock-upload-navbar">
+                <button
+                  className="photo-submit-button"
+                  type="submit"
+                  disabled={!!validationErrors.length}
+                >
+                  Update 1 Photo
+                </button>
               </div>
-            </div>
+              <div className="photo-form-top-sub-container">
+                <div className="photo-form-top-left-sub-container">
+                  <label>
+                    <input
+                      className="inputFieldTypeText"
+                      type="text"
+                      name="name"
+                      placeholder="Add a title"
+                      onChange={(e) => setName(e.target.value)}
+                      value={name}
+                    />
+                  </label>
+
+                  <label>
+                    <input
+                      className="inputFieldTypeText"
+                      type="text"
+                      name="about"
+                      placeholder="Add a description"
+                      onChange={(e) => setAbout(e.target.value)}
+                      value={about}
+                    />
+                  </label>
+
+                  <label>
+                    <input
+                      className="inputFieldTypeText"
+                      type="text"
+                      name="url"
+                      placeholder="Add a photo url"
+                      onChange={(e) => setUrl(e.target.value)}
+                      value={url}
+                    />
+                  </label>
+
+                  <label>
+                    <input
+                      type="date"
+                      id="takenOn"
+                      name="takenOn"
+                      onChange={(e) => setTakenOn(e.target.value)}
+                      value={takenOn}
+                      max={date}
+                    />
+                  </label>
+
+                  <label>
+                    <input
+                      className="inputFieldTypeText"
+                      type="text"
+                      name="tags"
+                      placeholder="Add tags"
+                      onChange={(e) => setTags(e.target.value)}
+                      value={tags}
+                    />
+                  </label>
+
+                  <label>
+                    {userAlbums.length >= 1 && (
+                      <div className="album-dropdown">
+                        <span className="album-dropdown-span">
+                          Select a Album to add your photo to.
+                        </span>
+                        <div className="dropdown-content">
+                          {userAlbums.map((album) => {
+                            return (
+                              <div
+                                id={album.id}
+                                className={
+                                  albumId === album.id
+                                    ? "album-selected"
+                                    : "album-not-selected"
+                                }
+                                onClick={() => setAlbumId(album.id)}
+                              >
+                                <div>
+                                  {album.name} photos {album.Photos.length}
+                                </div>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    )}
+
+                    {userAlbums.length <= 0 && (
+                      <>
+                        <div>Current User has no albums</div>
+                      </>
+                    )}
+                  </label>
+                </div>
+                <div className="photo-form-top-right-sub-container">
+                  {url && (
+                    <div className="view-uploaded-image">
+                      <img alt="" src={url} />
+                    </div>
+                  )}
+                </div>
+              </div>
+            </form>
           </div>
-        )}
+        </div>
+      )}
     </div>
   );
 }
