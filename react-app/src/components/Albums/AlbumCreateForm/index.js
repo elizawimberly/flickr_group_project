@@ -35,7 +35,7 @@ function AlbumCreateForm() {
     /***************** handle events *******************/
     const history = useHistory()
 
-    const onSubmit = (e) => {
+    const onSubmit = async (e) => {
         e.preventDefault()
 
         let errors = [];
@@ -48,13 +48,13 @@ function AlbumCreateForm() {
 
         if (errors.length >= 1)
             setValidationErrors(errors);
-        else
-            newAlbum = dispatch(thunkCreateSingleAlbum(name, about, photos.toString()))
-            .catch(async (res) => {
+        if (errors.length <= 1 && validationErrors <= 1)
+            newAlbum = await dispatch(thunkCreateSingleAlbum(name, about, photos.toString())
+            ).catch(async (res) => {
                 const data = await res.json();
                 if(data && data.errors) setValidationErrors(data.errors)
             })
-
+        console.log(newAlbum.id)
         if (errors.length <= 0) {
             setName('')
             setAbout('')

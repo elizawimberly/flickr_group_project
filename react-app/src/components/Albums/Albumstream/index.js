@@ -92,7 +92,7 @@ function Albumstream() {
                 style={{
                   backgroundImage: `url("${
                     allAlbumsArr.length
-                      ? album.Photos[0].url
+                      ? album.Photos[0]?.url
                       : albumPlaceholderImage
                   }")`,
                   backgroundRepeat: "no-repeat",
