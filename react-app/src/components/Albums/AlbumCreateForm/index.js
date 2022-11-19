@@ -35,7 +35,7 @@ function AlbumCreateForm() {
     /***************** handle events *******************/
     const history = useHistory()
 
-    const onSubmit = (e) => {
+    const onSubmit = async(e) => {
         e.preventDefault()
 
         let errors = [];
@@ -48,19 +48,21 @@ function AlbumCreateForm() {
 
         if (errors.length >= 1)
             setValidationErrors(errors);
-        else
-            newAlbum = dispatch(thunkCreateSingleAlbum(name, about, photos.toString()))
+        else{
+            newAlbum = await dispatch(thunkCreateSingleAlbum(name, about, photos.toString()))
             .catch(async (res) => {
                 const data = await res.json();
                 if(data && data.errors) setValidationErrors(data.errors)
             })
-
-        if (errors.length <= 0) {
-            setName('')
-            setAbout('')
-            history.push(`/albums/${newAlbum.id}`)
+            if (errors.length <= 0 && newAlbum.ok) {
+                console.log(newAlbum)
+                setName('')
+                setAbout('')
+                history.push(`/albums/${newAlbum.id}`)
+            }
+          }
+          
         }
-    }
 
     /**************** render component *****************/
     if (!sessionUser) {

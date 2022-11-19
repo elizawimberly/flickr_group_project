@@ -50,6 +50,7 @@ def add_album():
             )
             db.session.add(new_album)
             db.session.commit()
+            return jsonify(new_album.to_dict())
         else:
             new_album = Album(
                 user_id = current_user.id,
@@ -58,7 +59,7 @@ def add_album():
             )
             db.session.add(new_album)
             db.session.commit()
-        return jsonify(new_album.to_dict(True))
+            return jsonify(new_album.to_dict())
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
