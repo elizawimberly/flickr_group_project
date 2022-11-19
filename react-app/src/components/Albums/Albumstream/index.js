@@ -42,6 +42,7 @@ function Albumstream() {
     return history.push(`/albums/${id}`);
   }
 
+  
   /************* conditional components **************/
   let albumstreamFeed = <></>;
 
@@ -91,8 +92,9 @@ function Albumstream() {
                 className="albumstream-album-card"
                 style={{
                   backgroundImage: `url("${
-                    allAlbumsArr.length
-                      ? album.Photos[0].url
+                    allAlbumsArr.length &&
+                    album.Photos[0]?.url !== undefined
+                      ? album.Photos[0]?.url
                       : albumPlaceholderImage
                   }")`,
                   backgroundRepeat: "no-repeat",

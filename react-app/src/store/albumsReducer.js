@@ -55,7 +55,7 @@ export const thunkCreateSingleAlbum = (name, about, photos = []) => async (dispa
     if (response.ok) {
       const newAlbum = await response.json();
       dispatch(actionCreateSingleAlbum(newAlbum));
-      return response;
+      return newAlbum;
     }
   };
 
