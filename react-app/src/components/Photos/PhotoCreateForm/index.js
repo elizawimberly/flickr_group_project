@@ -4,11 +4,10 @@ import React, { useEffect, useState } from "react";
 import { Redirect, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 // local files
-import Account from "../../Account";
-import NavBarUser from "../../NavigationBars/NavBarUser";
 import { thunkCreateSinglePhoto } from "../../../store/photosReducer";
 import "./PhotoCreateForm.css";
 import { thunkReadAllAlbums } from "../../../store/albumsReducer";
+import FooterAccount from "../../Footer/FooterAccount";
 
 /******************************* COMPONENT *******************************/
 function PhotoCreateForm() {
@@ -30,7 +29,7 @@ function PhotoCreateForm() {
   const [about, setAbout] = useState("");
   const [url, setUrl] = useState("");
   const [checkUrl, setCheckUrl] = useState("");
-  const [private_var, setPrivate_var] = useState(false);
+  const [private_var] = useState(false);
   const [tags, setTags] = useState("");
   const [validationErrors, setValidationErrors] = useState([]);
   const [takenOn, setTakenOn] = useState("");
@@ -54,24 +53,20 @@ function PhotoCreateForm() {
     )
       errors.push("You must enter a valid url");
     setValidationErrors(errors);
-  }, [submitted, name, about, url]);
+  }, [submitted, name, about, url, checkUrl]);
   /***************** handle events *******************/
   const history = useHistory();
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     let errors = [];
+    let newPhoto
     setSubmitted(true);
     if (!name) errors.push("Name needs to be between 2 and 50 characters.");
     if (!about) errors.push("About needs to be between 10 and 500 characters.");
-    if (
-      !url ||
-      checkUrl ===
-        "https://learn.getgrav.org/user/pages/11.troubleshooting/01.page-not-found/error-404.png"
-    )
-      errors.push("You must enter a valid url");
+    if ( !url || checkUrl === "https://learn.getgrav.org/user/pages/11.troubleshooting/01.page-not-found/error-404.png") errors.push("You must enter a valid url");
     if (errors.length >= 1) setValidationErrors(errors);
     if (errors.length <= 1 && validationErrors <= 1) {
-      dispatch(
+      newPhoto = await dispatch(
         thunkCreateSinglePhoto(
           name,
           about,
@@ -92,7 +87,7 @@ function PhotoCreateForm() {
       setAbout("");
       setUrl("");
       setTags("");
-      history.push("/");
+      history.push(`/photos/${newPhoto.id}`);
     }
   };
 
@@ -106,8 +101,9 @@ function PhotoCreateForm() {
   /**************** render component *****************/
   if (!sessionUser) return <Redirect to="/" />;
   return (
+    <>
     <div className="page-wrapper-container">
-      <div className="PhotoCreateForm-component">
+      <div id="PhotoCreateForm-component">
         <form className="photo-form-container" onSubmit={handleSubmit}>
           <div className="mock-upload-navbar">
             <button className="photo-submit-button" type="submit">
@@ -244,8 +240,8 @@ function PhotoCreateForm() {
               <div className="errors-container">
                 {submitted &&
                   validationErrors &&
-                  validationErrors.map((error, ind) => (
-                    <div className="form-errors" key={ind}>
+                  validationErrors.map((error, i = 0) => (
+                    <div className="form-errors" key={i}>
                       {error}
                     </div>
                   ))}
@@ -263,6 +259,8 @@ function PhotoCreateForm() {
         </form>
       </div>
     </div>
+    <FooterAccount />
+    </>
   );
 }
 

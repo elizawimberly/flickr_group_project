@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { thunkReadSingleAlbumDetails, thunkDeleteSingleAlbum } from "../../../store/albumsReducer";
 import './AlbumDetailsPage.css';
 import { albumPlaceholderImage } from "../../../component-resources";
+import Footer from "../../Footer/FooterAccount";
 
 /******************************* COMPONENT *******************************/
 function AlbumDetailsPage() {
@@ -30,7 +31,7 @@ function AlbumDetailsPage() {
 
     useEffect(()=> {
         dispatch(thunkReadSingleAlbumDetails(albumId))
-    },[dispatch])
+    },[dispatch, albumId])
 
     /****************** manage state *******************/
     let [photoCardSize, setPhotoCardSize] = useState('albumDetails-photo-card-small')
@@ -58,6 +59,7 @@ function AlbumDetailsPage() {
     if (!sessionState.user) return <Redirect to="/" />;
 
     return (
+        <>
         <div className='page-wrapper-container'>
             <div className="AlbumDetailsPage-component">
 
@@ -104,6 +106,8 @@ function AlbumDetailsPage() {
             </div>
 
         </div>
+        <Footer />
+        </>
     )
 }
 

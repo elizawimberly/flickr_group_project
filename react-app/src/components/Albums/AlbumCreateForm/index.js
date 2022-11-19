@@ -7,6 +7,7 @@ import { useHistory } from "react-router-dom";
 // local files
 import { thunkCreateSingleAlbum } from "../../../store/albumsReducer";
 import { thunkReadAllPhotosByUser } from '../../../store/photosReducer'
+import FooterAccount from "../../Footer/FooterAccount";
 import './AlbumCreateForm.css'
 
 
@@ -38,6 +39,7 @@ function AlbumCreateForm() {
         e.preventDefault()
 
         let errors = [];
+        let newAlbum
 
         setSubmitted(true)
 
@@ -47,7 +49,7 @@ function AlbumCreateForm() {
         if (errors.length >= 1)
             setValidationErrors(errors);
         else
-            dispatch(thunkCreateSingleAlbum(name, about, photos.toString()))
+            newAlbum = dispatch(thunkCreateSingleAlbum(name, about, photos.toString()))
             .catch(async (res) => {
                 const data = await res.json();
                 if(data && data.errors) setValidationErrors(data.errors)
@@ -56,7 +58,7 @@ function AlbumCreateForm() {
         if (errors.length <= 0) {
             setName('')
             setAbout('')
-            history.push('/')
+            history.push(`/albums/${newAlbum.id}`)
         }
     }
 
@@ -66,7 +68,7 @@ function AlbumCreateForm() {
     }
 
     return (
-
+        <>
         <div className='page-wrapper-container'>
             <div id="AlbumCreateForm-component">
                 <div id="AlbumCreateForm-title">Create a New Album</div>
@@ -155,7 +157,8 @@ function AlbumCreateForm() {
                                                     <p className="photo-item-about">{photo.about}</p>
                                                 </div>
                                             </div>
-                                    )}}
+                                    )}
+                                    else return <></>}
                                     )}
 
                         </div>
@@ -179,6 +182,8 @@ function AlbumCreateForm() {
             </form>
         </div>
     </div>
+    <FooterAccount />
+    </>
     )
 }
 

@@ -21,5 +21,6 @@ body {
     justify-content: center;
     z-index: inherit;
     /* background-color: red; */
+    min-width: 100%;
     /* align-items: center; */
 }

@@ -3,7 +3,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { Link, NavLink, useHistory, Redirect } from "react-router-dom";
+import { NavLink, useHistory, Redirect } from "react-router-dom";
 // local files
 import Account from "../../Account";
 import NavBarUser from "../../NavigationBars/NavBarUser";
@@ -11,6 +11,7 @@ import { thunkReadAllAlbums } from "../../../store/albumsReducer";
 import "./Albumstream.css";
 import { albumPlaceholderImage } from "../../../component-resources";
 import watermark from "../../../assets/no-albums-watermark.jpeg";
+import FooterAccount from "../../Footer/FooterAccount";
 
 
 /******************************* COMPONENT *******************************/
@@ -54,14 +55,14 @@ function Albumstream() {
             friends, family, or even other Flare members.
           </p>
           <div>
-            <NavLink to="/upload" exact={true}>
+            <NavLink to="/albums/create" exact={true}>
               <button className="no-photos-or-albums-upload-button">
                 Create an album
               </button>
             </NavLink>
           </div>
         </div>
-        <img src={watermark} className="watermark"></img>
+        <img src={watermark} alt='watermark' className="watermark"></img>
       </div>
     );
   } else {
@@ -117,12 +118,15 @@ function Albumstream() {
   if (!sessionUser) return <Redirect to="/" />;
 
   return (
+    <>
     <div className="page-wrapper-container">
       <Account />
       <NavBarUser />
 
       <div className="albumstream-component">{albumstreamFeed}</div>
     </div>
+    <FooterAccount />
+    </>
   );
 }
 

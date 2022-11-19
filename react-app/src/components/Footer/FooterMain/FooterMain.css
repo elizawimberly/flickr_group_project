@@ -1,0 +1,90 @@
+
+
+.FooterMain-container {
+    /* display */
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+    position:fixed;
+    bottom: 0;
+    left: 0;
+    /* z-index: unset; */
+
+    /* container */
+    /* border-top: 2px solid #f6f6f6; */
+    padding: 8px 20px;
+    /* size */
+    width: 100vw;
+    height: 45px;
+
+    background-color: #000;
+    z-index: 0;
+}
+
+
+
+.footer-left {
+    grid-column: 1 / 2;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+}
+.footer-left > a {
+    padding-right: 20px;
+}
+.footer-middle {
+    grid-column: 2 / 3;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.footer-right {
+    grid-column: 3 / 4;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: right;
+    align-items: center;
+}
+
+
+.footerText {
+    padding: 0px 3px;
+    text-decoration: none;
+    color: #fff;
+    font-weight: 100;
+    font-size: 14px;
+}
+
+#footer-logo-container {
+    max-width: 40px;
+    max-height: 40px;
+    object-fit: contain;
+    /* padding-right: 40px; */
+    display: flex;
+    align-items: center;
+}
+#footer-logo{
+    max-width: 20px;
+    max-height: 20px;
+    max-height: 40px;
+}
+
+.footerContainer > a:hover {
+    color: #fff;
+    text-decoration: underline;
+}
+
+.footerContainer > a:active {
+    color: #fff;
+    text-decoration: none;
+}
+
+.footerContainer > a:visited {
+    color: #fff;
+    text-decoration: none;
+}

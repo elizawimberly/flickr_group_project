@@ -3,11 +3,12 @@
   max-width: 1536px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  /* justify-content: center; */
+  /* align-items: center; */
   align-self: center;
   /* remove this once navbar issue fixed */
   padding-top: 30px;
+  height: 100vh;
 }
 
 .albumstream-feed {
@@ -28,7 +29,7 @@
   text-shadow: 0 1px 1px #000;
   display: flex;
   flex-direction: column;
-  justify-content: end;
+  justify-content: flex-end;
 }
 .albumstream-album-card > div {
   margin: none;

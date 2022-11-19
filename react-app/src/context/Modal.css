@@ -25,8 +25,8 @@
 
   min-width: 425px;
   max-width: 100%;
-  min-height: 300px;
-  max-height: 100%;
+  min-height: fit-content;
+  /* max-height: 100%; */
 }
 
 .modal-button {
@@ -58,6 +58,7 @@ comments: create + delete
 
 .modal-title {
   font-size: 20px;
+  max-width: 380px;
 }
 
 .modal-body {
@@ -65,9 +66,16 @@ comments: create + delete
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  max-width: 380px;
+  height: 100%;
+  margin: 0px 20px
 }
 .modal-display-content{
   margin-bottom: 20px;
+  height: 100%;
+  min-width: 380px;
+  max-width: 380px;
+  word-wrap: break-word;
 }
 
 .modal-form {
@@ -80,8 +88,8 @@ comments: create + delete
   outline:none;
   min-width: 380px;
   max-width: 380px;
-  min-height: 150px;
-  max-height: 150px;
+  min-height: 200px;
+  max-height: 200px;
   margin-bottom: 20px;
 }
 
@@ -92,6 +100,8 @@ comments: create + delete
   border: none;
   border-radius: 0.25rem;
   padding-right: 10px;
+  margin-bottom: 20px;
+
 
   background-color: #0362db;
   color: #fff;

@@ -10,6 +10,7 @@ import NavBarUser from "../../NavigationBars/NavBarUser";
 import { thunkReadAllPhotosByUser } from "../../../store/photosReducer";
 import "./Photostream.css";
 import watermark from "../../../assets/no-albums-watermark.jpeg"
+import FooterAccount from "../../Footer/FooterAccount";
 
 /******************************* COMPONENT *******************************/
 function Photostream() {
@@ -17,7 +18,6 @@ function Photostream() {
   /****************** access store *******************/
   const sessionState = useSelector((state) => state.session)
   const photosState = useSelector((state) => state.photos);
-  console.log("photosState", photosState)
 
   /************ key into pertinent values ************/
   const sessionUser = sessionState.user
@@ -48,12 +48,12 @@ function Photostream() {
           <p className="no-photos-or-albums">You have no public photos.</p>
           <p className="no-photos-or-albums-upload-prompt">Your photostream is your public-facing portfolio. Set your photos to public within the Upload tool to populate your photostream.</p>
           <div>
-            <NavLink to='/upload' exact={true}>
+            <NavLink to='/photos/upload' exact={true}>
               <button className="no-photos-or-albums-upload-button">Go to Upload</button>
             </NavLink>
           </div>
         </div>
-        <img src={watermark} className="watermark"></img>
+        <img src={watermark} alt='watermark' className="watermark"></img>
       </div>
     )
 
@@ -63,7 +63,7 @@ function Photostream() {
       {allPhotosArr &&
         allPhotosArr.map((photo) => (
           <Link to={`/photos/${photo.id}`} key={`${photo.id}`}>
-            <img src={photo.url} className={photostreamCardSize}></img>
+            <img src={photo.url} alt={photo.name} className={photostreamCardSize}></img>
           </Link>
         ))}
       </>
@@ -74,6 +74,7 @@ function Photostream() {
   if (!sessionUser) return <Redirect to="/" />;
 
   return (
+    <>
     <div className="page-wrapper-container">
 
       <Account />
@@ -97,6 +98,8 @@ function Photostream() {
       </div>
 
     </div>
+    <FooterAccount />
+    </>
   );
 }
 

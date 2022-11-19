@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 // local files
 import "./Explore.css";
 import { thunkReadAllPhotos } from "../../../store/photosReducer";
+import FooterAccount from "../../Footer/FooterAccount";
 
 /******************************* COMPONENT *******************************/
 function Explore() {
@@ -29,6 +30,7 @@ function Explore() {
 
   /**************** render component *****************/
   return (
+    <>
     <div className="page-wrapper-container">
       <div className="explore-component">
 
@@ -46,12 +48,14 @@ function Explore() {
           {allPhotosArr &&
             allPhotosArr.map((photo) => (
               <Link to={`/photos/${photo.id}`} key={`${photo.id}`}>
-                <img src={photo.url} className={photoCardSize}></img>
+                <img src={photo.url} alt={photo.name} className={photoCardSize}></img>
               </Link>
             ))}
         </div>
       </div>
     </div>
+    <FooterAccount />
+    </>
   );
 }
 

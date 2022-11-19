@@ -25,28 +25,20 @@ const SignUpForm = () => {
   /***************** handle events *******************/
   const onSignUp = async (e) => {
     let validationErrors = [];
-    console.log(
-      username,
-      firstName,
-      lastName,
-      email,
-      password,
-      about,
-      repeatPassword
-    );
     e.preventDefault();
     if (password !== repeatPassword)
       validationErrors.push("Those passwords didn't match. Please try again.");
-    if (!email.includes("@") || !email.includes(".com"))
+    if (!email.includes("@"))
       validationErrors.push("Please enter a valid email address");
     setErrors(validationErrors);
     if (validationErrors.length <= 0) {
       const data = await dispatch(
         signUp(username, firstName, lastName, email, password, about)
       );
-      if (data && data.errors) {
-        validationErrors.push(data.errors);
-        setErrors(validationErrors);
+      if (data) {
+        let dbErrors = data.map(error => error.split(':')[1])
+        validationErrors.push(dbErrors);
+        setErrors([...validationErrors]);
       }
     }
   };
@@ -87,13 +79,13 @@ const SignUpForm = () => {
   return (
     <div className="page-wrapper-container">
       <div className="background-image-container">
-        <img className="background-image" src={background}></img>
+        <img className="background-image" alt='background' src={background}></img>
       </div>
 
       <div className="LoginForm-and-SignUpForm-components">
         <div className="login-signup-form" id="signup-form">
           <div>
-            <img src={flareLogo} className="login-signup-form-logo"></img>
+            <img src={flareLogo} className="login-signup-form-logo" alt='logo'></img>
           </div>
 
           <div>

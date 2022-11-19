@@ -1,11 +1,9 @@
 /******************************** IMPORTS ********************************/
 // libraries
-import React, { useEffect } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
 // local files
 import LandingNoSession from "./LandingNoSession";
-import LandingSession from "./LandingSession";
 import './Landing.css'
 import Explore from "../Photos/Explore"
 
@@ -22,6 +20,7 @@ function Landing() {
 
     /**************** render component *****************/
     return (
+      <>
         <div className='page-wrapper-container'>
 
           {/* <div className="landing-component"> */}
@@ -29,6 +28,7 @@ function Landing() {
           {/* </div> */}
 
         </div>
+      </>
     )
 }
 

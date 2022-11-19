@@ -18,7 +18,6 @@ function TagCreateForm({ onClose }) {
   };
 
   return (
-    <div className="page-wrapper-container">
       <div className="modal-container">
         <p className="modal-title">Add tags</p>
 
@@ -42,7 +41,6 @@ function TagCreateForm({ onClose }) {
           </form>
         </div>
       </div>
-    </div>
   );
 }
 
