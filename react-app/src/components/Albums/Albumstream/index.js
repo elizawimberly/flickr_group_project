@@ -55,7 +55,7 @@ function Albumstream() {
             friends, family, or even other Flare members.
           </p>
           <div>
-            <NavLink to="/upload" exact={true}>
+            <NavLink to="/albums/create" exact={true}>
               <button className="no-photos-or-albums-upload-button">
                 Create an album
               </button>

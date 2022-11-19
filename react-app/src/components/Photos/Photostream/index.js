@@ -48,7 +48,7 @@ function Photostream() {
           <p className="no-photos-or-albums">You have no public photos.</p>
           <p className="no-photos-or-albums-upload-prompt">Your photostream is your public-facing portfolio. Set your photos to public within the Upload tool to populate your photostream.</p>
           <div>
-            <NavLink to='/upload' exact={true}>
+            <NavLink to='/photos/upload' exact={true}>
               <button className="no-photos-or-albums-upload-button">Go to Upload</button>
             </NavLink>
           </div>

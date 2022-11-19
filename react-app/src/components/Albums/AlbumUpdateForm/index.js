@@ -159,7 +159,7 @@ function AlbumUpdateForm() {
                                 }}
                                 ></input>
 
-                            <div>
+                            {/* <div> */}
                               <img
                                 src={photo.url}
                                 alt=""
@@ -181,7 +181,7 @@ function AlbumUpdateForm() {
                                       //     setPhotos(currentPhotos)
                                       // }}
                                       ></img>
-                            </div>
+                            {/* </div> */}
 
                             <div className="photo-item-description">
                               <p className="photo-item-name">{photo.name}</p>
