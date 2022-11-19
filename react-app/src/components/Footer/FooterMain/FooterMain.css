@@ -1,5 +1,3 @@
-
-
 .FooterMain-container {
     /* display */
     display: grid;
@@ -31,7 +29,7 @@
     justify-content: left;
     align-items: center;
 }
-.footer-left > a {
+.footer-left > * {
     padding-right: 20px;
 }
 .footer-middle {
