@@ -45,7 +45,10 @@
 #banner-modify-album-buttons-container > i {
     cursor: pointer;
 }
-
+/* Flickr does not have hover effect */
+/* #banner-modify-album-buttons-container > i:hover {
+    color: #8e9396;
+} */
 
 
 #navigate-to-albumstream-button {
