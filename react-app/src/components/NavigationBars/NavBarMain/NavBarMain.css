@@ -49,6 +49,9 @@
     color: #fff;
     font-size: 30px;
 }
+#navbar-upload-photo-button:hover {
+    color: #8e9396;
+}
 
 .nav-bar-left {
     padding-left: 24px;
@@ -79,6 +82,9 @@
     color: #fff;
     text-decoration: none;
     cursor: pointer;
+}
+.nav-bar-right-A > div:hover {
+    color: #8e9396;
 }
 
 .nav-bar-right-B {

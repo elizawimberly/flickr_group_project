@@ -13,9 +13,11 @@ function FooterMain() {
     return (
         <div className="FooterMain-container">
             <div className="footer-left">
-                <a href="https://www.flickr.com/help/privacy" className="footerText">Privacy</a>
-                <a href="https://www.flickr.com/help/terms" className="footerText">Terms</a>
-                <a href="https://www.flickr.com/help/cookies" className="footerText">Sitemap</a>
+                {/* <span className="footerText">Connect: </span> */}
+                <a href="https://www.linkedin.com/in/eliza-wimberly-773896205/" className="footerText">Eliza</a>
+                <a href="https://www.linkedin.com/in/justin-rife-730875181/" className="footerText">Justin</a>
+                <a href="https://www.linkedin.com/in/kevinlongboy/" className="footerText">Kevin</a>
+                <a href="https://www.linkedin.com/in/yasamine-cruz-7b6867256/" className="footerText">Yas</a>
             </div>
 
             <div className="footer-middle">
