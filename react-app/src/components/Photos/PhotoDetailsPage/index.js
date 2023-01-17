@@ -50,12 +50,12 @@ function PhotoDetailsPage() {
   const [lastName, setLastName] = useState("")
 
   /************* conditional components **************/
-  useEffect(()=> {
-    if(photo.User) {
+  useEffect(() => {
+    if (photo.User) {
       setFirstName(photo.User.firstName)
       setLastName(photo.User.lastName)
     }
-  },[photo.User])
+  }, [photo.User])
 
 
   let photostreamButton = <></>;
@@ -92,129 +92,129 @@ function PhotoDetailsPage() {
   /**************** render component *****************/
   return (
     <>
-    <div className="page-wrapper-container">
-      <div id="PhotoDetailsPage-component">
-        <div
-          className="top-half"
-          style={{
-            backgroundColor: "#212124",
-            backgroundRepeat: "no-repeat",
-            backgroundPosition: "center",
-            backgroundSize: "cover",
-          }}
-        >
-          <div className="top-half-section-A">
-            {user?.id === photo?.userId && (
-                    <div>{photostreamButton}</div>
-            )}
-          </div>
+      <div className="page-wrapper-container">
+        <div id="PhotoDetailsPage-component">
+          <div
+            className="top-half"
+            style={{
+              backgroundColor: "#212124",
+              backgroundRepeat: "no-repeat",
+              backgroundPosition: "center",
+              backgroundSize: "cover",
+            }}
+          >
+            <div className="top-half-section-A">
+              {user?.id === photo?.userId && (
+                <div>{photostreamButton}</div>
+              )}
+            </div>
 
-          <div className="top-half-section-B">
-            {/* <div>
+            <div className="top-half-section-B">
+              {/* <div>
               <i class="fa-solid fa-chevron-left"></i>
             </div> */}
 
-            <div>
-              <img
-                src={photo.url}
-                alt={photo.name}
-                className="view-photo"
-              ></img>
-            </div>
+              <div>
+                <img
+                  src={photo.url}
+                  alt={photo.name}
+                  className="view-photo"
+                ></img>
+              </div>
 
-            {/* <div>
+              {/* <div>
               <i class="fa-solid fa-chevron-right"></i>
             </div> */}
-          </div>
+            </div>
             {user?.id === photo?.userId && (
               <div className="top-half-section-C">{updatePhotoButtons}</div>
             )}
-        </div>
+          </div>
 
-        <div className="bottom-half">
-          <div className="bottom-half-left">
-            <div className="photo-blurb">
-              <div className="photo-blurb-profile-pic-container">
-                <img
-                  src={buddyIcon}
-                  alt="profile"
-                  className="photo-blurb-profile-pic"
-                ></img>
+          <div className="bottom-half">
+            <div className="bottom-half-left">
+              <div className="photo-blurb">
+                <div className="photo-blurb-profile-pic-container">
+                  <img
+                    src={buddyIcon}
+                    alt="profile"
+                    className="photo-blurb-profile-pic"
+                  ></img>
+                </div>
+                <div className="photo-blurb-about-container">
+                  {/* <div className="photo-blurb-photographer">{photo.User.username}</div> */}
+                  {firstName && lastName && (
+                    <div className="photo-blurb-photographer">{firstName} {lastName}</div>
+                  )}
+                  <div className="photo-blurb-name">{photo && photo?.name}</div>
+                  <div className="photo-blurb-about">{photo && photo?.about}</div>
+                </div>
               </div>
-              <div className="photo-blurb-about-container">
-                {/* <div className="photo-blurb-photographer">{photo.User.username}</div> */}
-                {firstName && lastName && (
-                  <div className="photo-blurb-photographer">{firstName} {lastName}</div>
-                )}
-                <div className="photo-blurb-name">{photo && photo?.name}</div>
-                <div className="photo-blurb-about">{photo && photo?.about}</div>
-              </div>
-            </div>
 
-            <div className="comments-section">
-              {comments &&
-                comments.map((comment) => (
-                  <div
-                    className="display-comment"
+              <div className="comments-section">
+                {comments &&
+                  comments.map((comment) => (
+                    <div
+                      className="display-comment"
                     // onMouseEnter={() => setIsShown(true)}
                     // onMouseLeave={() => setIsShown(false)}
-                  >
-                    <div className="comment-text-container">
-                      <div className="comment-text">{comment.comment}</div>
-                    </div>
-                    <div className="comment-bottom-line-container">
-                      <div className="comment-createdAt">
-                        {convertDate(comment.createdAt)}
+                    >
+                      <div className="comment-text-container">
+                        <div className="comment-text">{comment.comment}</div>
                       </div>
-                      {user?.id === comment.User.id || user?.id === photo.userId ? <CommentDeleteModal comment={comment} /> : <></>}
-                      {/* {isShown && */}
-                      {/* } */}
+                      <div className="comment-bottom-line-container">
+                        <div className="comment-createdAt">
+                          {convertDate(comment.createdAt)}
+                        </div>
+                        {user?.id === comment.User.id || user?.id === photo.userId ? <CommentDeleteModal comment={comment} /> : <></>}
+                        {/* {isShown && */}
+                        {/* } */}
+                      </div>
                     </div>
-                  </div>
-                ))}
-                <br/>
+                  ))}
+                <br />
                 <div>{!user && (
                   <div>You must be logged in to leave a comment.</div>
                 )}</div>
-            </div>
-
-            <div className="add-comment-section">
-              {user ? <CommentCreateFormModal /> : <></>}
-            </div>
-          </div>
-
-          <div className="bottom-half-right">
-            <div className="stats-container">
-              <div className="comments-stats">
-                <div className="comment-count">{comments?.length}</div>
-                <div className="comment-label">comments</div>
               </div>
-              <div className="photo-stats">
-                <div>
-                  Uploaded on {photo.createdAt && convertDate(photo.createdAt)}
+
+              <div className="add-comment-section">
+                {user ? <CommentCreateFormModal /> : <></>}
+              </div>
+            </div>
+
+            <div className="bottom-half-right">
+              <div className="stats-container">
+                <div className="comments-stats">
+                  <div className="comment-count">{comments?.length}</div>
+                  <div className="comment-label">comments</div>
+                </div>
+                <div className="photo-stats">
+                  <div>
+                    Uploaded on {photo.createdAt && convertDate(photo.createdAt)}
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <div className="tags-container">
-              <div className="tags-container-title">Tags</div>
+              <div className="tags-container">
+                <div className="tags-container-title">Tags</div>
 
-              <div className="display-tag-container">
-                {tags &&
-                  tags.map((tag) => (
-                    <div className="display-tag">
-                      {tag.tag}
-                      {user?.id === photo.userId ? <TagDeleteModal tag={tag} /> : <></>}
-                    </div>
-                  ))}
+                <div className="display-tag-container">
+                  {tags &&
+                    tags.map((tag) => (
+                      <div className="display-tag">
+                        {tag.tag}
+                        {user?.id === photo.userId ? <TagDeleteModal tag={tag} /> : <></>}
+                      </div>
+                    ))}
+                </div>
+                {user?.id === photo.userId ? <TagCreateFormModal /> : <></>}
               </div>
-              {user?.id === photo.userId ? <TagCreateFormModal /> : <></>}
             </div>
           </div>
+          <FooterAccount />
         </div>
       </div>
-    </div>
-    <FooterAccount />
     </>
   );
 }
